@@ -7,16 +7,6 @@ $centipede-details-width: 85px;
 $centipede-headline-line-height: 12px;
 $centipede-headline-font-size: 10px;
 
-@mixin centipede_stretch {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
 @function centipede_headline_height {
   @return ($centipede-headline-line-height * 2) + $centipede-padding;
 }
@@ -42,7 +32,7 @@ $centipede-headline-font-size: 10px;
 }
 
 .arcade__marquee {
-  @include centipede_stretch;
+  @include flynns_stretch;
   z-index: 50;
 }
 
@@ -53,6 +43,8 @@ $centipede-headline-font-size: 10px;
     position: absolute;
     bottom: 0;
     width: 100%;
+    @include background-image(linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.75) 100%));
+    padding-top: 10px;
   }
 
   &.line--name {
@@ -198,6 +190,11 @@ $centipede-headline-font-size: 10px;
 }
 
 .arcade__screen {
-  @include centipede_stretch;
+  @include flynns_stretch;
   z-index: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+  }
 }

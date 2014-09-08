@@ -1,6 +1,5 @@
 @import "bower_components/neat/app/assets/stylesheets/neat";
 
-
 // Screen Sizes
 // These are defined in bootstrap.  Redefined here so they can be overridden
 // as necessary.
@@ -18,7 +17,7 @@ $flynns-gutter-small: 20 !default;
 $flynns-gutter-medium: 5 !default;
 $flynns-gutter-large: 2 !default;
 
-$flynns-arcade: battlezone !default;
+$flynns-arcade: centipede !default;
 
 // Default to no gutter, upgrade if necessary.
 $flynns-gutter-value: $flynns-gutter-none;
@@ -33,10 +32,20 @@ $flynns-gutter-value: $flynns-gutter-none;
 // This takes in the number of total colums you want in the block, and the
 // total number of columns you want to build the grid off of.  The larger the
 // $total the smaller the space between the blocks.
-@mixin pixel($columns, $total) {
+@mixin flynns_pixel($columns, $total) {
   @include span-columns(($total / $columns) of $total);
   @include omega(#{$columns}n);
   margin-bottom: flex-gutter($total);
+}
+
+@mixin flynns_stretch {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .flynns {
@@ -46,21 +55,21 @@ $flynns-gutter-value: $flynns-gutter-none;
   & > li {
     // iPhone portrait
     @media (max-width: $screen-xs - 1) {
-      @include pixel(2, 2 * $flynns-gutter-value);
+      @include flynns_pixel(2, 2 * $flynns-gutter-value);
     }
 
     // iPhone landscape -> iPad Portrait
     @media (min-width: $screen-xs) and (max-width: $screen-md - 1) {
-      @include pixel(3, 3 * $flynns-gutter-value);
+      @include flynns_pixel(3, 3 * $flynns-gutter-value);
     }
 
     // > iPad landscape -> Small desktop
     @media (min-width: $screen-md) and (max-width: $screen-lg - 1 ) {
-      @include pixel(4, 4 * $flynns-gutter-value);
+      @include flynns_pixel(4, 4 * $flynns-gutter-value);
     }
 
     @media (min-width: $screen-lg) {
-      @include pixel(5, 5 * $flynns-gutter-value);
+      @include flynns_pixel(5, 5 * $flynns-gutter-value);
     }
   }
 }

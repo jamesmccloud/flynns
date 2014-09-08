@@ -42,13 +42,13 @@
 
         //- Just the headline.
         .arcade__line.line--headline
-          p.arcade__headline I'm the hilarious, nerdy, milf you wish lived next door!
+          p.arcade__headline {{program.headline}}
 
         //- Another row of hearts and starts
         //- .arcade__line.line--
 
       .arcade__screen
-        img(src="//placehold.it/320x240")
+        img(ng-src="{{program.image.src}}")
 
       .controls
 
