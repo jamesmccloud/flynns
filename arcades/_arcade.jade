@@ -1,5 +1,5 @@
 //- A generic arcade.  Just add style.
-li.arcade
+li.arcade(ng-repeat="program in programs")
 
   //- Another div, will be used to put the inline player somewhere else.
   .arcade__cabinet
@@ -14,7 +14,7 @@ li.arcade
       //- - Stars
       //- - Phone/HD
       .arcade__line.line--status.gold-show
-        .arcade__status: span Gold Show
+        .arcade__status: span {{arcade.status.text}}
         .arcade__favorite: i.fa.fa-heart
         ul.arcade__details
           li.hd: i.fa.small HD

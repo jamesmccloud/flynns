@@ -84,10 +84,6 @@ $battlezone-link-color: #3399cc !default;
 
   .age {
     color: $battlezone-link-color;
-    &::before {
-      padding-right: $battlezone-padding;
-      color: #999999;
-    }
   }
 
   .name {
@@ -96,6 +92,10 @@ $battlezone-link-color: #3399cc !default;
 
   .country {
     color: $battlezone-link-color;
+  }
+
+  .fa-ellipsis-v {
+    color: #999999;
   }
 }
 

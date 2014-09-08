@@ -58,7 +58,6 @@ $centipede-headline-font-size: 10px;
   &.line--name {
     position: absolute;
     bottom: 100%;
-    padding-bottom: 1px;
     width: 100%;
   }
 
@@ -69,37 +68,44 @@ $centipede-headline-font-size: 10px;
 }
 
 .arcade__name {
-  @include ellipsis;
-  float: left;
   width: 100%;
   margin: 0;
   font-size: 12px;
+  height: 14px;
+  line-height: 14px;
+  letter-spacing: (-10em / 1000);
+  color: $centipede-link-color;
+  padding-right: $centipede-details-width;
 
   // We only need the space here if the gutters are set to none
   @if $flynns-gutter-size == none {
     padding-left: $centipede-padding;
   }
 
-  padding-right: $centipede-details-width;
-  letter-spacing: (-10em / 1000);
-  color: $centipede-link-color;
+  a {
+    @include ellipsis;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .arcade__details {
   position: absolute;
   right: 0;
+  top: 0;
+  margin: 0;
   width: $centipede-details-width;
+  font-size: 12px;
+  list-style: none;
+  text-align: right;
   padding-left: 0;
+  height: 14px;
+  line-height: 14px;
 
   // We only need the space here if the gutters are set to none
   @if $flynns-gutter-size == none {
     padding-right: $centipede-padding;
   }
-
-  font-size: 12px;
-  list-style: none;
-  margin: 0;
-  text-align: right;
 
   .line--status & {
     display: none;
@@ -108,6 +114,7 @@ $centipede-headline-font-size: 10px;
   li {
     font-size: normal;
     display: inline-block;
+    vertical-align: bottom;
 
     & + li {
       margin-left: 0.25em;
@@ -129,10 +136,6 @@ $centipede-headline-font-size: 10px;
 
   .age {
     color: $centipede-link-color;
-    &::before {
-      padding-right: $centipede-padding;
-      color: #999999;
-    }
   }
 
   .name {
@@ -141,6 +144,10 @@ $centipede-headline-font-size: 10px;
 
   .country {
     color: $centipede-link-color;
+  }
+
+  .fa-ellipsis-v {
+    color: #999999;
   }
 }
 
