@@ -1,117 +1,133 @@
+// Battlezone Variables
+$battlezone-padding: 4px !default;
+$battlezone-link-color: #3399cc !default;
 
-.battlezone {
-
-  $battlezone-padding: 4px !default;
-  $battlezone-link-color: #3399cc !default;
-
+// Battlezone
+.arcade {
   position: relative;
-
-  .marquee {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    @include background-image(linear-gradient(top,  rgba(0,0,0,0) 0%,rgba(0,0,0,0.55) 100%));
-
-    .line {
-      @include clearfix;
-      position: relative;
-    }
-
-    .name {
-      @include ellipsis;
-      float: left;
-      width: 100%;
-      height: 16px;
-      margin: 0;
-      font-size: 14px;
-      padding-left: $battlezone-padding;
-      padding-right: 90px;
-      letter-spacing: (-10em / 1000);
-    }
-
-    .details {
-      position: absolute;
-      right: 0;
-      width: 90px;
-      padding: 0 $battlezone-padding;
-      line-height: 16px;
-      font-size: 14px;
-      list-style: none;
-      margin: 0;
-      text-align: right;
-
-      li {
-        font-size: normal;
-        display: inline-block;
-
-        & + li {
-          margin-left: $battlezone-padding;
-        }
-      }
-
-      .small {
-        font-size: 80%;
-      }
-
-      .hd i {
-        font-weight: bold;
-        color: #999999;
-      }
-
-      .phone {
-        color: #999999;
-      }
-
-      .age {
-        color: $battlezone-link-color;
-        &::before {
-          padding-right: $battlezone-padding;
-          color: #999999;
-        }
-      }
-
-      .name {
-        color: $battlezone-link-color;
-      }
-
-      .country {
-        color: $battlezone-link-color;
-      }
-    }
-
-    .status {
-      float: left;
-      padding-left: $battlezone-padding;
-      padding-bottom: $battlezone-padding;
-
-      span {
-        font-size: 12px;
-        padding: ($battlezone-padding / 2) ($battlezone-padding * 2);
-        font-weight: bold;
-        text-transform: uppercase;
-        font-size: 10px;
-        letter-spacing: (20em / 1000);
-
-        &.gold-show {
-          background: gold;
-        }
-      }
-    }
-
-    .favorite {
-      float: right;
-      padding-right: $battlezone-padding;
-      position: relative;
-      top: $battlezone-padding;
-      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-
-      .fa-heart {
-        color: red;
-      }
-    }
-  }
 
   img {
     max-width: 100%;
+  }
+}
+
+.arcade__marquee {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  @include background-image(linear-gradient(top,  rgba(0,0,0,0) 2%,rgba(0,0,0,0.75) 100%));
+  padding-top: 10px;
+  padding-bottom: ($battlezone-padding / 2)
+}
+
+.arcade__line {
+  @include clearfix;
+  position: relative;
+
+  &.line--headline {
+    display: none;
+  }
+}
+
+.arcade__name {
+  @include ellipsis;
+  float: left;
+  width: 100%;
+  height: 16px;
+  margin: 0;
+  font-size: 14px;
+  padding-left: $battlezone-padding;
+  padding-right: 90px;
+  letter-spacing: (-10em / 1000);
+  color: $battlezone-link-color;
+}
+
+.arcade__details {
+  position: absolute;
+  right: 0;
+  width: 90px;
+  padding: 0 $battlezone-padding;
+  line-height: 16px;
+  font-size: 14px;
+  list-style: none;
+  margin: 0;
+  text-align: right;
+
+  .line--status & {
+    display: none;
+  }
+
+  li {
+    font-size: normal;
+    display: inline-block;
+
+    & + li {
+      margin-left: $battlezone-padding;
+    }
+  }
+
+  .small {
+    font-size: 80%;
+  }
+
+  .hd i {
+    font-weight: bold;
+    color: #999999;
+  }
+
+  .phone {
+    color: #999999;
+  }
+
+  .age {
+    color: $battlezone-link-color;
+    &::before {
+      padding-right: $battlezone-padding;
+      color: #999999;
+    }
+  }
+
+  .name {
+    color: $battlezone-link-color;
+  }
+
+  .country {
+    color: $battlezone-link-color;
+  }
+}
+
+.arcade__status {
+  float: left;
+  padding-left: $battlezone-padding;
+  padding-bottom: $battlezone-padding;
+
+  span {
+    font-size: 12px;
+    padding: ($battlezone-padding / 2) ($battlezone-padding * 2);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: (20em / 1000);
+
+    .gold-show & {
+      background: gold;
+    }
+
+    .online &,
+    .party-chat & {
+      background: #33cc00;
+    }
+  }
+}
+
+.arcade__favorite {
+  float: right;
+  padding-right: $battlezone-padding;
+  position: relative;
+  top: $battlezone-padding;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+
+  .fa-heart {
+    color: red;
   }
 }
