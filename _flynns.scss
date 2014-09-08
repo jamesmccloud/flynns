@@ -76,15 +76,21 @@ $flynns-gutter-value: $flynns-gutter-none;
 
 // Only include the arcade that they're using.
 @if $flynns-arcade == asteroids {
-  // @import "arcades/asteroids";
+  @import "arcades/asteroids";
+
 } @else if $flynns-arcade == battlezone {
   @import "arcades/battlezone";
+
 } @else if $flynns-arcade == centipede {
   @import "arcades/centipede";
+
 } @else if $flynns-arcade == defender {
-  // @import "arcades/defender";
+  @import "arcades/defender";
+
 } @else if $flynns-arcade == excitebike {
-  // @import "arcades/excitebike";
+  @import "arcades/excitebike";
+
 } @else if $flynns-arcade == frogger {
-  // @import "arcades/frogger";
+  @import "arcades/frogger";
+
 }
