@@ -18,7 +18,7 @@ $flynns-gutter-small: 20 !default;
 $flynns-gutter-medium: 5 !default;
 $flynns-gutter-large: 2 !default;
 
-$flynns-arcade: battlezone !default;
+$flynns-arcade: centipede !default;
 
 // Default to no gutter, upgrade if necessary.
 $flynns-gutter-value: $flynns-gutter-none;
@@ -71,7 +71,7 @@ $flynns-gutter-value: $flynns-gutter-none;
 } @else if $flynns-arcade == battlezone {
   @import "arcades/battlezone";
 } @else if $flynns-arcade == centipede {
-  // @import "arcades/centipede";
+  @import "arcades/centipede";
 } @else if $flynns-arcade == defender {
   // @import "arcades/defender";
 } @else if $flynns-arcade == excitebike {

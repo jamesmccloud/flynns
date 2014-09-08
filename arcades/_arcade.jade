@@ -1,47 +1,50 @@
 //- A generic arcade.  Just add style.
 li.arcade
 
-  //- The marquee is the primary container holding all the lines
-  //- of information.
-  .arcade__marquee
+  //- Another div, will be used to put the inline player somewhere else.
+  .arcade__cabinet
 
-    //- The status line has the following:
-    //- - Status
-    //- - Favorite
-    //- - Stars
-    //- - Phone/HD
-    .arcade__line.line--status.gold-show
-      .arcade__status: span Gold Show
-      .arcade__favorite: i.fa.fa-heart
-      ul.arcade__details
-        li.hd: i.fa.small HD
-        li.phone: i.fa.fa-phone.small
-        li.country EU
-        li.age.fa.fa-ellipsis-v 24
+    //- The marquee is the primary container holding all the lines
+    //- of information.
+    .arcade__marquee
 
-    //- The Name line has the following:
-    //- - Name
-    //- - Details
-    //- - - Phone/HD
-    //- - - Counrty
-    //- - - Age
-    .arcade__line.line--name
-      h3.arcade__name: a(href="#noload") Emma_Eddie_Lovvit
-      ul.arcade__details
-        li.hd: i.fa.small HD
-        li.phone: i.fa.fa-phone.small
-        li.country EU
-        li.age.fa.fa-ellipsis-v 24
+      //- The status line has the following:
+      //- - Status
+      //- - Favorite
+      //- - Stars
+      //- - Phone/HD
+      .arcade__line.line--status.gold-show
+        .arcade__status: span Gold Show
+        .arcade__favorite: i.fa.fa-heart
+        ul.arcade__details
+          li.hd: i.fa.small HD
+          li.phone: i.fa.fa-phone.small
+          li.country EU
+          li.age.fa.fa-ellipsis-v 24
 
-    //- Just the headline.
-    .arcade__line.line--headline
-      p.headline I'm the hilarious, nerdy, milf you wish lived next door!
+      //- The Name line has the following:
+      //- - Name
+      //- - Details
+      //- - - Phone/HD
+      //- - - Counrty
+      //- - - Age
+      .arcade__line.line--name
+        h3.arcade__name: a(href="#noload") Emma_Eddie_Lovvit
+        ul.arcade__details
+          li.hd: i.fa.small HD
+          li.phone: i.fa.fa-phone.small
+          li.country EU
+          li.age.fa.fa-ellipsis-v 24
 
-    //- Another row of hearts and starts
-    //- .arcade__line.line--
+      //- Just the headline.
+      .arcade__line.line--headline
+        p.arcade__headline I'm the hilarious, nerdy, milf you wish lived next door!
 
-  .screen
-    img(src="//placehold.it/320x240")
+      //- Another row of hearts and starts
+      //- .arcade__line.line--
 
-  .controls
+    .arcade__screen
+      img(src="//placehold.it/320x240")
+
+    .controls
 

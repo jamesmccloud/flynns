@@ -1,0 +1,196 @@
+// Centipede Configurable Variables
+$centipede-padding: 6px !default;
+$centipede-link-color: #3399cc !default;
+
+// Centipede Variables
+$centipede-details-width: 85px;
+$centipede-headline-line-height: 12px;
+$centipede-headline-font-size: 10px;
+
+@mixin centipede_stretch {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+@function centipede_headline_height {
+  @return ($centipede-headline-line-height * 2) + $centipede-padding;
+}
+
+// Centipede
+.arcade {
+  padding-top: 16px;
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.arcade__cabinet {
+  position: relative;
+
+  &::after {
+    content: '';
+    display: block;
+    padding-bottom: 75%;
+    width: 100%;
+  }
+}
+
+.arcade__marquee {
+  @include centipede_stretch;
+  z-index: 50;
+}
+
+.arcade__line {
+  @include clearfix;
+
+  &.line--headline {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
+  &.line--name {
+    position: absolute;
+    bottom: 100%;
+    padding-bottom: 1px;
+    width: 100%;
+  }
+
+  &.line--status {
+    position: absolute;
+    bottom: centipede_headline_height();
+  }
+}
+
+.arcade__name {
+  @include ellipsis;
+  float: left;
+  width: 100%;
+  margin: 0;
+  font-size: 12px;
+
+  // We only need the space here if the gutters are set to none
+  @if $flynns-gutter-size == none {
+    padding-left: $centipede-padding;
+  }
+
+  padding-right: $centipede-details-width;
+  letter-spacing: (-10em / 1000);
+  color: $centipede-link-color;
+}
+
+.arcade__details {
+  position: absolute;
+  right: 0;
+  width: $centipede-details-width;
+  padding-left: 0;
+
+  // We only need the space here if the gutters are set to none
+  @if $flynns-gutter-size == none {
+    padding-right: $centipede-padding;
+  }
+
+  font-size: 12px;
+  list-style: none;
+  margin: 0;
+  text-align: right;
+
+  .line--status & {
+    display: none;
+  }
+
+  li {
+    font-size: normal;
+    display: inline-block;
+
+    & + li {
+      margin-left: 0.25em;
+    }
+  }
+
+  .small {
+    font-size: 80%;
+  }
+
+  .hd i {
+    font-weight: bold;
+    color: #999999;
+  }
+
+  .phone {
+    color: #999999;
+  }
+
+  .age {
+    color: $centipede-link-color;
+    &::before {
+      padding-right: $centipede-padding;
+      color: #999999;
+    }
+  }
+
+  .name {
+    color: $centipede-link-color;
+  }
+
+  .country {
+    color: $centipede-link-color;
+  }
+}
+
+.arcade__status {
+  float: left;
+  padding-left: $centipede-padding;
+  padding-bottom: $centipede-padding;
+
+  span {
+    font-size: 12px;
+    padding: ($centipede-padding / 2) ($centipede-padding * 2);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: (20em / 1000);
+
+    .gold-show & {
+      background: gold;
+    }
+
+    .online &,
+    .party-chat & {
+      background: #33cc00;
+    }
+  }
+}
+
+.arcade__favorite {
+  position: absolute;
+  left: 0;
+  bottom: 100%;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  padding-left: $centipede-padding;
+  .fa-heart {
+    color: red;
+  }
+}
+
+.arcade__headline {
+  text-align: justify;
+  margin: 0;
+  font-size: $centipede-headline-font-size;
+  line-height: $centipede-headline-line-height;
+  max-height: centipede_headline_height();
+  padding: $centipede-padding;
+  padding-top: 0;
+  color: #ffffff;
+}
+
+.arcade__screen {
+  @include centipede_stretch;
+  z-index: 0;
+}

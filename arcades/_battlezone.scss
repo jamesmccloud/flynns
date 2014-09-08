@@ -17,7 +17,6 @@ $battlezone-link-color: #3399cc !default;
   width: 100%;
   @include background-image(linear-gradient(top,  rgba(0,0,0,0) 2%,rgba(0,0,0,0.75) 100%));
   padding-top: 10px;
-  padding-bottom: ($battlezone-padding / 2)
 }
 
 .arcade__line {
@@ -27,18 +26,22 @@ $battlezone-link-color: #3399cc !default;
   &.line--headline {
     display: none;
   }
+
+  &.line--name {
+    padding-bottom: ($battlezone-padding / 2);
+  }
 }
 
 .arcade__name {
   @include ellipsis;
   float: left;
   width: 100%;
-  height: 16px;
+  height: 14px;
   margin: 0;
-  font-size: 14px;
+  font-size: 12px;
   padding-left: $battlezone-padding;
   padding-right: 90px;
-  letter-spacing: (-10em / 1000);
+  // letter-spacing: (-10em / 1000);
   color: $battlezone-link-color;
 }
 
@@ -47,8 +50,8 @@ $battlezone-link-color: #3399cc !default;
   right: 0;
   width: 90px;
   padding: 0 $battlezone-padding;
-  line-height: 16px;
-  font-size: 14px;
+  font-size: 12px;
+  height: 14px;
   list-style: none;
   margin: 0;
   text-align: right;
@@ -102,11 +105,10 @@ $battlezone-link-color: #3399cc !default;
   padding-bottom: $battlezone-padding;
 
   span {
-    font-size: 12px;
     padding: ($battlezone-padding / 2) ($battlezone-padding * 2);
     font-weight: bold;
     text-transform: uppercase;
-    font-size: 10px;
+    font-size: 9px;
     letter-spacing: (20em / 1000);
 
     .gold-show & {
