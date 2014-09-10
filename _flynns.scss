@@ -17,7 +17,7 @@ $flynns-gutter-small: 20 !default;
 $flynns-gutter-medium: 5 !default;
 $flynns-gutter-large: 2 !default;
 
-$flynns-arcade: centipede !default;
+$flynns-arcade: battlezone !default;
 
 // Default to no gutter, upgrade if necessary.
 $flynns-gutter-value: $flynns-gutter-none;
@@ -73,6 +73,48 @@ $flynns-gutter-value: $flynns-gutter-none;
     }
   }
 }
+
+.arcade {
+
+  // .arcade__cabinet
+  // Houses the whole arcade mechanism
+  &__cabinet {
+    position: relative;
+
+    &::after {
+      content: '';
+      display: block;
+      padding-bottom: 75%;
+      width: 100%;
+    }
+  }
+
+  // .arcade__cover
+  // This is just a giant cover over the whole cabinet area.  First in the
+  // source so we can use the ~ selector for hovering.
+  &__cover {
+    @include flynns_stretch;
+    z-index: 100;
+  }
+
+
+  // .arcade__marquee
+  &__marquee {
+    z-index: 50;
+  }
+
+  // .arcade__screen
+  &__screen {
+    @include flynns_stretch;
+    z-index: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
 
 // Only include the arcade that they're using.
 @if $flynns-arcade == asteroids {

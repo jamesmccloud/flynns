@@ -3,46 +3,106 @@
   //- A generic arcade.  Just add style.
   li.arcade(ng-repeat="program in programs")
 
-    //- Another div, will be used to put the inline player somewhere else.
+    //- This is the primary size div, the aspect ratio is set with the height as
+    //- a percentage of the width (100%) (e.g. 4x3 = 75%)
     .arcade__cabinet
 
       //- The marquee is the primary container holding all the lines
-      //- of information.
-      .arcade__marquee
+      //- of information. I think adding the status class way up here is
+      //- the right thing to do.
+      a.arcade__marquee(ng-class="{ \
+        'gold-show':  program.status.text == 'Gold Show', \
+        'party-chat': program.status.text == 'Party Chat', \
+        'online':     program.status.text == 'Live Now' \
+        'offline':    program.status.text == 'Offline' \
+      }")
 
-        //- The status line has the following:
-        //- - Status
-        //- - Favorite
-        //- - Stars
-        //- - Phone/HD
-        .arcade__line.line--status.gold-show
-          .arcade__status: span {{program.status.text}}
-          .arcade__favorite: i.fa.fa-heart
-          ul.arcade__details
-            li.hd(ng-if="program.hd"): i.fa.small HD
-            li.phone(ng-if="program.phone"): i.fa.fa-phone.small
-            li.country {{program.country}}
-            li: i.fa.fa-ellipsis-v
-            li.age {{program.age}}
-
-        //- The Name line has the following:
+        //- The Alpha line has the following:
         //- - Name
         //- - Details
         //- - - Phone/HD
-        //- - - Counrty
+        //- - - Country
         //- - - Age
-        .arcade__line.line--name
-          h3.arcade__name: a(href="#noload") {{program.name.text}}
-          ul.arcade__details
-            li.hd(ng-if="program.hd"): i.fa.small HD
-            li.phone(ng-if="program.phone"): i.fa.fa-phone.small
-            li.country {{program.country}}
-            li: i.fa.fa-ellipsis-v
-            li.age {{program.age}}
+        .arcade__line.line--alpha
+          .arcade__name
+            h3: a(href="#noload") {{program.image.alt}}
+
+          .arcade__details
+            ul
+              li.hd(ng-if="program.hd"): i.small HD
+              li.phone(ng-if="program.phone"): i.fa.fa-phone.small
+              li.country {{program.country}}
+              li: i.fa.fa-ellipsis-v
+              li.age {{program.age}}
+
+        //- The status line has the following:
+        //- - Status
+        //- - Stars
+        //- - Favorite
+        //- - Phone/HD
+        .arcade__line.line--beta
+
+          //- Gold Show Status
+          .arcade__status
+            span {{program.status.text}}
+
+          //- Stars
+          .arcade__rating
+            ul.stars__container
+              -for (i = 0; i < 5; i++) {
+                li.star: i.fa
+              }
+
+          //- Favorites
+          .arcade__favorite
+            i.fa.fa-heart
+
+          //- HD/Phone Age Country again
+          .arcade__details
+            ul
+              li.hd(ng-if="program.hd"): i.fa.small HD
+              li.phone(ng-if="program.phone"): i.fa.fa-phone.small
+              li.country {{program.country}}
+              li: i.fa.fa-ellipsis-v
+              li.age {{program.age}}
 
         //- Just the headline.
-        .arcade__line.line--headline
-          p.arcade__headline {{program.headline}}
+        .arcade__line.line--gamma
+          .arcade__headline
+            p {{program.headline}}
+
+
+        //- The status line has the following:
+        //- - Status
+        //- - Stars
+        //- - Favorite
+        //- - Phone/HD
+        //- .arcade__line.line--delta
+
+        //-   //- Gold Show Status
+        //-   .arcade__status
+        //-     span {{program.status.text}}
+
+        //-   //- Stars
+        //-   .arcade__rating
+        //-     ul.stars__container
+        //-       -for (i = 0; i < 5; i++) {
+        //-         li.star: i.fa
+        //-       }
+
+        //-   //- Favorites
+        //-   .arcade__favorite
+        //-     i.fa.fa-heart
+
+        //-   //- HD/Phone Age Country again
+        //-   .arcade__details
+        //-     ul
+        //-       li.hd(ng-if="program.hd"): i.fa.small HD
+        //-       li.phone(ng-if="program.phone"): i.fa.fa-phone.small
+        //-       li.country {{program.country}}
+        //-       li: i.fa.fa-ellipsis-v
+        //-       li.age {{program.age}}
+
 
         //- Another row of hearts and starts
         //- .arcade__line.line--
