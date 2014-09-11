@@ -76,6 +76,13 @@ $flynns-gutter-value: $flynns-gutter-none;
 
 .arcade {
 
+  // .arcade__cover
+  // This is just a giant cover over the whole cabinet area.  First in the
+  // source so we can use the ~ selector for hovering.
+  &__cover {
+    position: relative;
+  }
+
   // .arcade__cabinet
   // Houses the whole arcade mechanism
   &__cabinet {
@@ -89,22 +96,28 @@ $flynns-gutter-value: $flynns-gutter-none;
     }
   }
 
-  // .arcade__cover
-  // This is just a giant cover over the whole cabinet area.  First in the
-  // source so we can use the ~ selector for hovering.
-  &__cover {
-    @include flynns_stretch;
-    z-index: 100;
-  }
 
-
-  // .arcade__marquee
-  &__marquee {
+  &__game-over {
     z-index: 50;
   }
 
-  // .arcade__screen
+  // .arcade__marquee
+  &__marquee {
+    z-index: 20;
+  }
+
+  // .arcade__screen - Rollover
   &__screen {
+    @include flynns_stretch;
+    z-index: 10;
+
+    object {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__poster {
     @include flynns_stretch;
     z-index: 0;
 

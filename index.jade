@@ -3,112 +3,84 @@
   //- A generic arcade.  Just add style.
   li.arcade(ng-repeat="program in programs")
 
-    //- This is the primary size div, the aspect ratio is set with the height as
-    //- a percentage of the width (100%) (e.g. 4x3 = 75%)
-    .arcade__cabinet
+    //- Super outer div.  Will hold the optional favorites control bar.
+    .arcade__cover
 
-      //- The marquee is the primary container holding all the lines
-      //- of information. I think adding the status class way up here is
-      //- the right thing to do.
-      a.arcade__marquee(ng-class="{ \
-        'gold-show':  program.status.text == 'Gold Show', \
-        'party-chat': program.status.text == 'Party Chat', \
-        'online':     program.status.text == 'Live Now' \
-        'offline':    program.status.text == 'Offline' \
-      }")
+      //- This is the primary size div, the aspect ratio is set with the height as
+      //- a percentage of the width (100%) (e.g. 4x3 = 75%)
+      .arcade__cabinet
 
-        //- The Alpha line has the following:
-        //- - Name
-        //- - Details
-        //- - - Phone/HD
-        //- - - Country
-        //- - - Age
-        .arcade__line.line--alpha
-          .arcade__name
-            h3: a(href="#noload") {{program.image.alt}}
+        //- This is div shown when rollover disconnects for any reason.
+        .arcade__game-over
 
-          .arcade__details
-            ul
-              li.hd(ng-if="program.hd"): i.small HD
-              li.phone(ng-if="program.phone"): i.fa.fa-phone.small
-              li.country {{program.country}}
-              li: i.fa.fa-ellipsis-v
-              li.age {{program.age}}
+        //- The marquee is the primary container holding all the lines
+        //- of information. I think adding the status class way up here is
+        //- the right thing to do.
+        a.arcade__marquee(ng-class="{ \
+          'gold-show': program.status.text == 'Gold Show', \
+          'party-chat': program.status.text == 'Party Chat', \
+          'online': program.status.text == 'Live Now', \
+          'offline': program.status.text == 'Offline' \
+        }")
 
-        //- The status line has the following:
-        //- - Status
-        //- - Stars
-        //- - Favorite
-        //- - Phone/HD
-        .arcade__line.line--beta
+          //- The Alpha line has the following:
+          //- - Name
+          //- - Details
+          .arcade__line.line--alpha
+            .arcade__name
+              h3: {{program.image.alt}}
 
-          //- Gold Show Status
-          .arcade__status
-            span {{program.status.text}}
+            .arcade__details
+              ul
+                li.hd(ng-if="program.hd"): i.small HD
+                li.phone(ng-if="program.phone"): i.fa.fa-phone.small
+                li.country {{program.country}}
+                li: i.fa.fa-ellipsis-v
+                li.age {{program.age}}
 
-          //- Stars
-          .arcade__rating
-            ul.stars__container
-              -for (i = 0; i < 5; i++) {
-                li.star: i.fa
-              }
+          //- The Beta line has the following:
+          //- - Status
+          //- - Stars
+          //- - Favorite
+          //- - Phone/HD
+          .arcade__line.line--beta
 
-          //- Favorites
-          .arcade__favorite
-            i.fa.fa-heart
+            //- Gold Show Status
+            .arcade__status
+              span {{program.status.text}}
 
-          //- HD/Phone Age Country again
-          .arcade__details
-            ul
-              li.hd(ng-if="program.hd"): i.fa.small HD
-              li.phone(ng-if="program.phone"): i.fa.fa-phone.small
-              li.country {{program.country}}
-              li: i.fa.fa-ellipsis-v
-              li.age {{program.age}}
+            //- Stars
+            .arcade__rating
+              ul.stars__container(ng-class="program.rating.class")
+                - for (i = 0; i < 5; i++) {
+                  li.star: i.fa
+                - }
 
-        //- Just the headline.
-        .arcade__line.line--gamma
-          .arcade__headline
-            p {{program.headline}}
+            //- Favorites
+            .arcade__favorite
+              i.fa.fa-heart
 
+            //- HD/Phone Age Country again
+            .arcade__details
+              ul
+                li.hd(ng-if="program.hd"): i.fa.small HD
+                li.phone(ng-if="program.phone"): i.fa.fa-phone.small
+                li.country {{program.country}}
+                li: i.fa.fa-ellipsis-v
+                li.age {{program.age}}
 
-        //- The status line has the following:
-        //- - Status
-        //- - Stars
-        //- - Favorite
-        //- - Phone/HD
-        //- .arcade__line.line--delta
+          //- Just the headline.
+          .arcade__line.line--gamma
+            .arcade__headline
+              p {{program.headline}}
 
-        //-   //- Gold Show Status
-        //-   .arcade__status
-        //-     span {{program.status.text}}
+        //- This div holds the rollover
+        .arcade__screen
 
-        //-   //- Stars
-        //-   .arcade__rating
-        //-     ul.stars__container
-        //-       -for (i = 0; i < 5; i++) {
-        //-         li.star: i.fa
-        //-       }
+        //- Just the image.  On the bottom of the stack.
+        .arcade__poster
+          img(ng-src="{{program.image.src}}")
 
-        //-   //- Favorites
-        //-   .arcade__favorite
-        //-     i.fa.fa-heart
-
-        //-   //- HD/Phone Age Country again
-        //-   .arcade__details
-        //-     ul
-        //-       li.hd(ng-if="program.hd"): i.fa.small HD
-        //-       li.phone(ng-if="program.phone"): i.fa.fa-phone.small
-        //-       li.country {{program.country}}
-        //-       li: i.fa.fa-ellipsis-v
-        //-       li.age {{program.age}}
-
-
-        //- Another row of hearts and starts
-        //- .arcade__line.line--
-
-      .arcade__screen
-        img(ng-src="{{program.image.src}}")
-
-      .controls
+      //- Optional div to hold favorites pages controls.
+      .arcade__controls
 
