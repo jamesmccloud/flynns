@@ -7,12 +7,24 @@ $battlezone-link-color: #3399cc !default;
   position: relative;
 }
 
+.arcade__cabinet {
+  position: relative;
+
+  &::after {
+    content: '';
+    display: block;
+    padding-bottom: 75%;
+    width: 100%;
+  }
+}
+
 .arcade__marquee {
   position: absolute;
   bottom: 0;
   width: 100%;
   @include background-image(linear-gradient(top,  rgba(0,0,0,0) 2%,rgba(0,0,0,0.75) 100%));
   padding-top: 10px;
+  z-index: 50;
 }
 
 .arcade__line {
@@ -38,7 +50,10 @@ $battlezone-link-color: #3399cc !default;
   padding-left: $battlezone-padding;
   padding-right: 90px;
   // letter-spacing: (-10em / 1000);
-  color: $battlezone-link-color;
+
+  a {
+    color: $battlezone-link-color;
+  }
 }
 
 .arcade__details {
@@ -127,5 +142,15 @@ $battlezone-link-color: #3399cc !default;
 
   .fa-heart {
     color: red;
+  }
+}
+
+.arcade__screen {
+  @include flynns_stretch;
+  z-index: 1;
+
+  img {
+    width: 100%;
+    height: 100%;
   }
 }

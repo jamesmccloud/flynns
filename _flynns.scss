@@ -1,30 +1,74 @@
 @import "bower_components/neat/app/assets/stylesheets/neat";
 
 // Screen Sizes
-// These are defined in bootstrap.  Redefined here so they can be overridden
-// as necessary.
+// These were stolen from bootstrap.
+// Redefined here so they can be overridden as necessary.
 $screen-xs: 480px !default;
 $screen-sm: 768px !default;
 $screen-md: 992px !default;
 $screen-lg: 1200px !default;
 
+// This is a basic breakdown of how the grid looks.  The number of elements
+// per row, and the gutters between them can be customized.
+
+/*--------------------------------------------------------------------------+
+|                                                                           |
+| section.flynns                                                            |
+|                                                                           |
+| +-----------------------------------------------------------------------+ |
+| |                                                                       | |
+| | ul.the-grid                                                           | |
+| |                                                                       | |
+| | +--------------------+  +--------------------+ +--------------------+ | |
+| | |                    |  |                    | |                    | | |
+| | | li.arcade          |  | li.arcade          | | li.arcade          | | |
+| | |                    |  |                    | |                    | | |
+| | +--------------------+  +--------------------+ +--------------------+ | |
+| |                                                                       | |
+| | +--------------------+  +--------------------+ +--------------------+ | |
+| | |                    |  |                    | |                    | | |
+| | | li.arcade          |  | li.arcade          | | li.arcade          | | |
+| | |                    |  |                    | |                    | | |
+| | +--------------------+  +--------------------+ +--------------------+ | |
+| |                                                                       | |
+| | +--------------------+  +--------------------+ +--------------------+ | |
+| | |                    |  |                    | |                    | | |
+| | | li.arcade          |  | li.arcade          | | li.arcade          | | |
+| | |                    |  |                    | |                    | | |
+| | +--------------------+  +--------------------+ +--------------------+ | |
+| +-----------------------------------------------------------------------+ |
++--------------------------------------------------------------------------*/
+
 // Grid Gutter size.
-// values: none (anything), small, medium, large
-$flynns-gutter-size: medium !default;
+// values: small, medium, large, none (anything else)
+$flynns-gutter-size: small !default;
 
-$flynns-gutter-none: 1000 !default;
-$flynns-gutter-small: 20 !default;
-$flynns-gutter-medium: 5 !default;
-$flynns-gutter-large: 2 !default;
+$flynns-thumbnail-size: small !default;
 
-$flynns-arcade: centipede !default;
+// Fine tuning the values.
+$flynns-gutter-none: 1000;
+$flynns-gutter-small: 16 !default;
+$flynns-gutter-medium: 4 !default;
+$flynns-gutter-large: 1 !default;
+
+// Option for choosing the thumbnail display.
+// * (a)steroids
+// * (b)attlezone
+// * (c)entipede
+// * (d)efender
+// * (e)xcitebike
+// * (f)rogger
+$flynns-arcade: battlezone !default;
 
 // Default to no gutter, upgrade if necessary.
 $flynns-gutter-value: $flynns-gutter-none;
+
 @if $flynns-gutter-size == small {
   $flynns-gutter-value: $flynns-gutter-small;
+
 } @else if $flynns-gutter-size == medium {
   $flynns-gutter-value: $flynns-gutter-medium;
+
 } @else if $flynns-gutter-size == large {
   $flynns-gutter-value: $flynns-gutter-large;
 }
@@ -32,12 +76,20 @@ $flynns-gutter-value: $flynns-gutter-none;
 // This takes in the number of total colums you want in the block, and the
 // total number of columns you want to build the grid off of.  The larger the
 // $total the smaller the space between the blocks.
-@mixin flynns_pixel($columns, $total) {
-  @include span-columns(($total / $columns) of $total);
-  @include omega(#{$columns}n);
-  margin-bottom: flex-gutter($total);
+@mixin flynns_pixel($columns) {
+  $total: $columns * $flynns-gutter-value;
+  z-index: $columns;
+
+  & > li {
+    @include span-columns(($total / $columns) of $total);
+    @include omega(#{$columns}n);
+    margin-bottom: flex-gutter($total);
+  }
+
+  padding: 0 flex-gutter($total);
 }
 
+// This is a simple mixin
 @mixin flynns_stretch {
   position: absolute;
   width: 100%;
@@ -49,48 +101,57 @@ $flynns-gutter-value: $flynns-gutter-none;
 }
 
 .flynns {
+  position: relative;
+}
+
+// The z-index here is set so that javascript can ask for the number of
+// results per row, with out having to count, or have the breakpoints
+// hard-coded somewhere else.
+.the-grid {
   @include outer-container;
   max-width: 100%;
+  margin: 0;
+  padding: 0;
 
-  & > li {
-    // iPhone portrait
-    @media (max-width: $screen-xs - 1) {
-      @include flynns_pixel(2, 2 * $flynns-gutter-value);
+  // iPhone portrait
+  @media (max-width: $screen-xs - 1) {
+    @include flynns_pixel(2);
+  }
+
+  // iPhone landscape -> iPad Portrait
+  @media (min-width: $screen-xs) and (max-width: $screen-md - 1) {
+    @include flynns_pixel(3);
+  }
+
+  // iPad landscape -> Small desktop
+  @media (min-width: $screen-md) and (max-width: $screen-lg - 1 ) {
+    @if $flynns-thumbnail-size == small {
+      @include flynns_pixel(5);
     }
 
-    // iPhone landscape -> iPad Portrait
-    @media (min-width: $screen-xs) and (max-width: $screen-md - 1) {
-      @include flynns_pixel(3, 3 * $flynns-gutter-value);
+    @if $flynns-thumbnail-size == medium {
+      @include flynns_pixel(4);
     }
 
-    // > iPad landscape -> Small desktop
-    @media (min-width: $screen-md) and (max-width: $screen-lg - 1 ) {
-      @include flynns_pixel(4, 4 * $flynns-gutter-value);
+    @if $flynns-thumbnail-size == large {
+      @include flynns_pixel(3);
+    }
+  }
+
+  // Small desktops +
+  @media (min-width: $screen-lg) {
+    @if $flynns-thumbnail-size == small {
+      @include flynns_pixel(6);
     }
 
-    @media (min-width: $screen-lg) {
-      @include flynns_pixel(5, 5 * $flynns-gutter-value);
+    @if $flynns-thumbnail-size == medium {
+      @include flynns_pixel(5);
+    }
+
+    @if $flynns-thumbnail-size == large {
+      @include flynns_pixel(4);
     }
   }
 }
 
-// Only include the arcade that they're using.
-@if $flynns-arcade == asteroids {
-  @import "arcades/asteroids";
-
-} @else if $flynns-arcade == battlezone {
-  @import "arcades/battlezone";
-
-} @else if $flynns-arcade == centipede {
-  @import "arcades/centipede";
-
-} @else if $flynns-arcade == defender {
-  @import "arcades/defender";
-
-} @else if $flynns-arcade == excitebike {
-  @import "arcades/excitebike";
-
-} @else if $flynns-arcade == frogger {
-  @import "arcades/frogger";
-
-}
+@import "arcades";
