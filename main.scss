@@ -14,3 +14,17 @@ $fa-font-path: "bower_components/font-awesome/fonts/";
 
 // Flynns base
 @import "build";
+
+
+
+.ipframe {
+  position: absolute;
+  height: 0;
+  overflow: hidden;
+
+  &.open {
+    left: 0;
+    height: 567px;
+    right: 0;
+  }
+}

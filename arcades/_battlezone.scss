@@ -2,22 +2,6 @@
 $battlezone-padding: 4px !default;
 $battlezone-link-color: #3399cc !default;
 
-// Battlezone
-.arcade {
-  position: relative;
-}
-
-.arcade__cabinet {
-  position: relative;
-
-  &::after {
-    content: '';
-    display: block;
-    padding-bottom: 75%;
-    width: 100%;
-  }
-}
-
 .arcade__marquee {
   position: absolute;
   bottom: 0;

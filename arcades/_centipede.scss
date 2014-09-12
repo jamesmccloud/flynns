@@ -24,16 +24,6 @@ $centipede-headline-font-size: 10px;
   }
 }
 
-.arcade__cabinet {
-  position: relative;
-
-  &::after {
-    content: '';
-    display: block;
-    padding-bottom: 75%;
-    width: 100%;
-  }
-}
 
 .arcade__marquee {
   @include flynns_stretch;

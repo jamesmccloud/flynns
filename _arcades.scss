@@ -1,3 +1,27 @@
+.arcade {
+  &__cabinet {
+    position: relative;
+
+    &::after {
+      content: '';
+      display: block;
+      padding-top: 75%;
+      width: 100%;
+    }
+  }
+
+  &__player {
+    @include transition(height .5s);
+    @include clearfix;
+    height: 0;
+
+    li:hover > & {
+      height: 567px;
+    }
+  }
+}
+
+
 // Only include the arcade that they're using.
 @if $flynns-arcade == asteroids {
   @import "arcades/asteroids";

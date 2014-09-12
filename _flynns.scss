@@ -90,6 +90,10 @@ $flynns-gutter-value: $flynns-gutter-none;
     @include span-columns(($total / $columns) of $total);
     @include omega(#{$columns}n);
     margin-bottom: flex-gutter($total);
+
+    &:nth-child(#{$columns}n + 1) {
+      clear: both;
+    }
   }
 
   padding: 0 flex-gutter($total);
