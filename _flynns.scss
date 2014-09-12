@@ -7,6 +7,8 @@ $screen-xs: 480px !default;
 $screen-sm: 768px !default;
 $screen-md: 992px !default;
 $screen-lg: 1200px !default;
+$screen-xl: 1550px !default;
+$screen-2x: 1900px !default;
 
 // This is a basic breakdown of how the grid looks.  The number of elements
 // per row, and the gutters between them can be customized.
@@ -40,10 +42,13 @@ $screen-lg: 1200px !default;
 +--------------------------------------------------------------------------*/
 
 // Grid Gutter size.
-// values: small, medium, large, none (anything else)
+// Options: small, medium, large, none (anything else)
 $flynns-gutter-size: small !default;
 
-$flynns-thumbnail-size: small !default;
+
+// Thumbnail size.
+// Options: small, medium, large
+$flynns-thumbnail-size: medium !default;
 
 // Fine tuning the values.
 $flynns-gutter-none: 1000;
@@ -78,6 +83,7 @@ $flynns-gutter-value: $flynns-gutter-none;
 // $total the smaller the space between the blocks.
 @mixin flynns_pixel($columns) {
   $total: $columns * $flynns-gutter-value;
+
   z-index: $columns;
 
   & > li {
@@ -87,6 +93,7 @@ $flynns-gutter-value: $flynns-gutter-none;
   }
 
   padding: 0 flex-gutter($total);
+  max-width: 320px * ($columns + 1);
 }
 
 // This is a simple mixin
@@ -100,8 +107,13 @@ $flynns-gutter-value: $flynns-gutter-none;
   bottom: 0;
 }
 
+// The parent container. No position definitions are allowed between this
+// class, and the player frame.
+
 .flynns {
   position: relative;
+
+
 }
 
 // The z-index here is set so that javascript can ask for the number of
@@ -110,7 +122,7 @@ $flynns-gutter-value: $flynns-gutter-none;
 .the-grid {
   @include outer-container;
   max-width: 100%;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
 
   // iPhone portrait
@@ -120,38 +132,36 @@ $flynns-gutter-value: $flynns-gutter-none;
 
   // iPhone landscape -> iPad Portrait
   @media (min-width: $screen-xs) and (max-width: $screen-md - 1) {
-    @include flynns_pixel(3);
+    @if $flynns-thumbnail-size == large  { @include flynns_pixel(2); }
+    @else { @include flynns_pixel(3); }
   }
 
   // iPad landscape -> Small desktop
   @media (min-width: $screen-md) and (max-width: $screen-lg - 1 ) {
-    @if $flynns-thumbnail-size == small {
-      @include flynns_pixel(5);
-    }
-
-    @if $flynns-thumbnail-size == medium {
-      @include flynns_pixel(4);
-    }
-
-    @if $flynns-thumbnail-size == large {
-      @include flynns_pixel(3);
-    }
+    @if $flynns-thumbnail-size == large  { @include flynns_pixel(3); }
+    @if $flynns-thumbnail-size == medium { @include flynns_pixel(4); }
+    @if $flynns-thumbnail-size == small  { @include flynns_pixel(5); }
   }
 
-  // Small desktops +
-  @media (min-width: $screen-lg) {
-    @if $flynns-thumbnail-size == small {
-      @include flynns_pixel(6);
-    }
-
-    @if $flynns-thumbnail-size == medium {
-      @include flynns_pixel(5);
-    }
-
-    @if $flynns-thumbnail-size == large {
-      @include flynns_pixel(4);
-    }
+  // Small desktops
+  @media (min-width: $screen-lg) and (max-width: $screen-xl - 1) {
+    @if $flynns-thumbnail-size == large  { @include flynns_pixel(4); }
+    @if $flynns-thumbnail-size == medium { @include flynns_pixel(5); }
+    @if $flynns-thumbnail-size == small  { @include flynns_pixel(6); }
   }
+
+  @media (min-width: $screen-xl) and (max-width: $screen-2x - 1) {
+    @if $flynns-thumbnail-size == large  { @include flynns_pixel(5); }
+    @if $flynns-thumbnail-size == medium { @include flynns_pixel(6); }
+    @if $flynns-thumbnail-size == small  { @include flynns_pixel(7); }
+  }
+
+  @media (min-width: $screen-2x) {
+    @if $flynns-thumbnail-size == large  { @include flynns_pixel(6); }
+    @if $flynns-thumbnail-size == medium { @include flynns_pixel(7); }
+    @if $flynns-thumbnail-size == small  { @include flynns_pixel(8); }
+  }
+
 }
 
 @import "arcades";
