@@ -14,9 +14,24 @@
     @include transition(height .5s);
     @include clearfix;
     height: 0;
+    background-color: lightgreen;
 
-    li:hover > & {
-      height: 567px;
+    .inner {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 0;
+      overflow: hidden;
+      background-color: lightblue;
+    }
+
+    li.open > & {
+      padding: 10px 0;
+      height: 587px;
+
+      .inner {
+        height: 567px;
+      }
     }
   }
 }
