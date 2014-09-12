@@ -12,3 +12,17 @@ angular.module 'flynns', []
 .controller 'the-grid', (kimono, $scope) ->
   kimono.getData().success (data) ->
     $scope.programs = data.results.collection1
+
+.controller 'inlineClicker', ($scope, inlineService) ->
+  console.log 'PACHOLSKI'
+  $scope.fire = () ->
+    console.log 'fire'
+    inlineService.beep()
+    return
+  return
+
+.factory 'inlineService', () ->
+  self = 
+    beep: ()->
+      console.log 'boop'
+  return self
