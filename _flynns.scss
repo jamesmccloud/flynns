@@ -86,18 +86,19 @@ $flynns-gutter-value: $flynns-gutter-none;
 
   z-index: $columns;
 
-  & > li {
-    @include span-columns(($total / $columns) of $total);
-    @include omega(#{$columns}n);
-    margin-bottom: flex-gutter($total);
+  & > ul {
+    max-width: 320px * ($columns + 1);
 
-    &:nth-child(#{$columns}n + 1) {
-      clear: both;
+    & > li {
+      @include span-columns(($total / $columns) of $total);
+      @include omega(#{$columns}n);
+      margin-bottom: flex-gutter($total);
+
+      &:nth-child(#{$columns}n + 1) {
+        clear: both;
+      }
     }
   }
-
-  padding: 0 flex-gutter($total);
-  max-width: 320px * ($columns + 1);
 }
 
 // This is a simple mixin
@@ -116,18 +117,6 @@ $flynns-gutter-value: $flynns-gutter-none;
 
 .flynns {
   position: relative;
-
-
-}
-
-// The z-index here is set so that javascript can ask for the number of
-// results per row, with out having to count, or have the breakpoints
-// hard-coded somewhere else.
-.the-grid {
-  @include outer-container;
-  max-width: 100%;
-  margin: 0 auto;
-  padding: 0;
 
   // iPhone portrait
   @media (max-width: $screen-xs - 1) {
@@ -165,7 +154,16 @@ $flynns-gutter-value: $flynns-gutter-none;
     @if $flynns-thumbnail-size == medium { @include flynns_pixel(7); }
     @if $flynns-thumbnail-size == small  { @include flynns_pixel(8); }
   }
+}
 
+// The z-index here is set so that javascript can ask for the number of
+// results per row, with out having to count, or have the breakpoints
+// hard-coded somewhere else.
+.the-grid {
+  @include outer-container;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
 }
 
 @import "arcades";
