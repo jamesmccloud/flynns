@@ -43,7 +43,7 @@ $screen-2x: 1900px !default;
 
 // Grid Gutter size.
 // Options: small, medium, large, none (anything else)
-$flynns-gutter-size: small !default;
+$flynns-grid-size: small !default;
 
 
 // Thumbnail size.
@@ -51,10 +51,10 @@ $flynns-gutter-size: small !default;
 $flynns-thumbnail-size: medium !default;
 
 // Fine tuning the values.
-$flynns-gutter-none: 1000;
-$flynns-gutter-small: 16 !default;
-$flynns-gutter-medium: 4 !default;
-$flynns-gutter-large: 1 !default;
+$flynns-grid-none: 1000;
+$flynns-grid-small: 16 !default;
+$flynns-grid-medium: 4 !default;
+$flynns-grid-large: 1 !default;
 
 // Option for choosing the thumbnail display.
 // * (a)steroids
@@ -66,23 +66,26 @@ $flynns-gutter-large: 1 !default;
 $flynns-arcade: battlezone !default;
 
 // Default to no gutter, upgrade if necessary.
-$flynns-gutter-value: $flynns-gutter-none;
+$flynns-grid-value: $flynns-grid-none;
 
-@if $flynns-gutter-size == small {
-  $flynns-gutter-value: $flynns-gutter-small;
+@if $flynns-grid-size == small {
+  $flynns-grid-value: $flynns-grid-small;
 
-} @else if $flynns-gutter-size == medium {
-  $flynns-gutter-value: $flynns-gutter-medium;
+} @else if $flynns-grid-size == medium {
+  $flynns-grid-value: $flynns-grid-medium;
 
-} @else if $flynns-gutter-size == large {
-  $flynns-gutter-value: $flynns-gutter-large;
+} @else if $flynns-grid-size == large {
+  $flynns-grid-value: $flynns-grid-large;
 }
 
 // This takes in the number of total colums you want in the block, and the
 // total number of columns you want to build the grid off of.  The larger the
 // $total the smaller the space between the blocks.
 @mixin flynns_pixel($columns) {
-  $total: $columns * $flynns-gutter-value;
+  $total: $columns * $flynns-grid-value;
+
+  margin: 0 flex-gutter($total);
+  max-width: 320px * ($columns + 1);
 
   & > li {
     @include span-columns(($total / $columns) of $total);
@@ -99,10 +102,6 @@ $flynns-gutter-value: $flynns-gutter-none;
     display: none;
     z-index: $columns;
   }
-
-
-  padding: 0 flex-gutter($total);
-  max-width: 320px * ($columns + 1);
 }
 
 // This is a simple mixin
