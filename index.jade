@@ -3,14 +3,14 @@ section.flynns(ng-controller="the-grid")
   ul.the-grid
 
     //- A generic arcade.  Just add style.
-    li.arcade(ng-repeat="program in programs")
+    li.arcade(ng-repeat="program in programs" ng-controller="eachThumb" ng-class="{ 'arcade--open': isopen }")
 
       //- Another div, will be used to put the inline player somewhere else.
       .arcade__cabinet
 
         //- The marquee is the primary container holding all the lines
         //- of information.
-        a.arcade__marquee(href="#")
+        a.arcade__marquee(ng-controller="inlineClicker" ng-click="fire($index)")
 
           //- The status line has the following:
           //- - Status
@@ -58,4 +58,4 @@ section.flynns(ng-controller="the-grid")
       .arcade__player
         .inner
 
-  .grid--admin
+  .grid--admin(grid-admin)

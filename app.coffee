@@ -12,3 +12,68 @@ angular.module 'flynns', []
 .controller 'the-grid', (kimono, $scope) ->
   kimono.getData().success (data) ->
     $scope.programs = data.results.collection1
+
+.controller 'eachThumb', ($scope, $rootScope, $timeout) ->
+  $scope.isopen = false
+  $rootScope.$on 'toggle', (evt, idx, rowCompare) ->
+    if idx is $scope.$index
+      $scope.isopen = !$scope.isopen
+    else
+      if rowCompare isnt 0
+        $scope.isopen = false
+      else
+        $timeout ()->
+          $scope.isopen = false
+          return
+        , 500
+
+
+.controller 'inlineClicker', ($scope, inlineService) ->
+  $scope.fire = (idx) ->
+    console.log 'fire'
+    inlineService.toggle(idx)
+    return
+  return
+
+.factory 'inlineService', ($rootScope) ->
+
+  rowOld = null
+  rowNew = null
+
+  index = null
+  gridAdmin = null
+
+  self = 
+    toggle: (idx)->
+      perRow = gridAdmin.css('z-index')
+
+      if index is idx
+        index = null
+      else
+        index = idx
+        rowNew = Math.floor(idx / perRow)
+
+      rowCompare = 0
+      if rowOld isnt null and rowNew isnt null
+        if rowOld < rowNew
+          rowCompare = 1
+        if rowOld > rowNew
+          rowCompare = -1
+
+      rowOld = rowNew
+
+      $rootScope.$emit 'toggle', idx, rowCompare
+
+    getIndex: ()->
+      return index
+
+    setGridAdmin: (elem)->
+      gridAdmin = elem
+
+  return self
+
+.directive 'gridAdmin', (inlineService)->
+  self =
+    link: (scope, elem) ->
+      inlineService.setGridAdmin elem
+  return self
