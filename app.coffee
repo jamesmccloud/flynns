@@ -15,7 +15,7 @@ angular.module 'flynns', []
 
 .controller 'eachThumb', ($scope, $rootScope) ->
   $scope.isopen = false
-  $rootScope.$on 'toggle', (evt, idx) ->
+  $rootScope.$on 'toggle', (evt, idx, rowCompare) ->
     if idx is $scope.$index
       $scope.isopen = !$scope.isopen
     else
@@ -30,18 +30,43 @@ angular.module 'flynns', []
 
 .factory 'inlineService', ($rootScope) ->
 
+  rowOld = null
+  rowNew = null
+
   index = null
+  gridAdmin = null
 
   self = 
     toggle: (idx)->
+      perRow = gridAdmin.css('z-index')
+
       if index is idx
         index = null
       else
         index = idx
+        rowNew = Math.floor(idx / perRow)
 
-      $rootScope.$emit 'toggle', idx
+      rowCompare = 0
+      if rowOld isnt null and rowNew isnt null
+        if rowOld < rowNew
+          rowCompare = 1
+        if rowOld > rowNew
+          rowCompare = -1
+
+      rowOld = rowNew
+
+      $rootScope.$emit 'toggle', idx, rowCompare
 
     getIndex: ()->
       return index
 
+    setGridAdmin: (elem)->
+      gridAdmin = elem
+
+  return self
+
+.directive 'gridAdmin', (inlineService)->
+  self =
+    link: (scope, elem) ->
+      inlineService.setGridAdmin elem
   return self
