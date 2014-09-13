@@ -13,16 +13,35 @@ angular.module 'flynns', []
   kimono.getData().success (data) ->
     $scope.programs = data.results.collection1
 
+.controller 'eachThumb', ($scope, $rootScope) ->
+  $scope.isopen = false
+  $rootScope.$on 'toggle', (evt, idx) ->
+    if idx is $scope.$index
+      $scope.isopen = !$scope.isopen
+    else
+      $scope.isopen = false
+
 .controller 'inlineClicker', ($scope, inlineService) ->
-  console.log 'PACHOLSKI'
-  $scope.fire = () ->
+  $scope.fire = (idx) ->
     console.log 'fire'
-    inlineService.beep()
+    inlineService.toggle(idx)
     return
   return
 
-.factory 'inlineService', () ->
+.factory 'inlineService', ($rootScope) ->
+
+  index = null
+
   self = 
-    beep: ()->
-      console.log 'boop'
+    toggle: (idx)->
+      if index is idx
+        index = null
+      else
+        index = idx
+
+      $rootScope.$emit 'toggle', idx
+
+    getIndex: ()->
+      return index
+
   return self
