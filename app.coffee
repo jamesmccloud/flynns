@@ -13,13 +13,20 @@ angular.module 'flynns', []
   kimono.getData().success (data) ->
     $scope.programs = data.results.collection1
 
-.controller 'eachThumb', ($scope, $rootScope) ->
+.controller 'eachThumb', ($scope, $rootScope, $timeout) ->
   $scope.isopen = false
   $rootScope.$on 'toggle', (evt, idx, rowCompare) ->
     if idx is $scope.$index
       $scope.isopen = !$scope.isopen
     else
-      $scope.isopen = false
+      if rowCompare isnt 0
+        $scope.isopen = false
+      else
+        $timeout ()->
+          $scope.isopen = false
+          return
+        , 500
+
 
 .controller 'inlineClicker', ($scope, inlineService) ->
   $scope.fire = (idx) ->
