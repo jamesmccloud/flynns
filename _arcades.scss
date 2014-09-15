@@ -128,7 +128,7 @@
     }
   }
 
-
+  // .arcade__details
   &__details {
     ul {
       margin: 0;
@@ -146,26 +146,34 @@
     }
   }
 
-  // The primary line of information for the arcade.
-  // Name, HD, Phone, Country, Age.
-  .line--alpha {
-    @include display(flex);
-    @include flex-direction(row);
-    @include align-items(flex-end);
+  // .arcade__favorite
+  &__favorite {
+    color: red;
+  }
 
-    .arcade__name {
-      @include flex(1 1 auto);
-      line-height: 1.1;
-    }
+  // .arcade__line
+  &__line {
 
-    .arcade__details {
-      @include flex(0 1 auto);
-      font-size: 14px;
-      line-height: 1.1;
-    }
+    // .arcade__line--alpha
+    &--alpha {
+      @include display(flex);
+      @include flex-direction(row);
+      @include align-items(flex-end);
 
-    .hd, .phone {
-      font-size: 75%;
+      .arcade__name {
+        @include flex(1 1 auto);
+        line-height: 1.1;
+      }
+
+      .arcade__details {
+        @include flex(0 1 auto);
+        font-size: 14px;
+        line-height: 1.1;
+      }
+
+      .hd, .phone {
+        font-size: 75%;
+      }
     }
   }
 }

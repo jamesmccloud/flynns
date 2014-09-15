@@ -98,6 +98,7 @@ $flynns-grid-value: $flynns-grid-none;
   $flynns-grid-value: $flynns-grid-large;
 }
 
+
 // This takes in the number of total colums you want in the block, and the
 // total number of columns you want to build the grid off of.  The larger the
 // $total the smaller the space between the blocks.
@@ -125,7 +126,6 @@ $flynns-grid-value: $flynns-grid-none;
 
 // The parent container. No position definitions are allowed between this
 // class, and the player frame.
-
 .flynns {
   position: relative;
 
