@@ -3,6 +3,7 @@
 
   &__cabinet {
     margin-bottom: 20px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.75);
   }
 
   &__info {
@@ -18,8 +19,9 @@
   }
 
   &__rating {
-    font-size: 10px;
+    font-size: 12px;
     padding: 0 $padding $padding;
+    line-height: 1;
   }
 
   &__favorite {
@@ -92,8 +94,8 @@
       @include transition(padding .15s, height .15s);
 
       a:hover & {
-        height: ($line-height * 2) + $padding;
-        padding-bottom: $padding;
+        height: ($line-height * 2) + $padding / 2;
+        padding-bottom: $padding / 2;
       }
     }
 
@@ -101,6 +103,7 @@
     &--delta {
       @include transition(line-height .15s);
       @include clearfix;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.75);
       position: absolute;
       top: 100%;
       font-size: 9px;
@@ -116,7 +119,7 @@
       }
 
       .gold-show & {
-        background: gold;
+        background: $GOLD;
       }
 
       .party-chat &, .online & {

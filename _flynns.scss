@@ -70,6 +70,7 @@ $flynns-gutter-large: 100px !default;
 // * (e)xcitebike
 // * (f)rogger
 $flynns-arcade: asteroids !default;
+$flynns-link-color: #0099ff !default;
 
 // Thumbnail size.
 // Options: small, medium, large
@@ -81,7 +82,7 @@ $flynns-grid-size: small !default;
 
 // Fine tuning the values.
 $flynns-grid-none: 1000;
-$flynns-grid-small: 16 !default;
+$flynns-grid-small: 12 !default;
 $flynns-grid-medium: 4 !default;
 $flynns-grid-large: 1 !default;
 
@@ -97,7 +98,6 @@ $flynns-grid-value: $flynns-grid-none;
 } @else if $flynns-grid-size == large {
   $flynns-grid-value: $flynns-grid-large;
 }
-
 
 // This takes in the number of total colums you want in the block, and the
 // total number of columns you want to build the grid off of.  The larger the
@@ -138,6 +138,8 @@ $flynns-grid-value: $flynns-grid-none;
 // results per row, with out having to count, or have the breakpoints
 // hard-coded somewhere else.
 .the-grid {
+  $size: $flynns-thumbnail-size;
+
   @include outer-container;
   max-width: 100%;
   margin: 0 auto;
@@ -156,28 +158,28 @@ $flynns-grid-value: $flynns-grid-none;
 
   // iPad landscape -> Small desktop
   @media (min-width: $screen-md) and (max-width: $screen-lg - 1 ) {
-    @if $flynns-thumbnail-size == large  { @include flynns_pixel(3); }
-    @if $flynns-thumbnail-size == medium { @include flynns_pixel(4); }
-    @if $flynns-thumbnail-size == small  { @include flynns_pixel(5); }
+    @if $size == large  { @include flynns_pixel(3); }
+    @if $size == medium { @include flynns_pixel(4); }
+    @if $size == small  { @include flynns_pixel(5); }
   }
 
   // Small desktops
   @media (min-width: $screen-lg) and (max-width: $screen-xl - 1) {
-    @if $flynns-thumbnail-size == large  { @include flynns_pixel(4); }
-    @if $flynns-thumbnail-size == medium { @include flynns_pixel(5); }
-    @if $flynns-thumbnail-size == small  { @include flynns_pixel(6); }
+    @if $size == large  { @include flynns_pixel(4); }
+    @if $size == medium { @include flynns_pixel(5); }
+    @if $size == small  { @include flynns_pixel(6); }
   }
 
   @media (min-width: $screen-xl) and (max-width: $screen-2x - 1) {
-    @if $flynns-thumbnail-size == large  { @include flynns_pixel(5); }
-    @if $flynns-thumbnail-size == medium { @include flynns_pixel(6); }
-    @if $flynns-thumbnail-size == small  { @include flynns_pixel(7); }
+    @if $size == large  { @include flynns_pixel(5); }
+    @if $size == medium { @include flynns_pixel(6); }
+    @if $size == small  { @include flynns_pixel(7); }
   }
 
   @media (min-width: $screen-2x) {
-    @if $flynns-thumbnail-size == large  { @include flynns_pixel(6); }
-    @if $flynns-thumbnail-size == medium { @include flynns_pixel(7); }
-    @if $flynns-thumbnail-size == small  { @include flynns_pixel(8); }
+    @if $size == large  { @include flynns_pixel(6); }
+    @if $size == medium { @include flynns_pixel(7); }
+    @if $size == small  { @include flynns_pixel(8); }
   }
 }
 

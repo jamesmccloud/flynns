@@ -1,140 +1,95 @@
-// Battlezone Variables
-$battlezone-padding: 4px !default;
-$battlezone-link-color: #3399cc !default;
+.arcade {
+  $padding: 4px;
+  $link-color: $flynns-link-color;
 
-.arcade__marquee {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  @include background-image(linear-gradient(top,  rgba(0,0,0,0) 2%,rgba(0,0,0,0.75) 100%));
-  padding-top: 10px;
-  z-index: 50;
-}
-
-.arcade__line {
-  @include clearfix;
-  position: relative;
-
-  &.line--headline {
-    display: none;
+  &__marquee {
+    // @TODO JeffD
+    @include linear-gradient(top, rgba(0,0,0,0) 75%,rgba(0,0,0,.85) 100%);
   }
 
-  &.line--name {
-    padding-bottom: ($battlezone-padding / 2);
-  }
-}
-
-.arcade__name {
-  @include ellipsis;
-  float: left;
-  width: 100%;
-  height: 14px;
-  margin: 0;
-  font-size: 12px;
-  padding-left: $battlezone-padding;
-  padding-right: 90px;
-  // letter-spacing: (-10em / 1000);
-
-  a {
-    color: $battlezone-link-color;
-  }
-}
-
-.arcade__details {
-  position: absolute;
-  right: 0;
-  width: 90px;
-  padding: 0 $battlezone-padding;
-  font-size: 12px;
-  height: 14px;
-  list-style: none;
-  margin: 0;
-  text-align: right;
-
-  .line--status & {
-    display: none;
-  }
-
-  li {
-    font-size: normal;
-    display: inline-block;
-
-    & + li {
-      margin-left: $battlezone-padding;
-    }
-  }
-
-  .small {
-    font-size: 80%;
-  }
-
-  .hd i {
-    font-weight: bold;
-    color: #999999;
-  }
-
-  .phone {
-    color: #999999;
-  }
-
-  .age {
-    color: $battlezone-link-color;
-  }
-
-  .name {
-    color: $battlezone-link-color;
-  }
-
-  .country {
-    color: $battlezone-link-color;
-  }
-
-  .fa-ellipsis-v {
-    color: #999999;
-  }
-}
-
-.arcade__status {
-  float: left;
-  padding-left: $battlezone-padding;
-  padding-bottom: $battlezone-padding;
-
-  span {
-    padding: ($battlezone-padding / 2) ($battlezone-padding * 2);
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 9px;
-    letter-spacing: (20em / 1000);
-
-    .gold-show & {
-      background: gold;
-    }
-
-    .online &,
-    .party-chat & {
-      background: #33cc00;
-    }
-  }
-}
-
-.arcade__favorite {
-  float: right;
-  padding-right: $battlezone-padding;
-  position: relative;
-  top: $battlezone-padding;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-
-  .fa-heart {
-    color: red;
-  }
-}
-
-.arcade__screen {
-  @include flynns_stretch;
-  z-index: 1;
-
-  img {
+  &__info {
+    position: absolute;
+    bottom: 0;
     width: 100%;
-    height: 100%;
+  }
+
+  &__name {
+    color: $link-color;
+  }
+
+  &__details {
+    color: $link-color;
+
+    .hd, .phone, .spacer {
+      color: #666;
+    }
+  }
+
+  &__favorite {
+    float: right;
+    padding-right: $padding;
+
+    i {
+      vertical-align: bottom;
+    }
+  }
+
+  &__rating {
+    display: none;
+  }
+
+  &__status {
+    float: left;
+    padding: 0 $padding ($padding / 2);
+
+    span {
+      display: inline-block;
+      font-size: 10px;
+      line-height: 16px;
+      padding: 0 ($padding * 2);
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: (20em / 1000);
+
+      .gold-show & {
+        background: $GOLD;
+        color: black;
+      }
+
+      .party-chat &, .online & {
+        background: #3C0;
+        color: black;
+      }
+
+      .offline & {
+        background: black;
+        text: white;
+      }
+
+    }
+  }
+
+  &__line {
+    &--alpha {
+      padding: 0 $padding $padding;
+    }
+
+    &--beta {
+      position: absolute;
+      bottom: 100%;
+      width: 100%;
+
+      .arcade__details {
+        display: none;
+      }
+    }
+
+    &--gamma {
+      display: none;
+    }
+
+    &--delta {
+      display: none;
+    }
   }
 }
