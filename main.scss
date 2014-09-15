@@ -12,19 +12,68 @@ $icon-font-path: "bower_components/bootstrap/dist/fonts/";
 $fa-font-path: "bower_components/font-awesome/fonts/";
 @import "bower_components/font-awesome/scss/font-awesome";
 
+// Debug on?
+$DEBUG: true;
+
 // Flynns base
 @import "build";
 
 
+// _inline.scss
 
-.ipframe {
-  position: absolute;
-  height: 0;
-  overflow: hidden;
 
-  &.open {
+// Create an isosceles triangle
+// @param $pointing    : where the triangle is pointing (one of up, down, left, right)
+// @param $base-length : length of the base of the triangle
+// @param $altitude    : length of the height/altitude of the triangle *or* boolean true to specify an equilateral triangle
+// @param color        : color of the triangle
+// @mixin triangle($pointing, $base-length, $altitude, $color) {
+//   // Map $pointing {up: top, down: bottom}
+//   @if $pointing == up {
+//     $pointing: top;
+//   }
+//   @else if $pointing == down {
+//     $pointing: bottom;
+//   }
+//   // For an equilateral triangle, calculate the altitude (woohoo, geometry!)
+//   @if $altitude == true {
+//     $altitude: sqrt(3) / 2 * $base-length;
+//   }
+//   // The base is made up of 2 opposite borders, so halve it
+//   $base-length: $base-length / 2;
+//   $base: opposite-position($pointing);
+//   // Create the triangle
+//   border: $base-length solid transparent;
+//   border-#{$base}: $altitude solid $color;
+//   border-#{$pointing}: 0;
+//   height: 0;
+//   width: 0;
+// }
+
+.inline {
+  &__container {
+    will-change: height;
+    @include transition(height .5s);
+    position: absolute;
     left: 0;
-    height: 567px;
     right: 0;
+    overflow: hidden;
+    height: 0;
+
+    .arcade--open & {
+      height: 567px;
+    }
+
+    @if $DEBUG {
+      background: rgba(lightpink, 0.5)
+    }
+  }
+
+  &__player {
+    position: relative;
+  }
+
+  &__bio {
+    position: relative;
   }
 }

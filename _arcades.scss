@@ -1,5 +1,67 @@
+// This is the basic structure of the arcade.
+/*--------------------------------------------------------------------------+
+|                                                                           |
+|   li.arcade                                                               |
+|                                                                           |
+| +-----------------------------------------------------------------------+ |
+| |                                                                       | |
+| |   .arcade__cabinet                                                    | |
+| |                                                                       | |
+| | +-----------------------------------------------------------+ +-----+ | |
+| | |                                                           | |     | | |
+| | |   .arcade__display                                        | |  .  | | |
+| | |                                                           | |  a  | | |
+| | | +-------------------------------------------------+       | |  r  | | |
+| | | |                                                 |       | |  c  | | |
+| | | |   .arcade__static                               |       | |  a  | | |
+| | | |                                                 |       | |  d  | | |
+| | | | +-----------------------------------------------+-+     | |  e  | | |
+| | | | |                                                 |     | |  _  | | |
+| | | +-+   .aracde__screen                               |     | |  _  | | |
+| | |   |                                                 |     | |  c  | | |
+| | |   | +-----------------------------------------------+-+   | |  o  | | |
+| | |   | |                                                 |   | |  n  | | |
+| | |   +-+   .arcade__marquee                              |   | |  t  | | |
+| | |     |                                                 |   | |  r  | | |
+| | |     | +-----------------------------------------------+-+ | |  o  | | |
+| | |     | |                                                 | | |  l  | | |
+| | |     +-+   .arcade__game-over                            | | |  s  | | |
+| | |       |                                                 | | |     | | |
+| | |       |                                                 | | |     | | |
+| | |       |                                                 | | |     | | |
+| | |       +-------------------------------------------------+ | |     | | |
+| | |                                                           | |     | | |
+| | +-----------------------------------------------------------+ +-----+ | |
+| |                                                                       | |
+| +-----------------------------------------------------------------------+ |
+|                                                                           |
+| +-----------------------------------------------------------------------+ |
+| |                                                                       | |
+| |  .arcade__player                                                      | |
+| |                                                                       | |
+| +-----------------------------------------------------------------------+ |
+|                                                                           |
++--------------------------------------------------------------------------*/
+
+
 .arcade {
+
+  // The wrapper
   &__cabinet {
+    will-change: margin;
+    @include transition(margin .5s);
+
+    .arcade--open & {
+      margin-bottom: 1em;
+    }
+
+    @if $DEBUG {
+      background: rgba(lightsteelblue, 0.5);
+    }
+  }
+
+  // Locked to a 4x3 ratio.
+  &__display {
     position: relative;
 
     &::after {
@@ -10,28 +72,55 @@
     }
   }
 
+  // @TODO
+  //
+  // libsass "@extend" still doesn't work quite right, so I'm doing it this
+  // way. Fix after bug is fixed.
+  // https://github.com/sass/libsass/issues/146
+  &__static, &__screen,
+  &__marquee, &__game-over {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+  &__static {
+    z-index: 10;
+
+    img {
+
+    }
+  }
+
+  &__screen {
+    z-index: 20;
+  }
+
+  &__marquee {
+    z-index: 30;
+  }
+
+  &__game-over {
+    z-index: 40;
+    display: none;
+  }
+
   &__player {
+    will-change: height;
     @include transition(height .5s);
     @include clearfix;
     height: 0;
-    background-color: lightgreen;
 
-    .inner {
-      position: absolute;
-      left: 0;
-      right: 0;
-      height: 0;
-      overflow: hidden;
-      background-color: lightblue;
+    .arcade--open & {
+      height: 567px;
     }
 
-    li.arcade--open > & {
-      padding: 10px 0;
-      height: 587px;
-
-      .inner {
-        height: 567px;
-      }
+    @if $DEBUG {
+      background: rgba(lightgreen, 0.5);
     }
   }
 }

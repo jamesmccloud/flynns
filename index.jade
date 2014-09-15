@@ -1,61 +1,15 @@
+//- The parent container / controller of the grid.
 section.flynns(ng-controller="the-grid")
 
+  //- The Grid.
   ul.the-grid
 
     //- A generic arcade.  Just add style.
-    li.arcade(ng-repeat="program in programs" ng-controller="eachThumb" ng-class="{ 'arcade--open': isopen }")
+    li.arcade(ng-repeat="program in programs" ng-controller="eachThumb"
+      ng-class="{'arcade--open': isopen}")
 
-      //- Another div, will be used to put the inline player somewhere else.
-      .arcade__cabinet
+      include _arcade_cabinet
 
-        //- The marquee is the primary container holding all the lines
-        //- of information.
-        a.arcade__marquee(ng-controller="inlineClicker" ng-click="fire($index)")
-
-          //- The status line has the following:
-          //- - Status
-          //- - Favorite
-          //- - Stars
-          //- - Phone/HD
-          .arcade__line.line--status.gold-show
-            .arcade__status: span {{program.status.text}}
-            .arcade__favorite: i.fa.fa-heart
-            ul.arcade__details
-              li.hd(ng-if="program.hd"): i.fa.small HD
-              li.phone(ng-if="program.phone"): i.fa.fa-phone.small
-              li.country {{program.country}}
-              li: i.fa.fa-ellipsis-v
-              li.age {{program.age}}
-
-          //- The Name line has the following:
-          //- - Name
-          //- - Details
-          //- - - Phone/HD
-          //- - - Counrty
-          //- - - Age
-          .arcade__line.line--name
-            h3.arcade__name: span(onclick=) {{program.name.text}}
-            ul.arcade__details
-              li.hd(ng-if="program.hd"): i.fa.small HD
-              li.phone(ng-if="program.phone"): i.fa.fa-phone.small
-              li.country {{program.country}}
-              li: i.fa.fa-ellipsis-v
-              li.age {{program.age}}
-
-          //- Just the headline.
-          .arcade__line.line--headline
-            p.arcade__headline {{program.headline}}
-
-          //- Another row of hearts and starts
-          //- .arcade__line.line--
-
-        .arcade__screen
-          img(ng-src="{{program.image.src}}")
-
-        .controls
-
-      //- Inline Player
-      .arcade__player
-        .inner
+      include _arcade_player
 
   .grid--admin(grid-admin)

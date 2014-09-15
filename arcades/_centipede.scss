@@ -63,7 +63,7 @@ $centipede-headline-font-size: 10px;
   padding-right: $centipede-details-width;
 
   // We only need the space here if the gutters are set to none
-  @if $flynns-gutter-size == none {
+  @if $flynns-grid-size == none {
     padding-left: $centipede-padding;
   }
 
@@ -89,7 +89,7 @@ $centipede-headline-font-size: 10px;
   line-height: 14px;
 
   // We only need the space here if the gutters are set to none
-  @if $flynns-gutter-size == none {
+  @if $flynns-grid-size == none {
     padding-right: $centipede-padding;
   }
 
@@ -195,12 +195,11 @@ $centipede-headline-font-size: 10px;
   @include flynns_stretch;
   z-index: 0;
   overflow: hidden;
-  background: black;
 
   img {
     will-change: transform;
     @include transition-property(transform);
-    @include transition-duration(.1s);
+    @include transition-duration(.2s);
     width: 100%;
     height: 100%;
   }

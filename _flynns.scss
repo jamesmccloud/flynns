@@ -41,6 +41,9 @@ $screen-2x: 1900px !default;
 | +-----------------------------------------------------------------------+ |
 +--------------------------------------------------------------------------*/
 
+// Are you trying to debug the arcade?
+$flynns-debug: $DEBUG !default;
+
 // Grid Gutter size.
 // Options: small, medium, large, none (anything else)
 $flynns-grid-size: small !default;
@@ -63,7 +66,7 @@ $flynns-grid-large: 1 !default;
 // * (d)efender
 // * (e)xcitebike
 // * (f)rogger
-$flynns-arcade: centipede !default;
+$flynns-arcade: centipedee !default;
 
 // Default to no gutter, upgrade if necessary.
 $flynns-grid-value: $flynns-grid-none;
@@ -104,24 +107,11 @@ $flynns-grid-value: $flynns-grid-none;
   }
 }
 
-// This is a simple mixin
-@mixin flynns_stretch {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-
 // The parent container. No position definitions are allowed between this
 // class, and the player frame.
 
 .flynns {
   position: relative;
-
-
 }
 
 // The z-index here is set so that javascript can ask for the number of
@@ -169,7 +159,6 @@ $flynns-grid-value: $flynns-grid-none;
     @if $flynns-thumbnail-size == medium { @include flynns_pixel(7); }
     @if $flynns-thumbnail-size == small  { @include flynns_pixel(8); }
   }
-
 }
 
 @import "arcades";
