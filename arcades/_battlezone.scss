@@ -20,7 +20,17 @@
   &__details {
     color: $link-color;
 
-    .hd, .phone, .spacer {
+    .hd i {
+      color: #999;
+      font-weight: bold;
+      font-style: normal;
+    }
+
+    .phone {
+      color: #999;
+    }
+
+    .spacer {
       color: #666;
     }
   }

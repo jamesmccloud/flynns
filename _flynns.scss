@@ -48,10 +48,11 @@ $flynns-debug: $DEBUG !default;
 $flynns-gutter-size: medium !default;
 
 // Fine tuning the values.
-$flynns-gutter-small: 44px !default;
-$flynns-gutter-medium: 64px !default;
-$flynns-gutter-large: 100px !default;
+$flynns-gutter-small: 2.5% !default;
+$flynns-gutter-medium: 5% !default;
+$flynns-gutter-large: 10% !default;
 
+$flynns-gutter-value: 0;
 @if $flynns-gutter-size == small {
   $flynns-gutter-value: $flynns-gutter-small;
 
@@ -69,7 +70,7 @@ $flynns-gutter-large: 100px !default;
 // * (d)efender
 // * (e)xcitebike
 // * (f)rogger
-$flynns-arcade: asteroids !default;
+$flynns-arcade: battlezone !default;
 $flynns-link-color: #0099ff !default;
 
 // Thumbnail size.
@@ -78,13 +79,13 @@ $flynns-thumbnail-size: medium !default;
 
 // Grid Gutter size.
 // Options: small, medium, large, none (anything else)
-$flynns-grid-size: small !default;
+$flynns-grid-size: large !default;
 
 // Fine tuning the values.
 $flynns-grid-none: 1000;
 $flynns-grid-small: 12 !default;
 $flynns-grid-medium: 4 !default;
-$flynns-grid-large: 1 !default;
+$flynns-grid-large: 2 !default;
 
 // Default to no gutter, upgrade if necessary.
 $flynns-grid-value: $flynns-grid-none;
@@ -105,7 +106,7 @@ $flynns-grid-value: $flynns-grid-none;
 @mixin flynns_pixel($columns) {
   $total: $columns * $flynns-grid-value;
 
-  max-width: 320px * ($columns);
+  // max-width: 320px * ($columns);
 
   & > li {
     @include span-columns(($total / $columns) of $total);
