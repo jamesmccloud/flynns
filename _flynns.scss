@@ -44,20 +44,23 @@ $screen-2x: 1900px !default;
 // Are you trying to debug the arcade?
 $flynns-debug: $DEBUG !default;
 
-// Grid Gutter size.
-// Options: small, medium, large, none (anything else)
-$flynns-grid-size: small !default;
-
-
-// Thumbnail size.
-// Options: small, medium, large
-$flynns-thumbnail-size: medium !default;
+// Gutter Options: none, small, medium, large
+$flynns-gutter-size: medium !default;
 
 // Fine tuning the values.
-$flynns-grid-none: 1000;
-$flynns-grid-small: 16 !default;
-$flynns-grid-medium: 4 !default;
-$flynns-grid-large: 1 !default;
+$flynns-gutter-small: 44px !default;
+$flynns-gutter-medium: 64px !default;
+$flynns-gutter-large: 100px !default;
+
+@if $flynns-gutter-size == small {
+  $flynns-gutter-value: $flynns-gutter-small;
+
+} @else if $flynns-gutter-size == medium {
+  $flynns-gutter-value: $flynns-gutter-medium;
+
+} @else if $flynns-gutter-size == large {
+  $flynns-gutter-value: $flynns-gutter-large;
+}
 
 // Option for choosing the thumbnail display.
 // * (a)steroids
@@ -66,7 +69,21 @@ $flynns-grid-large: 1 !default;
 // * (d)efender
 // * (e)xcitebike
 // * (f)rogger
-$flynns-arcade: centipedee !default;
+$flynns-arcade: asteroids !default;
+
+// Thumbnail size.
+// Options: small, medium, large
+$flynns-thumbnail-size: medium !default;
+
+// Grid Gutter size.
+// Options: small, medium, large, none (anything else)
+$flynns-grid-size: small !default;
+
+// Fine tuning the values.
+$flynns-grid-none: 1000;
+$flynns-grid-small: 16 !default;
+$flynns-grid-medium: 4 !default;
+$flynns-grid-large: 1 !default;
 
 // Default to no gutter, upgrade if necessary.
 $flynns-grid-value: $flynns-grid-none;
@@ -87,8 +104,7 @@ $flynns-grid-value: $flynns-grid-none;
 @mixin flynns_pixel($columns) {
   $total: $columns * $flynns-grid-value;
 
-  margin: 0 flex-gutter($total);
-  max-width: 320px * ($columns + 1);
+  max-width: 320px * ($columns);
 
   & > li {
     @include span-columns(($total / $columns) of $total);
@@ -112,6 +128,10 @@ $flynns-grid-value: $flynns-grid-none;
 
 .flynns {
   position: relative;
+
+  @media (min-width: $screen-lg) {
+    padding: 0 $flynns-gutter-value;
+  }
 }
 
 // The z-index here is set so that javascript can ask for the number of

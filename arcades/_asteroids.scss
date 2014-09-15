@@ -1,0 +1,56 @@
+.arcade {
+
+  &__info {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
+  &__name {
+    h3 {
+
+      &, .arcade__marquee:hover & {
+        color: white;
+        text-decoration: none;
+      }
+    }
+  }
+
+  .line--alpha {
+    background: rgba(#000000, 0.5);
+    padding: 4px;
+
+    .hd, .phone {
+      display: none;
+    }
+
+    .country, .age {
+      &, .arcade__marquee:hover & {
+        color: #ffffff;
+      }
+    }
+
+    .spacer {
+      &, .arcade__marquee:hover & {
+        color: #999999;
+      }
+    }
+  }
+
+  .line--beta {
+    position: absolute;
+    bottom: 100%;
+
+    .arcade__details {
+      display: none;
+    }
+
+    .arcade__status {
+      display: none;
+    }
+  }
+
+  .line--gamma {
+    
+  }
+}

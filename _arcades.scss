@@ -48,13 +48,6 @@
 
   // The wrapper
   &__cabinet {
-    will-change: margin;
-    @include transition(margin .5s);
-
-    .arcade--open & {
-      margin-bottom: 1em;
-    }
-
     @if $DEBUG {
       background: rgba(lightsteelblue, 0.5);
     }
@@ -90,10 +83,6 @@
 
   &__static {
     z-index: 10;
-
-    img {
-
-    }
   }
 
   &__screen {
@@ -102,6 +91,12 @@
 
   &__marquee {
     z-index: 30;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: none;
+      color: inherit;
+    }
   }
 
   &__game-over {
@@ -117,10 +112,60 @@
 
     .arcade--open & {
       height: 567px;
+      margin-top: 1em;
     }
 
     @if $DEBUG {
       background: rgba(lightgreen, 0.5);
+    }
+  }
+
+  &__name {
+    h3 {
+      font-size: 14px;
+      margin: 0;
+      letter-spacing: (10em / 1000);
+    }
+  }
+
+
+  &__details {
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      display: inline-block;
+      margin-right: 4px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  // The primary line of information for the arcade.
+  // Name, HD, Phone, Country, Age.
+  .line--alpha {
+    @include display(flex);
+    @include flex-direction(row);
+    @include align-items(flex-end);
+
+    .arcade__name {
+      @include flex(1 1 auto);
+      line-height: 1.1;
+    }
+
+    .arcade__details {
+      @include flex(0 1 auto);
+      font-size: 14px;
+      line-height: 1.1;
+    }
+
+    .hd, .phone {
+      font-size: 75%;
     }
   }
 }

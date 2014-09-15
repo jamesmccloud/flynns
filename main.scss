@@ -50,7 +50,7 @@ $DEBUG: true;
 //   width: 0;
 // }
 
-.inline {
+.player {
   &__container {
     will-change: height;
     @include transition(height .5s);
@@ -69,7 +69,7 @@ $DEBUG: true;
     }
   }
 
-  &__player {
+  &__frame {
     position: relative;
   }
 
