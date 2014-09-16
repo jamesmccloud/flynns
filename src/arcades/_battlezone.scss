@@ -18,15 +18,28 @@
   }
 
   &__details {
+    text-align: right;
     color: $link-color;
+
+    @media (max-width: $screen-md - 1) {
+      width: 65px;
+    }
 
     .hd span {
       color: #999;
       font-weight: bold;
+
+      @media (max-width: $screen-md - 1) {
+        display: none;
+      }
     }
 
     .phone {
       color: #999;
+
+      @media (max-width: $screen-md - 1) {
+        display: none;
+      }
     }
 
     .spacer {

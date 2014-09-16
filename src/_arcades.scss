@@ -179,6 +179,17 @@
     text-shadow: 0.5px 0.5px 1px #000000;
   }
 
+  &__headline {
+    p {
+      @include word-wrap(break-all);
+      margin: 0;
+      max-height: 24px;
+      font-size: 10px;
+      line-height: 12px;
+      overflow: hidden;
+    }
+  }
+
   // .arcade__line
   &__line {
 
@@ -202,12 +213,6 @@
       .hd, .phone {
         font-size: 75%;
       }
-    }
-
-    &--gamma {
-      font-size: 10px;
-      line-height: 12px;
-      overflow: hidden;
     }
   }
 }

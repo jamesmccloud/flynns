@@ -1,3 +1,11 @@
+// @TODO
+// When running out of space, for this layout, just stack everything
+// on top of the status on the right.
+//
+// ❤
+// ★★★★★
+// party-chat
+
 .arcade {
   $padding: 4px;
   $radius: 10px;
@@ -45,12 +53,25 @@
   }
 
   &__details {
+    text-align: right;
+    @media (max-width: $screen-md - 1) {
+      width: 65px;
+    }
+
     .hd span {
       color: #666;
+
+      @media (max-width: $screen-md - 1) {
+        display: none;
+      }
     }
 
     .phone {
       color: #666;
+
+      @media (max-width: $screen-md - 1) {
+        display: none;
+      }
     }
 
     .spacer {
@@ -93,6 +114,7 @@
   &__line {
     &--gamma {
       color: #999999;
+      max-height: 24px;
     }
 
     &--beta {
