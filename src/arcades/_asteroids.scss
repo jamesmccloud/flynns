@@ -31,7 +31,14 @@
   }
 
   &__details {
-    float: right;
+    .arcade__line--alpha & {
+      text-align: right;
+      width: 65px;
+    }
+
+    .arcade__line--delta & {
+      float: right;
+    }
 
     .hd span {
       letter-spacing: (20em / 1000);

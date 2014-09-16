@@ -77,23 +77,25 @@
         .arcade__line--gamma
           .arcade__headline: p {{program.headline}}
 
-        //- Another row of hearts, stars, horseshoes, clovers, and balloons...
-        .arcade__line--delta
-          .arcade__status: span {{program.status.text}}
-          .arcade__favorite: i.fa.fa-heart
-          .arcade__rating: ul.five-points
-            li: i.fa.five-points__point
-            li: i.fa.five-points__point
-            li: i.fa.five-points__point
-            li: i.fa.five-points__point
-            li: i.fa.five-points__point
+      //- Another row of hearts, stars, horseshoes, clovers, and balloons...
+      //- This row is outside the .info block, so it can go anywhere it
+      //- needs to.
+      .arcade__line--delta
+        .arcade__status: span {{program.status.text}}
+        .arcade__favorite: i.fa.fa-heart
+        .arcade__rating: ul.five-points
+          li: i.fa.five-points__point
+          li: i.fa.five-points__point
+          li: i.fa.five-points__point
+          li: i.fa.five-points__point
+          li: i.fa.five-points__point
 
-          .arcade__details: ul
-            li.hd(ng-if="program.hd"): i.fa.small HD
-            li.phone(ng-if="program.phone"): i.fa.fa-phone.small
-            li.country {{program.country}}
-            li.spacer: i.fa.fa-ellipsis-v
-            li.age {{program.age}}
+        .arcade__details: ul
+          li.hd(ng-if="program.hd"): i.fa.small HD
+          li.phone(ng-if="program.phone"): i.fa.fa-phone.small
+          li.country {{program.country}}
+          li.spacer: i.fa.fa-ellipsis-v
+          li.age {{program.age}}
 
     //- This arcade is out of order.  Maybe you can fix it.
     .arcade__game-over

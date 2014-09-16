@@ -93,16 +93,19 @@
 
   &__static {
     z-index: 10;
+    overflow: hidden;
 
     img {
+      position: absolute;
       width: 100%;
       height: 100%;
       @include transition-property(transform);
       @include transition-duration(.15s);
+      @include transform(translateZ(0));
 
       // All the images scale 1.5% on hover.
-      a:hover & {
-        @include transform(scale(1.015))
+      .arcade__display:hover & {
+        @include transform(scale(1.015));
       }
     }
   }
@@ -144,6 +147,7 @@
 
   &__name {
     h3 {
+      @include ellipsis;
       font-size: 14px;
       margin: 0;
       letter-spacing: (10em / 1000);
@@ -152,6 +156,7 @@
 
   // .arcade__details
   &__details {
+
     ul {
       margin: 0;
       padding: 0;
