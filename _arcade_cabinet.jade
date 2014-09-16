@@ -37,7 +37,7 @@
           //- HD, Phone, Country, Age
           .arcade__details
             ul
-              li.hd(ng-if="program.hd"): i.small HD
+              li.hd(ng-if="program.hd"): span.small HD
               li.phone(ng-if="program.phone"): i.fa.fa-phone.small
               li.country {{program.country}}
               li.spacer: i.fa.fa-ellipsis-v
@@ -52,7 +52,7 @@
           //- Favorite
           //- This ng-if is just to show scattered favorite icons across the
           //- preview.
-          .arcade__favorite(ng-if="program.phone && program.country == 'US'")
+          .arcade__favorite(ng-if="program.hd && program.country == 'US'")
             i.fa.fa-heart
 
           //- Stars
@@ -67,7 +67,7 @@
           //- HD, Phone, Country, Age
           .arcade__details
             ul
-              li.hd(ng-if="program.hd"): i.small HD
+              li.hd(ng-if="program.hd"): span.small HD
               li.phone(ng-if="program.phone"): i.fa.fa-phone.small
               li.country {{program.country}}
               li.spacer: i.fa.fa-ellipsis-v

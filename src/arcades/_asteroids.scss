@@ -34,7 +34,7 @@
   &__details {
     float: right;
 
-    .hd i {
+    .hd span {
       letter-spacing: (20em / 1000);
       font-weight: bold;
     }
@@ -81,20 +81,16 @@
     }
 
     &--gamma {
-      $line-height: 12px;
-
       background: rgba(#000000, 0.5);
-      font-size: 10px;
-      line-height: $line-height;
-      color: #ffffff;
       height: 0;
       padding: 0 $padding;
-      overflow: hidden;
       will-change: padding, height;
       @include transition(padding .15s, height .15s);
+      color: #ffffff;
 
       a:hover & {
-        height: ($line-height * 2) + $padding / 2;
+        // .line--gamma line-height + half the padding
+        height: (12 * 2) + $padding / 2;
         padding-bottom: $padding / 2;
       }
     }

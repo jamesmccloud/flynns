@@ -1,0 +1,104 @@
+.arcade {
+  $padding: 4px;
+  $radius: 10px;
+  $headline: true;
+
+  // padding-bottom.
+  $pb: 15px + $padding; // Name Line Height + Padding
+  @if $headline {
+    $pb: $pb + (12 * 2) + 7px; // Add some more space for the headline.
+  }
+
+  &__cabinet {
+    margin-left: 10px;
+    border-radius: 7px;
+    border: 1px solid #a8a8a8;
+    padding: 7px 7px $pb;
+    background-color: white;
+  }
+
+  &__status {
+    float: left;
+    margin-left: -17px;
+
+    span {
+      padding: ($padding / 2) 20px;
+      text-transform: uppercase;
+      color: white;
+      font-size: 10px;
+      text-shadow: 0.5px 0.5px 1px #000000;
+
+      .gold-show & {
+        background: $GOLD;
+      }
+    }
+  }
+
+  &__details {
+    .hd span {
+      color: #666;
+    }
+
+    .phone {
+      color: #666;
+    }
+
+    .spacer {
+      color: #999;
+      font-size: 75%;
+    }
+
+    .age {
+      color: $flynns-link-color;
+    }
+
+    .country {
+      color: $flynns-link-color;
+    }
+  }
+
+  &__rating {
+    display: inline-block;
+    padding-right: $padding;
+    font-size: 10px;
+  }
+
+  &__favorite {
+    display: inline-block;
+    padding-right: $padding;
+  }
+
+  &__info {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    padding-top: $padding;
+    padding-bottom: $padding / 2;
+  }
+
+  &__name {
+    color: $flynns-link-color;
+  }
+
+  &__line {
+    &--gamma {
+      color: #999999;
+    }
+
+    &--beta {
+      position: absolute;
+      bottom: 100%;
+      padding-bottom: $padding;
+      width: 100%;
+      text-align: right;
+
+      .arcade__details {
+        display: none;
+      }
+    }
+
+    &--delta {
+      display: none;
+    }
+  }
+}

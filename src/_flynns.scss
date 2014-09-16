@@ -70,7 +70,9 @@ $flynns-gutter-value: 0;
 // * (d)efender
 // * (e)xcitebike
 // * (f)rogger
-$flynns-arcade: battlezone !default;
+$flynns-arcade: excitebike !default;
+
+// What color are the links (if other than white)?
 $flynns-link-color: #0099ff !default;
 
 // Thumbnail size.
@@ -82,7 +84,7 @@ $flynns-thumbnail-size: medium !default;
 
   // Grid Gutter size.
   // Options: small, medium, large, none (anything else)
-  $flynns-grid-size: medium !default;
+  $flynns-grid-size: small !default;
 
   // Fine tuning the values.
   // These values are used to create the total number of columns for the
