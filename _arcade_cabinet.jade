@@ -6,6 +6,9 @@
     'offline': program.status.text == 'Offline', \
   }")
 
+  //- Another div, inside the cabinet.  This one is locked to specific
+  //- aspect ratio.  The 4 divs inside this one, take up the same space, and
+  //- are stacked on top of one another to create the layering effect.
   .arcade__display
 
     //- Static picture of the arcade.
@@ -16,7 +19,8 @@
     .arcade__screen
 
     //- The marquee is the primary container holding all the information
-    //- about the arcade.
+    //- about the arcade.  This is also the link to the next page, or the
+    //- angular click handler.
     a.arcade__marquee(ng-controller="inlineClicker" ng-click="fire($index)")
 
       //- Another div, just for funsies, Good for allowing a group of content
@@ -91,6 +95,7 @@
             li.spacer: i.fa.fa-ellipsis-v
             li.age {{program.age}}
 
-    .arcade__game-over
+    //- This arcade is out of order.  Maybe you can fix it.
+    .arcade__out-of-order
 
-    .controls
+      //- JasonB's ticket.

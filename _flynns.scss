@@ -52,13 +52,13 @@ $flynns-gutter-small: 2.5% !default;
 $flynns-gutter-medium: 5% !default;
 $flynns-gutter-large: 10% !default;
 
+// Sass could really use a switch statement...
+// {small: $small, medium: $med..., youget: $thepicture}
 $flynns-gutter-value: 0;
 @if $flynns-gutter-size == small {
   $flynns-gutter-value: $flynns-gutter-small;
-
 } @else if $flynns-gutter-size == medium {
   $flynns-gutter-value: $flynns-gutter-medium;
-
 } @else if $flynns-gutter-size == large {
   $flynns-gutter-value: $flynns-gutter-large;
 }
@@ -77,40 +77,52 @@ $flynns-link-color: #0099ff !default;
 // Options: small, medium, large
 $flynns-thumbnail-size: medium !default;
 
-// Grid Gutter size.
-// Options: small, medium, large, none (anything else)
-$flynns-grid-size: large !default;
-
-// Fine tuning the values.
-$flynns-grid-none: 1000;
-$flynns-grid-small: 12 !default;
-$flynns-grid-medium: 4 !default;
-$flynns-grid-large: 2 !default;
-
-// Default to no gutter, upgrade if necessary.
-$flynns-grid-value: $flynns-grid-none;
-
-@if $flynns-grid-size == small {
-  $flynns-grid-value: $flynns-grid-small;
-
-} @else if $flynns-grid-size == medium {
-  $flynns-grid-value: $flynns-grid-medium;
-
-} @else if $flynns-grid-size == large {
-  $flynns-grid-value: $flynns-grid-large;
-}
-
-// This takes in the number of total colums you want in the block, and the
-// total number of columns you want to build the grid off of.  The larger the
-// $total the smaller the space between the blocks.
+// This takes in the number of total columns you want in per row.
 @mixin flynns_pixel($columns) {
-  $total: $columns * $flynns-grid-value;
 
-  // max-width: 320px * ($columns);
+  // Grid Gutter size.
+  // Options: small, medium, large, none (anything else)
+  $flynns-grid-size: large !default;
 
+  // Fine tuning the values.
+  // These values are used to create the total number of columns for the
+  // block grids to span.  Too keep the gutters consistent as the page gets
+  // smaller, I'm also multiplying this number by the number of columns.
+  //
+  // Small takes 5 columns, and multiplies it by 12 totaling 60. The gutters
+  // are calculated in the neat framework using a golden ratio calculator.
+  //
+  // So the gap for "small" would assume that there are 60 total columns on
+  // the page, but each block is as wide as 12 blocks, so there are still
+  // only 5 columns.
+  $flynns-grid-none: 1000;
+  $flynns-grid-small: 12 !default;
+  $flynns-grid-medium: 4 !default;
+  $flynns-grid-large: 2 !default;
+
+  // Default to no gutter, upgrade if necessary.
+  $grid-value: $flynns-grid-size;
+
+  // Again with the needing a switch statement.
+  @if $flynns-grid-size == small {
+    $grid-value: $flynns-grid-small;
+  } @else if $flynns-grid-size == medium {
+    $grid-value: $flynns-grid-medium;
+  } @else if $flynns-grid-size == large {
+    $grid-value: $flynns-grid-large;
+  }
+
+  // See above for why $total.
+  $total: $columns * $grid-value;
+
+  // Automatic Rows
+  // http://neat.bourbon.io/examples/
   & > li {
     @include span-columns(($total / $columns) of $total);
     @include omega(#{$columns}n);
+
+    // Flex gutter is a neat mixin that calculates the golden-ratio
+    // 'per column' for the total number of columns.
     margin-bottom: flex-gutter($total);
 
     &:nth-child(#{$columns}n + 1) {
@@ -118,6 +130,10 @@ $flynns-grid-value: $flynns-grid-none;
     }
   }
 
+  // This div is used by javascript to tell it the total number of columns
+  // on the page at any given time.  This way we don't have to do any silly
+  // calculating, or have our CSS breakpoints hard-coded into the javascript
+  // somewhere else.
   & + .grid--admin {
     position: absolute;
     display: none;
@@ -126,9 +142,17 @@ $flynns-grid-value: $flynns-grid-none;
 }
 
 // The parent container. No position definitions are allowed between this
-// class, and the player frame.
+// class, and the player frame so that we can use position: absolute to
+// get the player to the edges of the screen, with out any unnecessary
+// calculating.
+//
+// .flynns > ul.the-grid > li.arcade > .arcade__player
 .flynns {
   position: relative;
+
+  @media (min-width: $screen-md) {
+    padding: 0 ($flynns-gutter-value / 2);
+  }
 
   @media (min-width: $screen-lg) {
     padding: 0 $flynns-gutter-value;
@@ -139,11 +163,16 @@ $flynns-grid-value: $flynns-grid-none;
 // results per row, with out having to count, or have the breakpoints
 // hard-coded somewhere else.
 .the-grid {
+  //
+  // Do not use the "position" property on me.
+  // See .flynns
+  //
+
   $size: $flynns-thumbnail-size;
 
   @include outer-container;
   max-width: 100%;
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
 
   // iPhone portrait
@@ -153,7 +182,7 @@ $flynns-grid-value: $flynns-grid-none;
 
   // iPhone landscape -> iPad Portrait
   @media (min-width: $screen-xs) and (max-width: $screen-md - 1) {
-    @if $flynns-thumbnail-size == large  { @include flynns_pixel(2); }
+    @if $size == large  { @include flynns_pixel(2); }
     @else { @include flynns_pixel(3); }
   }
 
