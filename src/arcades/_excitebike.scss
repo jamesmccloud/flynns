@@ -31,6 +31,16 @@
       .gold-show & {
         background: $GOLD;
       }
+
+      .party-chat &, .online & {
+        background: #3C0;
+      }
+
+      .offline & {
+        background: black;
+        color: white;
+      }
+
     }
   }
 
