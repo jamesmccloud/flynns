@@ -1,4 +1,4 @@
-@import "bower_components/neat/app/assets/stylesheets/neat";
+@import "../bower_components/neat/app/assets/stylesheets/neat";
 
 // Screen Sizes
 // These were stolen from bootstrap.
@@ -82,7 +82,7 @@ $flynns-thumbnail-size: medium !default;
 
   // Grid Gutter size.
   // Options: small, medium, large, none (anything else)
-  $flynns-grid-size: large !default;
+  $flynns-grid-size: medium !default;
 
   // Fine tuning the values.
   // These values are used to create the total number of columns for the

@@ -1,0 +1,54 @@
+// Ratings.
+$ratings__color: $GOLD !default;
+.five-points {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  & > li {
+    display: inline-block;
+  }
+}
+
+.five-points__point {
+  color: $ratings__color;
+  text-shadow: 0 0 2px darken($ratings__color, 15%);
+
+  &:before {
+    content: $fa-var-star;
+  }
+
+  & + & {
+    margin-left: -0.25em;
+  }
+
+  .rating5 {
+    color: inherit;
+  }
+}
+
+// will empty the appropriate stars after any given rating
+@mixin empty-stars($stars) {
+  @for $i from $stars through 5 {
+    .five-points__point:nth-child(#{$i}):before {
+      content: $fa-var-star-o;
+    }
+  }
+}
+
+@each $rating in 4, 3, 2, 1, 0 {
+  .rating#{$rating} {
+    // plus one to move to the spot after the rating
+    @include empty-stars($rating + 1);
+  }
+
+  .rating#{$rating}_half {
+    // and extra plus one to jump over to the spot after the half rating
+    @include empty-stars($rating + 2);
+
+    // this is the half star rating location
+    .five-points__point:nth-child(#{$rating + 1}):before {
+      content: $fa-var-star-half-o;
+    }
+  }
+}
