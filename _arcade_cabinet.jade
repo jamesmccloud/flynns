@@ -32,46 +32,14 @@
 
           //- Name
           .arcade__name
-            h3(onclick='return false;') {{program.image.alt}}
+            h3(onclick='function(e) {e.preventDefault(); e.stopPropagation(); return false;}') {{program.image.alt}}
 
           //- HD, Phone, Country, Age
-          .arcade__details
-            ul
-              li.hd(ng-if="program.hd"): span.small HD
-              li.phone(ng-if="program.phone"): i.fa.fa-phone.small
-              li.country {{program.country}}
-              li.spacer: i.fa.fa-ellipsis-v.small
-              li.age {{program.age}}
+          include _arcade_details
 
         //- The second grouped info line.  Status modifiers.
         .arcade__line--beta
-
-          //- Status
-          .arcade__status: span {{program.status.text}}
-
-          //- Favorite
-          //- This ng-if is just to show scattered favorite icons across the
-          //- preview.
-          .arcade__favorite(ng-if="program.hd && program.country == 'US'")
-            i.fa.fa-heart
-
-          //- Stars
-          .arcade__rating
-            ul.five-points
-              li: i.fa.five-points__point
-              li: i.fa.five-points__point
-              li: i.fa.five-points__point
-              li: i.fa.five-points__point
-              li: i.fa.five-points__point
-
-          //- HD, Phone, Country, Age
-          .arcade__details
-            ul
-              li.hd(ng-if="program.hd"): span.small HD
-              li.phone(ng-if="program.phone"): i.fa.fa-phone.small
-              li.country {{program.country}}
-              li.spacer: i.fa.fa-ellipsis-v
-              li.age {{program.age}}
+          include _arcade_line_shared
 
         //- Just the headline.
         .arcade__line--gamma
@@ -81,21 +49,7 @@
       //- This row is outside the .info block, so it can go anywhere it
       //- needs to.
       .arcade__line--delta
-        .arcade__status: span {{program.status.text}}
-        .arcade__favorite: i.fa.fa-heart
-        .arcade__rating: ul.five-points
-          li: i.fa.five-points__point
-          li: i.fa.five-points__point
-          li: i.fa.five-points__point
-          li: i.fa.five-points__point
-          li: i.fa.five-points__point
-
-        .arcade__details: ul
-          li.hd(ng-if="program.hd"): i.fa.small HD
-          li.phone(ng-if="program.phone"): i.fa.fa-phone.small
-          li.country {{program.country}}
-          li.spacer: i.fa.fa-ellipsis-v
-          li.age {{program.age}}
+        include _arcade_line_shared
 
     //- This arcade is out of order.  Maybe you can fix it.
     .arcade__game-over
