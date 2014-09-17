@@ -32,7 +32,7 @@
 
           //- Name
           .arcade__name
-            h3: span(onclick='return false;') {{program.image.alt}}
+            h3(onclick='return false;') {{program.image.alt}}
 
           //- HD, Phone, Country, Age
           .arcade__details
@@ -40,7 +40,7 @@
               li.hd(ng-if="program.hd"): span.small HD
               li.phone(ng-if="program.phone"): i.fa.fa-phone.small
               li.country {{program.country}}
-              li.spacer: i.fa.fa-ellipsis-v
+              li.spacer: i.fa.fa-ellipsis-v.small
               li.age {{program.age}}
 
         //- The second grouped info line.  Status modifiers.

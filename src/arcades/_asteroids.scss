@@ -33,10 +33,6 @@
   &__details {
     .arcade__line--alpha & {
       text-align: right;
-
-      @media (max-width: $screen-md - 1) {
-        width: 65px;
-      }
     }
 
     .arcade__line--delta & {

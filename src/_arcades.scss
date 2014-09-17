@@ -51,13 +51,6 @@
   //
 
 
-  // The wrapper
-  &__cabinet {
-    @if $DEBUG {
-      background: rgba(lightsteelblue, 0.5);
-    }
-  }
-
   // Locked to a 4x3 ratio.
   &__display {
     position: relative;
@@ -105,7 +98,7 @@
 
       // All the images scale 1.5% on hover.
       .arcade__display:hover & {
-        @include transform(scale(1.015));
+        @include transform(scale(1.1));
       }
     }
   }
@@ -139,18 +132,16 @@
       height: 567px;
       margin-top: 1em;
     }
-
-    @if $DEBUG {
-      background: rgba(lightgreen, 0.5);
-    }
   }
 
   &__name {
     h3 {
       @include ellipsis;
-      font-size: 14px;
+      display: block;
+      font-size: inherit;
       margin: 0;
       letter-spacing: (10em / 1000);
+      line-height: inherit;
     }
   }
 
@@ -170,6 +161,20 @@
       &:last-child {
         margin-right: 0;
       }
+    }
+
+    .hd span {
+      display: inline-block;
+      line-height: 1;
+      font-weight: 500;
+    }
+
+    .age {
+      font-weight: 500;
+    }
+
+    .country {
+      font-weight: 500;
     }
   }
 
@@ -198,19 +203,20 @@
       @include display(flex);
       @include flex-direction(row);
       @include align-items(flex-end);
+      line-height: 20px;
+      font-size: 14px;
 
       .arcade__name {
-        @include flex(1 1 auto);
-        line-height: 1.1;
+        @include flex(auto);
+        line-height: inherit;
       }
 
       .arcade__details {
-        @include flex(0 1 auto);
-        font-size: 14px;
-        line-height: 1.1;
+        @include flex(none);
+        line-height: inherit;
       }
 
-      .hd, .phone {
+      .small {
         font-size: 75%;
       }
     }
