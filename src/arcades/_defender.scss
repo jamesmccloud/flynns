@@ -1,0 +1,38 @@
+.arcade {
+  $padding: 4px;
+
+  &__cabinet {
+    padding-bottom: $padding + 20px;
+  }
+
+  &__details {
+    .hd, .phone, .spacer {
+      color: #999;
+    }
+
+    .spacer {
+      font-size: 75%;
+    }
+  }
+
+  &__line {
+    &--alpha {
+      padding-top: $padding;
+      background: white;
+      position: absolute;
+      top: 100%;
+      width: 100%;
+    }
+
+    &--beta {
+      position: absolute;
+      bottom: 0;
+      top: 0;
+      right: 0;
+    }
+
+    &--gamma, &--delta {
+      display: none;
+    }
+  }
+}
