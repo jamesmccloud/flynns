@@ -1,5 +1,5 @@
 .arcade {
-  $padding: 4px;
+  $spacing: 4px;
 
   &__cabinet {
     margin-bottom: 20px;
@@ -20,14 +20,14 @@
 
   &__rating {
     font-size: 12px;
-    padding: 0 $padding $padding;
+    padding: 0 $spacing $spacing;
     line-height: 1;
   }
 
   &__favorite {
     font-size: 1.4em;
     line-height: 1;
-    padding-left: $padding;
+    padding-left: $spacing;
   }
 
   &__details {
@@ -60,7 +60,7 @@
   &__line {
     &--alpha {
       background: rgba(#000000, 0.5);
-      padding: $padding;
+      padding: $spacing;
 
       .hd, .phone {
         display: none;
@@ -81,15 +81,16 @@
     &--gamma {
       background: rgba(#000000, 0.5);
       height: 0;
-      padding: 0 $padding;
+      padding: 0 $spacing;
       will-change: padding, height;
       @include transition(padding .15s, height .15s);
       color: #ffffff;
+      overflow: hidden;
 
       a:hover & {
         // .line--gamma line-height + half the padding
-        height: (12 * 2) + $padding / 2;
-        padding-bottom: $padding / 2;
+        height: (12 * 2) + $spacing / 2;
+        padding-bottom: $spacing / 2;
       }
     }
 
@@ -102,7 +103,7 @@
       top: 100%;
       font-size: 9px;
       width: 100%;
-      padding: 0 $padding;
+      padding: 0 $spacing;
       line-height: 12px;
       color: #000000;
       text-transform: uppercase;
@@ -113,15 +114,19 @@
       }
 
       .gold-show & {
-        background: $GOLD;
+        background: $flynns-gold-color;
       }
 
-      .party-chat &, .online & {
-        background: #3C0;
+      .party-chat & {
+        background: $flynns-online-color;
+      }
+
+      .online & {
+        background: $flynns-partychat-color;
       }
 
       .offline & {
-        background: black;
+        background: $flynns-offline-color;
         text: white;
       }
 

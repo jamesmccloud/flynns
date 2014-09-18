@@ -70,10 +70,13 @@ $flynns-gutter-value: 0;
 // * (d)efender
 // * (e)xcitebike
 // * (f)rogger
-$flynns-arcade: defender !default;
+$flynns-arcade: asteroids !default;
 
 // What color are the links (if other than white)?
-$flynns-link-color: #0099ff !default;
+$flynns-link-color: #09f !default;
+$flynns-offline-color: #222 !default;
+$flynns-online-color: #3C0 !default;
+$flynns-gold-color: $GOLD !default;
 
 // Thumbnail size.
 // Options: small, medium, large
