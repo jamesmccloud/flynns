@@ -5,7 +5,7 @@ $ratings__color: $GOLD !default;
   padding: 0;
   list-style: none;
 
-  & > li {
+  & > .star {
     display: inline-block;
   }
 }
