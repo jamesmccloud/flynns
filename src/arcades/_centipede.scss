@@ -10,173 +10,152 @@ $centipede-headline-font-size: 10px;
 }
 
 // Centipede
-.arcade {
-  padding-top: 16px;
+.arcade--centipede {
 
-  img {
-    max-width: 100%;
+  .gold-show .arcade__line--beta .arcade__status span {
+    background: $flynns-gold-color;
+    color: black;
   }
 
-  &:hover img {
-    @include transform(scale(1.015));
+  .online .arcade__line--beta .arcade__status span,
+  .party-chat .arcade__line--beta .arcade__status span {
+    background: $flynns-partychat-color;
+    color: white;
+  }
+  
+  .offline .arcade__line--beta .arcade__status span {
+    background: $flynns-offline-color;
+    color: white;
   }
 
-  &__line--delta,
-  &__rating {
-    display: none;  
-  }
+  .arcade {
 
-  &__display {
-    box-shadow: 2px 2px 8px #ccc;
-  }
-
-  &__marquee {
-    z-index: 50;
-  }
-
-  &__line {
-
-    &--alpha {
-      position: absolute;
-      top: -16px;
-      width: 100%;
-      font-weight: bold;
-
-      .arcade__name {
-        font-size: 12px;
-        line-height: 16px !important;
-        letter-spacing: (-10em / 1000);
-
-        // We only need the space here if the gutters are set to none
-        @if $flynns-grid-size == none {
-          padding-left: $centipede-padding;
-        }
-
-        h3 {
-          @include ellipsis;
-          color: $flynns-link-color;
-          font-weight: bold;
-        }
-      }
-
-      .arcade__details {
-        position: absolute;
-        right: 0;
-        top: 0;
-        margin: 0;
-        font-size: 12px;
-        list-style: none;
-        text-align: right;
-        line-height: 16px !important;
-
-        // We only need the space here if the gutters are set to none
-        @if $flynns-grid-size == none {
-          padding-right: $centipede-padding;
-        }
-
-        li + li {
-          margin-left: 0.25em;
-        }
-
-        .small {
-          font-size: 80%;
-        }
-
-        .phone {
-          color: #6f6f6f;
-        }
-
-        .age {
-          color: $flynns-link-color;
-          font-weight: bold;
-        }
-
-        .name {
-          color: $flynns-link-color;
-        }
-
-        .country {
-          color: $flynns-link-color;
-          font-weight: bold;
-        }
-
-        .fa-ellipsis-v {
-          color: #6f6f6f;
-        }
-
-        .hd span {
-          font-weight: bold;
-          color: #6f6f6f;
-        }
-      }
+    &__cabinet {
+      padding-top: 16px;
     }
 
-    &--beta {
-      position: absolute;
-      bottom: 30px;
+    img {
+      max-width: 100%;
+    }
 
-      .arcade__details {
-        display: none;
-      }
+    &__line--delta,
+    &__rating {
+      display: none;  
+    }
 
-      .arcade__favorite {
+    &__display {
+      box-shadow: 2px 2px 8px #ccc;
+    }
+
+    &__line {
+
+      &--alpha {
         position: absolute;
-        left: 0;
+        height: 16px;
+        top: -18px;
+        width: 100%;
         bottom: 100%;
-        text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-        padding-left: $centipede-padding;
 
-        .fa-heart {
-          color: red;
-        }
-      }
-    
-      .arcade__status {
-        float: left;
-        padding-left: $centipede-padding;
-        padding-bottom: $centipede-padding;
+        .arcade__name {
+          line-height: 16px !important;
+          @include ellipsis;
 
-        span {
-          padding: ($centipede-padding / 2) ($centipede-padding * 2) ($centipede-padding / 3);
-          font-weight: bold;
-          text-transform: uppercase;
-          font-size: 8px;
-          letter-spacing: (20em / 1000);
-
-          .gold-show & {
-            background: $flynns-gold-color;
-            color: black;
+          // We only need the space here if the gutters are set to none
+          @if $flynns-grid-size == none {
+            padding-left: $centipede-padding;
           }
 
-          .online &,
-          .party-chat & {
-            background: $flynns-partychat-color;
-            color: white;
-          }
-          
-          .offline & {
-            background: $flynns-offline-color;
-            color: white;
+          h3 {
+            color: $flynns-link-color;
           }
         }
+
+        .arcade__details {
+          float: right;
+          margin: 0;
+          text-align: right;
+          line-height: 16px !important;
+
+          // We only need the space here if the gutters are set to none
+          @if $flynns-grid-size == none {
+            padding-right: $centipede-padding;
+          }
+
+          li + li {
+            margin-left: 0.25em;
+          }
+
+          .small {
+            font-size: 80%;
+          }
+
+          .age,
+          .name,
+          .country {
+            color: $flynns-link-color;
+          }
+
+          .phone,
+          .fa-ellipsis-v {
+            color: #6f6f6f;
+          }
+
+          .hd span {
+            font-weight: bold;
+            color: #6f6f6f;
+          }
+        }
       }
-    }
 
-    &--gamma {
-      position: absolute;
-      bottom: 0;
-      left: 0;
+      &--beta {
+        position: absolute;
+        bottom: 30px;
 
-      .arcade__headline {
-        // This puts the text on it's own blending layer, and stops it from
-        // flashing during the transitions.
-        @include transform(translateZ(0));
-        @include word-wrap(break-all);
-        text-align: justify;
-        height: centipede_headline_height();
-        padding: $centipede-padding;
-        padding-top: 0;
-        color: #ffffff;
+        .arcade__details {
+          display: none;
+        }
+
+        .arcade__favorite {
+          position: absolute;
+          left: 0;
+          bottom: 100%;
+          padding-left: $centipede-padding;
+
+          .fa-heart {
+            color: red;
+          }
+        }
+      
+        .arcade__status {
+          float: left;
+          padding-left: $centipede-padding;
+          padding-bottom: $centipede-padding;
+
+          span {
+            padding: ($centipede-padding / 2) ($centipede-padding * 2) ($centipede-padding / 3);
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 8px;
+            letter-spacing: (20em / 1000);
+          }
+        }
+      }
+
+      &--gamma {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+
+        .arcade__headline {
+          // This puts the text on it's own blending layer, and stops it from
+          // flashing during the transitions.
+          @include transform(translateZ(0));
+          @include word-wrap(break-all);
+          height: centipede_headline_height();
+          padding: $centipede-padding;
+          padding-top: 0;
+          color: #ffffff;
+        }
       }
     }
   }
