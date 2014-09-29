@@ -109,7 +109,6 @@
 
   &__marquee {
     z-index: 30;
-    cursor: pointer;
 
     &:hover {
       text-decoration: none;
@@ -117,7 +116,7 @@
     }
   }
 
-  &__game-over {
+  &__out-of-order {
     z-index: 40;
     display: none;
   }
@@ -134,12 +133,15 @@
     }
   }
 
+  // .arcade__name
   &__name {
     h3 {
       @include ellipsis;
       display: block;
       font-size: inherit;
-      margin: 0;
+
+      // Foundation panels mess with the headers in them, so we need this :(
+      margin: 0 !important;
       letter-spacing: (10em / 1000);
       line-height: inherit;
     }
@@ -164,9 +166,11 @@
     }
 
     .hd span {
+      text-transform: uppercase;
       display: inline-block;
       line-height: 1;
       font-weight: 500;
+      letter-spacing: (20em / 1000);
     }
 
     .age {
@@ -178,12 +182,19 @@
     }
   }
 
+  // .arcade__status
+  .arcade__status {
+    text-transform: uppercase;
+    letter-spacing: (20em / 1000);
+  }
+
   // .arcade__favorite
   &__favorite {
     color: red;
     text-shadow: 0.5px 0.5px 1px #000000;
   }
 
+  // .arcade__headline
   &__headline {
     p {
       @include word-wrap(break-all);
@@ -232,7 +243,6 @@
   }
 }
 
-
 // Only include the arcade that they're using.
 @if $flynns-arcade == asteroids {
   @import "arcades/asteroids";
@@ -253,3 +263,5 @@
   @import "arcades/frogger";
 
 }
+
+@import "arcades/generic";

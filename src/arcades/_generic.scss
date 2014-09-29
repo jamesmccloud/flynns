@@ -1,0 +1,83 @@
+.arcade--generic {
+  $spacing: 4px;
+
+  .arcade__name h3 {
+    color: white;
+  }
+
+  .arcade__line {
+    &--alpha {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      background: rgba(black, 0.5);
+      padding: 0 $spacing;
+
+      .arcade__details {
+        display: none;
+      }
+    }
+
+    &--delta {
+      display: none;
+      position: absolute;
+      top: 100%;
+      width: 100%;
+      font-size: 9px;
+      line-height: 12px;
+      color: black;
+      padding: 0 $spacing;
+      text-transform: uppercase;
+      vertical-align: middle;
+
+      .arcade__details, .arcade__rating {
+        display: none;
+      }
+
+      &.goldshow {
+        background: $GOLD;
+      }
+
+      &.partychat {
+        background: $flynns-partychat-color;
+      }
+
+      &.online {
+        background: $flynns-online-color;
+      }
+
+      &.offline {
+        background: $flynns-offline-color;
+        color: white;
+      }
+    }
+
+    &--beta, &--gamma, &--delta {
+      display: none;
+    }
+  }
+
+  &.has--status {
+    .arcade__cabinet {
+      margin-bottom: 12px;
+    }
+
+    .arcade__line {
+      &--delta {
+        display: block;
+      }
+    }
+  }
+
+  &.is--static {
+    // Not clickable, no transform.
+    .arcade__display {
+      &, &:hover {
+        .arcade__static img {
+          @include transform(none);
+        }
+      }
+    }
+
+  }
+}
