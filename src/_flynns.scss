@@ -1,6 +1,7 @@
 // Screen Sizes
 // These were stolen from bootstrap.
 // Redefined here so they can be overridden as necessary.
+// Added XL and 2X.
 $screen-xs: 480px !default;
 $screen-sm: 768px !default;
 $screen-md: 992px !default;
@@ -72,6 +73,8 @@ $flynns-arcade: centipede !default;
 
 // What color are the links (if other than white)?
 $flynns-link-color: #09f !default;
+
+// Status colors
 $flynns-offline-color: #222 !default;
 $flynns-online-color: #3C0 !default;
 $flynns-partychat-color: #3C0 !default;
@@ -105,7 +108,7 @@ $flynns-grid-size: small !default;
   $flynns-grid-large: 2 !default;
 
   // Default to no gutter, upgrade if necessary.
-  $grid-value: $flynns-grid-size;
+  $grid-value: $flynns-grid-none;
 
   // Again with the needing a switch statement.
   @if $flynns-grid-size == small {
@@ -114,16 +117,17 @@ $flynns-grid-size: small !default;
     $grid-value: $flynns-grid-medium;
   } @else if $flynns-grid-size == large {
     $grid-value: $flynns-grid-large;
-  } @else {
-    $grid-value: $flynns-grid-none;  
   }
 
   // See above for why $total.
   $total: $columns * $grid-value;
 
+  // Set the max-width for the whole container to 320*$cols just in case.
+  max-width: 320px * $columns;
+
   // Automatic Rows
   // http://neat.bourbon.io/examples/
-  & > li {
+  & > .arcade {
     @include span-columns(($total / $columns) of $total);
     @include omega(#{$columns}n);
 
@@ -178,7 +182,7 @@ $flynns-grid-size: small !default;
 
   @include outer-container;
   max-width: 100%;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
 
   // iPhone portrait
@@ -216,6 +220,48 @@ $flynns-grid-size: small !default;
     @if $size == large  { @include flynns_pixel(6); }
     @if $size == medium { @include flynns_pixel(7); }
     @if $size == small  { @include flynns_pixel(8); }
+  }
+}
+
+.mini-grid {
+  @include outer-container;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+
+  // 2x - Always
+  &.two {
+    @include flynns_pixel(2);
+  }
+
+  // 3x - 2
+  &.three {
+    // iPhone portrait
+    @media (max-width: $screen-xs - 1) {
+      @include flynns_pixel(2);
+    }
+
+    // iPhone landscape
+    @media (min-width: $screen-xs) {
+      @include flynns_pixel(3);
+    }
+  }
+
+  &.four {
+    // iPhone portrait
+    @media (max-width: $screen-xs - 1) {
+      @include flynns_pixel(2);
+    }
+
+    // iPhone landscape
+    @media (min-width: $screen-xs) and (max-width: $screen-md - 1) {
+      @include flynns_pixel(3);
+    }
+
+    // iPad Portrait
+    @media (min-width: $screen-md) {
+      @include flynns_pixel(4);
+    }
   }
 }
 

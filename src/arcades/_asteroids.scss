@@ -1,139 +1,136 @@
-.arcade {
+.arcade--asteroids {
   $spacing: 4px;
 
-  &__cabinet {
-    margin-bottom: 20px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.75);
-  }
+  .arcade {
 
-  &__info {
-    width: 100%;
-    position: absolute;
-    bottom: 0;
-  }
-
-  &__name {
-    h3 {
-      color: white;
-    }
-  }
-
-  &__rating {
-    font-size: 12px;
-    padding: 0 $spacing $spacing;
-    line-height: 1;
-  }
-
-  &__favorite {
-    font-size: 1.4em;
-    line-height: 1;
-    padding-left: $spacing;
-  }
-
-  &__details {
-    .arcade__line--alpha & {
-      text-align: right;
-    }
-
-    .arcade__line--delta & {
-      float: right;
-    }
-
-    .hd span {
-      letter-spacing: (20em / 1000);
-      font-weight: bold;
-    }
-
-    .country, .age {
-      color: #ffffff;
-    }
-
-    .spacer {
-      color: #999999;
-    }
-  }
-
-  &__status {
-    float: left;
-  }
-
-  &__line {
-    &--alpha {
-      background: rgba(#000000, 0.5);
-      padding: $spacing;
-
-      .hd, .phone {
-        display: none;
-      }
-    }
-
-    &--beta {
-      @include clearfix;
-      position: absolute;
-      bottom: 100%;
-
-      .arcade__details,
-      .arcade__status {
-        display: none;
-      }
-    }
-
-    &--gamma {
-      background: rgba(#000000, 0.5);
-      height: 0;
-      padding: 0 $spacing;
-      will-change: padding, height;
-      @include transition(padding .15s, height .15s);
-      color: #ffffff;
-      overflow: hidden;
-
-      a:hover & {
-        // .line--gamma line-height + half the padding
-        height: (12 * 2) + $spacing / 2;
-        padding-bottom: $spacing / 2;
-      }
-    }
-
-    // .arcade__line--delta
-    &--delta {
-      @include transition(line-height .15s);
-      @include clearfix;
+    &__cabinet {
+      margin-bottom: 20px;
       box-shadow: 0 1px 1px rgba(0, 0, 0, 0.75);
-      position: absolute;
-      top: 100%;
-      font-size: 9px;
+    }
+
+    &__info {
       width: 100%;
-      padding: 0 $spacing;
-      line-height: 12px;
-      color: #000000;
-      text-transform: uppercase;
-      vertical-align: middle;
+      position: absolute;
+      bottom: 0;
+    }
 
-      a:hover & {
-        line-height: 20px;
+    &__name {
+      h3 {
+        color: white;
+      }
+    }
+
+    &__rating {
+      font-size: 12px;
+      padding: 0 $spacing $spacing;
+      line-height: 1;
+    }
+
+    &__favorite {
+      font-size: 1.4em;
+      line-height: 1;
+      padding-left: $spacing;
+    }
+
+    &__details {
+      .arcade__line--alpha & {
+        text-align: right;
       }
 
-      .gold-show & {
-        background: $flynns-gold-color;
+      .arcade__line--delta & {
+        float: right;
       }
 
-      .party-chat & {
-        background: $flynns-online-color;
+      .country, .age {
+        color: #ffffff;
       }
 
-      .online & {
-        background: $flynns-partychat-color;
+      .spacer {
+        color: #999999;
+      }
+    }
+
+    &__status {
+      float: left;
+    }
+
+    &__line {
+      &--alpha {
+        background: rgba(#000000, 0.5);
+        padding: 0 $spacing;
+
+        .hd, .phone {
+          display: none;
+        }
       }
 
-      .offline & {
-        background: $flynns-offline-color;
-        text: white;
+      &--beta {
+        @include clearfix;
+        position: absolute;
+        bottom: 100%;
+
+        .arcade__details,
+        .arcade__status {
+          display: none;
+        }
       }
 
-      .arcade__favorite,
-      .arcade__rating,
-      .country, .age, .spacer {
-        display: none;
+      &--gamma {
+        background: rgba(#000000, 0.5);
+        height: 0;
+        padding: 0 $spacing;
+        will-change: padding, height;
+        @include transition(padding .15s, height .15s);
+        color: #ffffff;
+        overflow: hidden;
+
+        a:hover & {
+          // .line--gamma line-height + half the padding
+          height: (12 * 2) + $spacing / 2;
+          padding-bottom: $spacing / 2;
+        }
+      }
+
+      // .arcade__line--delta
+      &--delta {
+        @include transition(line-height .15s);
+        @include clearfix;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.75);
+        position: absolute;
+        top: 100%;
+        font-size: 9px;
+        width: 100%;
+        padding: 0 $spacing;
+        line-height: 12px;
+        color: #000000;
+        vertical-align: middle;
+
+        a:hover & {
+          line-height: 20px;
+        }
+
+        .gold-show & {
+          background: $flynns-gold-color;
+        }
+
+        .party-chat & {
+          background: $flynns-online-color;
+        }
+
+        .online & {
+          background: $flynns-partychat-color;
+        }
+
+        .offline & {
+          background: $flynns-offline-color;
+          text: white;
+        }
+
+        .arcade__favorite,
+        .arcade__rating,
+        .country, .age, .spacer {
+          display: none;
+        }
       }
     }
   }
