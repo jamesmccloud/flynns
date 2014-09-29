@@ -68,7 +68,7 @@ $flynns-gutter-value: 0;
 // * (d)efender
 // * (e)xcitebike
 // * (f)rogger
-$flynns-arcade: asteroids !default;
+$flynns-arcade: centipede !default;
 
 // What color are the links (if other than white)?
 $flynns-link-color: #09f !default;
@@ -82,12 +82,12 @@ $flynns-gold-color: $GOLD !default;
 $flynns-thumbnail-size: medium !default;
 
 // This takes in the number of total columns you want in per row.
+
+// Grid Gutter size.
+// Options: small, medium, large, none (anything else)
+$flynns-grid-size: small !default;
+
 @mixin flynns_pixel($columns) {
-
-  // Grid Gutter size.
-  // Options: small, medium, large, none (anything else)
-  $flynns-grid-size: small !default;
-
   // Fine tuning the values.
   // These values are used to create the total number of columns for the
   // block grids to span.  Too keep the gutters consistent as the page gets
@@ -114,6 +114,8 @@ $flynns-thumbnail-size: medium !default;
     $grid-value: $flynns-grid-medium;
   } @else if $flynns-grid-size == large {
     $grid-value: $flynns-grid-large;
+  } @else {
+    $grid-value: $flynns-grid-none;  
   }
 
   // See above for why $total.
