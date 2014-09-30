@@ -228,6 +228,11 @@
       .arcade__name {
         @include flex(auto);
         line-height: inherit;
+
+        // @TODO Remove after Foundation is gone.
+        h3 {
+          line-height: 20px;
+        }
       }
 
       .arcade__details {
