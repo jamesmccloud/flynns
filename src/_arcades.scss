@@ -54,6 +54,7 @@
   // Locked to a 4x3 ratio.
   &__display {
     position: relative;
+    z-index: 10;
 
     &::after {
       content: '';
@@ -96,9 +97,11 @@
       @include transition-duration(.15s);
       @include transform(translateZ(0));
 
-      // All the images scale 1.5% on hover.
-      .arcade__display:hover & {
-        @include transform(scale(1.1));
+      @if $flynns-image-hover {
+        // All the images scale 1.5% on hover.
+        .arcade__display:hover & {
+          @include transform(scale(1.1));
+        }
       }
     }
   }
@@ -149,6 +152,7 @@
 
   // .arcade__details
   &__details {
+    user-select: none;
 
     ul {
       margin: 0;
@@ -165,7 +169,7 @@
       }
     }
 
-    .hd span {
+    .high-def span {
       text-transform: uppercase;
       display: inline-block;
       line-height: 1;
@@ -184,8 +188,12 @@
 
   // .arcade__status
   .arcade__status {
-    text-transform: uppercase;
-    letter-spacing: (20em / 1000);
+    .text {
+      text-transform: uppercase;
+      letter-spacing: (20em / 1000);
+      display: inline-block;
+      vertical-align: middle;
+    }
   }
 
   // .arcade__favorite
@@ -232,6 +240,50 @@
       }
     }
   }
+
+  // .arcade__controls
+  &__controls {
+    position: relative;
+    z-index: 20;
+    width: 2.5rem;
+    padding-top: 10px;
+    background: #dedede;
+  }
+
+  &__button {
+    display: block;
+    width: 100%;
+    text-align: center;
+    line-height: 2em;
+
+    .fa {
+      color: #b6b6b6;
+    }
+
+    &:hover .fa {
+      font-size: 1.5em;
+      color: #676767;
+    }
+
+    &.button--favorite {
+      .fa-heart {
+        font-size: 1.5em;
+        color: red;
+      }
+
+      &:hover {
+        .fa-minus {
+          font-size: 1em;
+        }
+
+        .fa-heart {
+          font-size: 2em;
+        }
+      }
+    }
+  }
+
+
 }
 
 // Only include the arcade that they're using.
