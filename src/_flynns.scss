@@ -84,12 +84,13 @@ $flynns-gold-color: $GOLD !default;
 // Options: small, medium, large
 $flynns-thumbnail-size: medium !default;
 
-// This takes in the number of total columns you want in per row.
+$flynns-image-hover: false !default;
 
 // Grid Gutter size.
 // Options: small, medium, large, none (anything else)
 $flynns-grid-size: small !default;
 
+// This takes in the number of total columns you want in per row.
 @mixin flynns_pixel($columns) {
   // Fine tuning the values.
   // These values are used to create the total number of columns for the
@@ -148,6 +149,7 @@ $flynns-grid-size: small !default;
     position: absolute;
     display: none;
     z-index: $columns;
+    content: $flynns-arcade;
   }
 }
 
