@@ -85,7 +85,14 @@ $flynns-special-color: #09f !default;
 // Options: small, medium, large
 $flynns-thumbnail-size: medium !default;
 
+// Should the images hover?
 $flynns-image-hover: false !default;
+
+// Show the headlines?
+$flynns-hide-headline: false !default;
+
+// Show the drop shadow?
+$flynns-show-dropshadow: true !default;
 
 // Grid Gutter size.
 // Options: small, medium, large, none (anything else)
@@ -236,7 +243,7 @@ $flynns-grid-size: small !default;
   + .grid--admin {
     position: absolute;
     display: none;
-    content: $flynns-arcade;
+    content: "#{$flynns-arcade}";
   }
 }
 

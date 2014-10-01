@@ -93,11 +93,12 @@
       position: absolute;
       width: 100%;
       height: 100%;
-      @include transition-property(transform);
-      @include transition-duration(.15s);
-      @include transform(translateZ(0));
 
       @if $flynns-image-hover {
+        @include transition-property(transform);
+        @include transition-duration(.15s);
+        @include transform(translateZ(0));
+
         // All the images scale 1.5% on hover.
         .arcade__display:hover & {
           @include transform(scale(1.1));
@@ -242,6 +243,13 @@
 
       .small {
         font-size: 75%;
+      }
+    }
+
+    // .arcade__line--gamma
+    &--gamma {
+      @if $flynns-hide-headline {
+        display: none;
       }
     }
   }
