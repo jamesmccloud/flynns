@@ -144,6 +144,7 @@ $flynns-grid-size: small !default;
     position: absolute;
     display: none;
     z-index: $columns;
+    content: "#{$flynns-arcade}";
   }
 }
 
