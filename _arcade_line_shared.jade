@@ -1,5 +1,5 @@
 //- Status
-.arcade__status: span {{program.status.text}}
+.arcade__status: .text {{program.status.text}}
 
 //- Favorite
 //- This ng-if is just to show scattered favorite icons across the
@@ -9,12 +9,12 @@
 
 //- Stars
 .arcade__rating
-  ul.five-points
-    li.star: i.fa.five-points__point
-    li.star: i.fa.five-points__point
-    li.star: i.fa.five-points__point
-    li.star: i.fa.five-points__point
-    li.star: i.fa.five-points__point
+  ul.five-points__list
+    li.five-points__star: i.fa.five-points__point
+    li.five-points__star: i.fa.five-points__point
+    li.five-points__star: i.fa.five-points__point
+    li.five-points__star: i.fa.five-points__point
+    li.five-points__star: i.fa.five-points__point
 
 //- HD, Phone, Country, Age
 include _arcade_details
