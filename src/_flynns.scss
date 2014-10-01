@@ -146,10 +146,7 @@ $flynns-grid-size: small !default;
   // calculating, or have our CSS breakpoints hard-coded into the javascript
   // somewhere else.
   & + .grid--admin {
-    position: absolute;
-    display: none;
     z-index: $columns;
-    content: $flynns-arcade;
   }
 }
 
@@ -223,6 +220,12 @@ $flynns-grid-size: small !default;
     @if $size == medium { @include flynns_pixel(7); }
     @if $size == small  { @include flynns_pixel(8); }
   }
+
+  + .grid--admin {
+    position: absolute;
+    display: none;
+    content: $flynns-arcade;
+  }
 }
 
 .mini-grid {
@@ -236,8 +239,9 @@ $flynns-grid-size: small !default;
     @include flynns_pixel(2);
   }
 
-  // 3x - 2
+  // 3x -> 2x
   &.three {
+
     // iPhone portrait
     @media (max-width: $screen-xs - 1) {
       @include flynns_pixel(2);
@@ -249,7 +253,9 @@ $flynns-grid-size: small !default;
     }
   }
 
+  // 4x -> 3x -> 2x
   &.four {
+
     // iPhone portrait
     @media (max-width: $screen-xs - 1) {
       @include flynns_pixel(2);

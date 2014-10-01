@@ -1,10 +1,5 @@
 //- The outer shell of the arcade, wrapping everything up into a nice box.
-.arcade__cabinet(ng-class="{ \
-    'gold-show': program.status.text == 'Gold Show', \
-    'party-chat': program.status.text == 'Party Chat', \
-    'online': program.status.text == 'Live Now', \
-    'offline': program.status.text == 'Offline', \
-  }")
+.arcade__cabinet
 
   //- Another div, inside the cabinet.  This one is locked to specific
   //- aspect ratio.  The 4 divs inside this one, take up the same space, and
@@ -38,7 +33,12 @@
           include _arcade_details
 
         //- The second grouped info line.  Status modifiers.
-        .arcade__line--beta
+        .arcade__line--beta(ng-class="{ \
+          'goldshow': program.status.text == 'Gold Show', \
+          'partychat': program.status.text == 'Party Chat', \
+          'online': program.status.text == 'Live Now', \
+          'offline': program.status.text == 'Offline' }")
+
           include _arcade_line_shared
 
         //- Just the headline.
@@ -48,7 +48,12 @@
       //- Another row of hearts, stars, horseshoes, clovers, and balloons...
       //- This row is outside the .info block, so it can go anywhere it
       //- needs to.
-      .arcade__line--delta
+      .arcade__line--delta(ng-class="{ \
+        'goldshow': program.status.text == 'Gold Show', \
+        'partychat': program.status.text == 'Party Chat', \
+        'online': program.status.text == 'Live Now', \
+        'offline': program.status.text == 'Offline' }")
+
         include _arcade_line_shared
 
     //- This arcade is out of order.  Maybe you can fix it.

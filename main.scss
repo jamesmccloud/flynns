@@ -2,6 +2,10 @@
 $icon-font-path: "bower_components/bootstrap/dist/fonts/";
 @import "bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap";
 
+html {
+  font-size: 14px;
+}
+
 .container {
   padding: 0;
   margin: 0;
@@ -15,6 +19,8 @@ $fa-font-path: "bower_components/font-awesome/fonts/";
 // Debug on?
 $DEBUG: true;
 $GOLD: #f5cb07;
+
+$flynns-arcade: asteroids;
 
 // Flynns base
 @import "src/build";
