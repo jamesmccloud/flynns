@@ -50,7 +50,6 @@
   // - See .flynns
   //
 
-
   // Locked to a 4x3 ratio.
   &__display {
     position: relative;
@@ -254,6 +253,24 @@
     }
   }
 
+  // .arcade__special
+  &__special {
+    position: absolute;
+    top: -.1em;
+    right: 0;
+    background: $flynns-special-bg;
+    padding: .3em 1.5em;
+    line-height: 1;
+    box-shadow: -2px 2px 3px 0 rgba(0,0,0,0.43);
+
+    .text {
+      font-size: 10px;
+      color: $flynns-special-color;
+      text-transform: uppercase;
+      letter-spacing: (20em / 1000);
+    }
+  }
+
   // .arcade__controls
   &__controls {
     position: relative;
@@ -263,6 +280,7 @@
     background: #dedede;
   }
 
+  // .arcade__button
   &__button {
     display: block;
     width: 100%;
@@ -284,9 +302,14 @@
         color: red;
       }
 
+      .fa-minus {
+        color: #dedede;
+      }
+
       &:hover {
         .fa-minus {
           font-size: 1em;
+          color: #dedede;
         }
 
         .fa-heart {
