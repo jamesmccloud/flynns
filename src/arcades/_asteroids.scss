@@ -213,9 +213,7 @@
 
   &.is--special {
     .arcade__marquee {
-      border-color: $flynns-special-bg;
-      border-width: 3px 3px 0 3px;
-      border-style: solid;
+      border-bottom-width: 0;
     }
 
     .arcade__line--delta {
