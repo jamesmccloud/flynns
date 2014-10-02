@@ -11,6 +11,11 @@
       }
     }
 
+    &__display {
+      @include transition(margin .5s);
+      will-change: margin;
+    }
+
     &__info {
       width: 100%;
       position: absolute;
@@ -70,8 +75,11 @@
 
       &--beta {
         @include clearfix;
+        will-change: bottom;
+        @include transform(translateZ(0));
         position: absolute;
         bottom: 100%;
+
 
         .arcade__details,
         .arcade__status {
@@ -110,21 +118,57 @@
           box-shadow: 0 1px 1px rgba(0, 0, 0, 0.75);
         }
 
+        &::before {
+          @include flynns_arrow(84px 21px, rgba(0, 0, 0, 0.75));
+        }
+
+        &::after {
+          @include flynns_arrow(80px 20px, $flynns-link-color);
+        }
+
         &.goldshow {
-          background: $flynns-gold-color;
+          background: $flynns-goldshow-bg;
+          color: $flynns-goldshow-color;
+
+          &::after {
+            border-top-color: $flynns-goldshow-bg;
+          }
         }
 
         &.partychat {
-          background: $flynns-online-color;
+          background: $flynns-partychat-bg;
+          color: $flynns-partychat-color;
+
+          &::after {
+            border-top-color: $flynns-partychat-bg;
+          }
         }
 
         &.online {
-          background: $flynns-partychat-color;
+          background: $flynns-online-bg;
+          color: $flynns-online-color;
+
+          &::after {
+            border-top-color: $flynns-online-bg;
+          }
         }
 
         &.offline {
-          background: $flynns-offline-color;
-          color: white;
+          background: $flynns-offline-bg;
+          color: $flynns-offline-color;
+
+          &::after {
+            border-top-color: $flynns-offline-bg;
+          }
+        }
+
+        &.specialshow {
+          background: $flynns-special-bg;
+          color: $flynns-special-color;
+
+          &::after {
+            border-top-color: $flynns-special-bg;
+          }
         }
 
         .arcade__details {
@@ -157,25 +201,27 @@
 
   &.arcade--open {
     .arcade__display {
-      margin-bottom: 20px;
+      margin-bottom: 40px;
     }
 
     .arcade__line--delta::before {
-      @include flynns_arrow(84px 21px, rgba(0, 0, 0, 0.75))
     }
 
     .arcade__line--delta {
-      &::after {
-        @include flynns_arrow(80px 20px, $flynns-link-color);
-      }
+    }
+  }
 
-      &.goldshow::after {
-        border-top-color: $flynns-gold-color;
-      }
+  &.is--special {
+    .arcade__marquee {
+      border-color: $flynns-special-bg;
+      border-width: 3px 3px 0 3px;
+      border-style: solid;
+    }
 
-      &.specialshow::after {
-        border-top-color: $flynns-special-color;
-      }
+    .arcade__line--delta {
+      width: auto;
+      left: -3px;
+      right: -3px;
     }
   }
 }

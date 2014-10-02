@@ -75,11 +75,20 @@ $flynns-arcade: defender !default;
 $flynns-link-color: #09f !default;
 
 // Status colors
-$flynns-offline-color: #222 !default;
-$flynns-online-color: #3C0 !default;
-$flynns-partychat-color: #3C0 !default;
-$flynns-gold-color: $GOLD !default;
-$flynns-special-color: #09f !default;
+$flynns-offline-bg: #222 !default;
+$flynns-offline-color: white !default;
+
+$flynns-online-bg: #3C0 !default;
+$flynns-online-color: black !default;
+
+$flynns-partychat-bg: #3C0 !default;
+$flynns-partychat-color: black !default;
+
+$flynns-goldshow-bg: $GOLD !default;
+$flynns-goldshow-color: black !default;
+
+$flynns-special-bg: #09F !default;
+$flynns-special-color: color-contrast($flynns-special-bg) !default;
 
 // Thumbnail size.
 // Options: small, medium, large

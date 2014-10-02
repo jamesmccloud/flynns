@@ -51,20 +51,28 @@
       }
 
       &.goldshow {
-        background: $flynns-gold-color;
+        background: $flynns-goldshow-bg;
+        color: $flynns-goldshow-color;
       }
 
       &.partychat {
-        background: $flynns-partychat-color;
+        background: $flynns-partychat-bg;
+        color: $flynns-partychat-color;
       }
 
       &.online {
-        background: $flynns-online-color;
+        background: $flynns-online-bg;
+        color: $flynns-online-color;
       }
 
       &.offline {
-        background: $flynns-offline-color;
-        color: white;
+        background: $flynns-offline-bg;
+        color: $flynns-offline-color;
+      }
+
+      &.specialshow {
+        background: $flynns-special-bg;
+        color: $flynns-special-color;
       }
     }
 
