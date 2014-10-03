@@ -37,7 +37,8 @@
           'goldshow': program.status.text == 'Gold Show', \
           'partychat': program.status.text == 'Party Chat', \
           'online': program.status.text == 'Live Now', \
-          'offline': program.status.text == 'Offline' }")
+          'offline': program.status.text == 'Offline', \
+          'specialshow': $index === 1 }")
 
           include _arcade_line_shared
 
@@ -52,7 +53,8 @@
         'goldshow': program.status.text == 'Gold Show', \
         'partychat': program.status.text == 'Party Chat', \
         'online': program.status.text == 'Live Now', \
-        'offline': program.status.text == 'Offline' }")
+        'offline': program.status.text == 'Offline', \
+        'specialshow': $index === 1 }")
 
         include _arcade_line_shared
 
