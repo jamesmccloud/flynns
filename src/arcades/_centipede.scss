@@ -70,7 +70,7 @@ $centipede-headline-font-size: 10px;
         line-height: 16px !important;
 
         // We only need the space here if the gutters are set to none
-        @if $flynns-grid-size == none {
+        @if $flynns-grid-spacing == none {
           padding-right: $centipede-padding;
         }
 

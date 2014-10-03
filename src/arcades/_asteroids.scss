@@ -7,7 +7,7 @@
       margin-bottom: 20px;
 
       @if $flynns-show-dropshadow {
-        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.75);
+        box-shadow: $flynns-arcade-dropshadow;
       }
     }
 
@@ -115,60 +115,32 @@
         vertical-align: middle;
 
         @if $flynns-show-dropshadow {
-          box-shadow: 0 1px 1px rgba(0, 0, 0, 0.75);
-        }
-
-        &::before {
-          @include flynns_arrow(84px 21px, rgba(0, 0, 0, 0.75));
-        }
-
-        &::after {
-          @include flynns_arrow(80px 20px, $flynns-link-color);
+          box-shadow: $flynns-arcade-dropshadow;
         }
 
         &.goldshow {
           background: $flynns-goldshow-bg;
           color: $flynns-goldshow-color;
-
-          &::after {
-            border-top-color: $flynns-goldshow-bg;
-          }
         }
 
         &.partychat {
           background: $flynns-partychat-bg;
           color: $flynns-partychat-color;
-
-          &::after {
-            border-top-color: $flynns-partychat-bg;
-          }
         }
 
         &.online {
           background: $flynns-online-bg;
           color: $flynns-online-color;
-
-          &::after {
-            border-top-color: $flynns-online-bg;
-          }
         }
 
         &.offline {
           background: $flynns-offline-bg;
           color: $flynns-offline-color;
-
-          &::after {
-            border-top-color: $flynns-offline-bg;
-          }
         }
 
         &.specialshow {
           background: $flynns-special-bg;
           color: $flynns-special-color;
-
-          &::after {
-            border-top-color: $flynns-special-bg;
-          }
         }
 
         .arcade__details {
@@ -204,10 +176,34 @@
       margin-bottom: 40px;
     }
 
-    .arcade__line--delta::before {
-    }
-
     .arcade__line--delta {
+      &::before {
+        @include flynns_arrow(84px, 21px, rgba(0, 0, 0, 0.75));
+      }
+
+      &::after {
+        @include flynns_arrow(80px, 20px, $flynns-link-color);
+      }
+
+      &.goldshow::after {
+        border-top-color: $flynns-goldshow-bg;
+      }
+
+      &.partychat::after {
+        border-top-color: $flynns-partychat-bg;
+      }
+
+      &.online::after {
+        border-top-color: $flynns-online-bg;
+      }
+
+      &.offline::after {
+        border-top-color: $flynns-offline-bg;
+      }
+
+      &.specialshow::after {
+        border-top-color: $flynns-special-bg;
+      }
     }
   }
 

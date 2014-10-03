@@ -102,10 +102,11 @@ $flynns-hide-headline: false !default;
 
 // Show the drop shadow?
 $flynns-show-dropshadow: true !default;
+$flynns-arcade-dropshadow: 0 1px 1px rgba(0, 0, 0, 0.75) !default;
 
 // Grid Gutter size.
 // Options: small, medium, large, none (anything else)
-$flynns-grid-size: small !default;
+$flynns-grid-spacing: small !default;
 
 // This takes in the number of total columns you want in per row.
 @mixin flynns_pixel($columns) {
@@ -129,11 +130,11 @@ $flynns-grid-size: small !default;
   $grid-value: $flynns-grid-none;
 
   // Again with the needing a switch statement.
-  @if $flynns-grid-size == small {
+  @if $flynns-grid-spacing == small {
     $grid-value: $flynns-grid-small;
-  } @else if $flynns-grid-size == medium {
+  } @else if $flynns-grid-spacing == medium {
     $grid-value: $flynns-grid-medium;
-  } @else if $flynns-grid-size == large {
+  } @else if $flynns-grid-spacing == large {
     $grid-value: $flynns-grid-large;
   }
 
@@ -168,13 +169,13 @@ $flynns-grid-size: small !default;
 }
 
 
-@mixin flynns_arrow($size, $color) {
+@mixin flynns_arrow($width, $height, $color) {
   content: '';
   position: absolute;
   top: 100%;
   left: 50%;
-  @include triangle($size, $color, down);
-  @include transform(translateX(-50%));
+  @include triangle($width $height, $color, down);
+  margin-left: -($width / 2);
 }
 
 
