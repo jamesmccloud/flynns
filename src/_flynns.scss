@@ -68,7 +68,7 @@ $flynns-gutter-value: 0;
 // * (d)efender
 // * (e)xcitebike
 // * (f)rogger
-$flynns-arcade: centipede !default;
+$flynns-arcade: asteroids !default;
 
 // What color are the links (if other than white)?
 $flynns-link-color: #09f !default;
@@ -76,6 +76,7 @@ $flynns-offline-color: #222 !default;
 $flynns-online-color: #3C0 !default;
 $flynns-partychat-color: #3C0 !default;
 $flynns-gold-color: $GOLD !default;
+$flynns-special-color: #09f !default;
 
 // Thumbnail size.
 // Options: small, medium, large
@@ -147,6 +148,17 @@ $flynns-grid-size: small !default;
     content: "#{$flynns-arcade}";
   }
 }
+
+
+@mixin flynns_arrow($size, $color) {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  @include triangle($size, $color, down);
+  @include transform(translateX(-50%));
+}
+
 
 // The parent container. No position definitions are allowed between this
 // class, and the player frame so that we can use position: absolute to

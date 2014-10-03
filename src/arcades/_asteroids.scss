@@ -137,4 +137,28 @@
       }
     }
   }
+
+  &.arcade--open {
+    .arcade__display {
+      margin-bottom: 20px;
+    }
+
+    .arcade__line--delta::before {
+      @include flynns_arrow(84px 21px, rgba(0, 0, 0, 0.75))
+    }
+
+    .arcade__line--delta {
+      &::after {
+        @include flynns_arrow(80px 20px, $flynns-link-color);
+      }
+
+      &.goldshow::after {
+        border-top-color: $flynns-gold-color;
+      }
+
+      &.specialshow::after {
+        border-top-color: $flynns-special-color;
+      }
+    }
+  }
 }
