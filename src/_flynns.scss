@@ -88,7 +88,7 @@ $flynns-goldshow-bg: $GOLD !default;
 $flynns-goldshow-color: black !default;
 
 $flynns-special-bg: #09F !default;
-$flynns-special-color: color-contrast($flynns-special-bg) !default;
+$flynns-special-color: contrast-color($flynns-special-bg) !default;
 
 // Thumbnail size.
 // Options: small, medium, large

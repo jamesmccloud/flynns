@@ -15,6 +15,23 @@ angular.module 'flynns', []
 
   $scope.option = $('.grid--admin').css('content')
 
+  $scope.status = (text) ->
+    # 'goldshow'
+
+    switch text
+      when 'Gold Show' then 'goldshow'
+      when 'Party Chat' then 'partychat'
+      when 'Live Now' then 'online'
+      when 'Offline' then 'offline'
+
+    # { \
+    #         'goldshow': program.status.text == 'Gold Show', \
+    #         'partychat': program.status.text == 'Party Chat', \
+    #         'online': program.status.text == 'Live Now', \
+    #         'offline': program.status.text == 'Offline', \
+    #         'specialshow': $index === 1 \
+    #       }
+
 .controller 'eachThumb', ($scope, $rootScope, $timeout) ->
   $scope.isopen = false
 
