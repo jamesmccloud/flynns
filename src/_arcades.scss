@@ -74,7 +74,8 @@
   // way. Fix after bug is fixed.
   // https://github.com/sass/libsass/issues/146
   &__static, &__screen,
-  &__marquee, &__game-over {
+  &__marquee, &__game-over,
+  &__spacer {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -322,7 +323,7 @@
   &.is--special {
     .arcade__marquee {
       border-color: $flynns-special-bg;
-      border-width: 3px 3px 0 3px;
+      border-width: 3px;
       border-style: solid;
     }
   }
