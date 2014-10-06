@@ -61,6 +61,10 @@
 
     &__status {
       float: left;
+
+      .text {
+        display: inline-block;
+      }
     }
 
     &__line {
