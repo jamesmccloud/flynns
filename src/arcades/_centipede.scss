@@ -12,20 +12,33 @@ $centipede-headline-font-size: 10px;
 // Centipede
 .arcade--centipede {
 
-  .gold-show .arcade__line--beta .arcade__status span {
-    background: $flynns-gold-color;
-    color: black;
+  &.arcade--open {
+    & .arcade__marquee::before {
+      @include flynns_arrow(82px, 21px, rgba(0, 0, 0, 0.75));
+    }
+    & .arcade__marquee::after {
+      @include flynns_arrow(80px, 20px, $flynns-link-color);
+    }
   }
 
-  .online .arcade__line--beta .arcade__status span,
-  .party-chat .arcade__line--beta .arcade__status span {
-    background: $flynns-partychat-color;
-    color: white;
-  }
-  
-  .offline .arcade__line--beta .arcade__status span {
-    background: $flynns-offline-color;
-    color: white;
+  &.is--special .arcade__marquee {
+    border-width: 3px;  
+
+    & .arcade__line--alpha {
+      top: -23px;    
+      left: -3px;
+      right: -3px;  
+      width: auto;
+    }
+
+    & .arcade__special {
+      color: #fff;
+      padding: ($centipede-padding / 2) ($centipede-padding * 2) ($centipede-padding / 3);
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 8px;
+      letter-spacing: (20em / 1000);
+    }
   }
 
   .arcade {
@@ -44,29 +57,29 @@ $centipede-headline-font-size: 10px;
     }
 
     &__display {
-      box-shadow: 2px 2px 8px #ccc;
+      @if $flynns-show-dropshadow {
+        box-shadow: $flynns-arcade-dropshadow;
+      }
     }
 
     &__line {
 
       &--alpha {
         position: absolute;
-        height: 16px;
-        top: -18px;
+        right: 0;
+        top: -20px;
+        margin: 0;
+        font-size: 12px;
+        text-align: right;
         width: 100%;
-        bottom: 100%;
 
         .arcade__name {
-          line-height: 16px !important;
           @include ellipsis;
-
-          // We only need the space here if the gutters are set to none
-          @if $flynns-grid-size == none {
-            padding-left: $centipede-padding;
-          }
 
           h3 {
             color: $flynns-link-color;
+            text-align: left;
+            line-height: 22px !important;
           }
         }
 
@@ -74,12 +87,6 @@ $centipede-headline-font-size: 10px;
           float: right;
           margin: 0;
           text-align: right;
-          line-height: 16px !important;
-
-          // We only need the space here if the gutters are set to none
-          @if $flynns-grid-size == none {
-            padding-right: $centipede-padding;
-          }
 
           li + li {
             margin-left: 0.25em;
@@ -100,7 +107,7 @@ $centipede-headline-font-size: 10px;
             color: #6f6f6f;
           }
 
-          .hd span {
+          .high-def span {
             font-weight: bold;
             color: #6f6f6f;
           }
@@ -117,7 +124,6 @@ $centipede-headline-font-size: 10px;
 
         .arcade__favorite {
           position: absolute;
-          left: 0;
           bottom: 100%;
           padding-left: $centipede-padding;
 
@@ -125,13 +131,29 @@ $centipede-headline-font-size: 10px;
             color: red;
           }
         }
-      
+
+        &.goldshow .arcade__status div {
+          background: $flynns-goldshow-bg;
+          color: $flynns-goldshow-color;
+        }
+
+        &.online .arcade__status div,
+        &.partychat .arcade__status div{
+          background: $flynns-partychat-bg;
+          color: $flynns-online-color;
+        }
+        
+        &.offline .arcade__status div {
+          background: $flynns-offline-color;
+          color: $flynns-offline-color;
+        }
+
         .arcade__status {
           float: left;
           padding-left: $centipede-padding;
           padding-bottom: $centipede-padding;
 
-          span {
+          div {
             padding: ($centipede-padding / 2) ($centipede-padding * 2) ($centipede-padding / 3);
             font-weight: bold;
             text-transform: uppercase;
@@ -155,6 +177,10 @@ $centipede-headline-font-size: 10px;
           padding: $centipede-padding;
           padding-top: 0;
           color: #ffffff;
+
+          @if $flynns-hide-headline {
+            display: none;
+          }
         }
       }
     }
