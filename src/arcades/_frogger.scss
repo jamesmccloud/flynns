@@ -1,0 +1,63 @@
+.arcade--frogger {
+  $spacing: 4px;
+  $delta-line-height: 16px;
+  $alpha-line-height: 20px;
+  $gamma-height: 24px;
+
+  .arcade {
+
+    &__info {
+      @include display(flex);
+      @include flex-direction(column);
+      @include align-items(stretch);
+      height: 100%;
+      margin-bottom: -($alpha-line-height + $gamma-height);
+    }
+
+    &__line {
+
+      &--delta {
+        position: absolute;
+        bottom: 100%;
+        width: 100%;
+        border-bottom-width: 5px;
+        border-bottom-style: solid;
+
+        &.goldshow {
+          border-bottom-color: $flynns-goldshow-bg;
+        }
+
+        &.partychat {
+          border-bottom-color: $flynns-partychat-bg;
+        }
+
+        &.online {
+          border-bottom-color: $flynns-online-bg;
+        }
+
+        &.offline {
+          border-bottom-color: $flynns-offline-bg;
+        }
+      }
+    }
+  }
+
+  &.is--special {
+    .arcade__marquee {
+      border-top-width: 0;
+    }
+
+    .arcade__line {
+      &--delta {
+        width: auto;
+        left: -3px;
+        right: -3px;
+        border-bottom-color: $flynns-special-bg;
+      }
+    }
+
+    .arcade__special {
+      top: -3px;
+    }
+  }
+}
