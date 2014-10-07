@@ -1,38 +1,205 @@
-.arcade {
-  $padding: 4px;
+// Defender global variables
+$padding: 4px;
+$flynns-hide-headline: false;
+$flynns-show-dropshadow: false;
 
-  &__cabinet {
-    padding-bottom: $padding + 20px;
+.arcade--defender {
+
+  $top: 132% !important;
+  @if $flynns-hide-headline {
+    $top: 113% !important;
+  }
+  &.arcade--open {
+    & .arcade__marquee::before {
+      top: $top;
+      @include flynns_arrow(82px, 21px, rgba(0, 0, 0, 0.75));
+    }
+    & .arcade__marquee::after {
+      top: $top;
+      @include flynns_arrow(80px, 20px, $flynns-link-color);
+    }
   }
 
-  &__details {
-    .hd, .phone, .spacer {
-      color: #999;
+  &.is--special .arcade__marquee {
+    border-width: 3px;
+
+    &::before,
+    &::after {
+      top: 135% !important;
+      @if $flynns-hide-headline {
+        top: 116% !important;
+      }
     }
 
-    .spacer {
-      font-size: 75%;
+    & .arcade__special {
+      color: #fff;
+      padding: 3px 20px;
+      font-weight: bold;
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: (20em / 1000);
+    }
+    
+    & .arcade__line--alpha {
+      top: 102%;
+      left: -3px;
+      right: -3px;
+      width: auto;
+
+      & h3 {
+        position: relative;
+        top: 0px;
+      }
+    }
+
+    & .arcade__headline {
+      position: relative;
+      top: 3px;
+    }
+
+    & .arcade__line--beta .arcade__status .text {
+      visibility: hidden;
     }
   }
 
-  &__line {
-    &--alpha {
-      padding-top: $padding;
-      background: white;
-      position: absolute;
-      top: 100%;
-      width: 100%;
+  .arcade {
+    &__cabinet {
+    $extra-padding: 50px;
+    @if $flynns-hide-headline {
+      $extra-padding: 20px;
+    }
+      padding-bottom: $padding + $extra-padding;
     }
 
-    &--beta {
-      position: absolute;
-      bottom: 0;
-      top: 0;
-      right: 0;
+    &__display {
+      @if $flynns-show-dropshadow {
+        box-shadow: $flynns-arcade-dropshadow;
+      }
     }
 
-    &--gamma, &--delta {
-      display: none;
+    &__line {
+      &--alpha {
+        background: white;
+        position: absolute;
+        top: 100%;
+        width: 100%;
+        color: $flynns-link-color;
+
+        & h3 {
+          padding-left: 3px;
+          position: relative;
+          top: 0px;
+        }
+
+        .arcade__details {
+          padding-right : 3px;
+
+          .high-def, .phone, .spacer {
+            color: #6f6f6f;
+          }
+
+          .high-def span {
+            font-weight: bold;
+          }
+
+          .spacer {
+            font-size: 75%;
+            color: #cccccc;
+          }
+        }
+      }
+
+      &--beta {
+        position: absolute;
+        top: 10px;
+        bottom: 0;
+
+        .arcade__details {
+          display: none;  
+        }
+  
+        &.goldshow .arcade__status div {
+          background: $flynns-goldshow-bg;
+          color: $flynns-goldshow-color;
+
+          &::after {
+            border-color: transparent darken($GOLD, 15%) transparent transparent;
+          }
+        }
+
+        &.online .arcade__status div,
+        &.partychat .arcade__status div {
+          background: $flynns-online-bg;
+          color: $flynns-online-color;
+
+          &::after {
+            border-color: transparent darken(#3C0, 15%) transparent transparent;
+          }
+        }
+
+        &.offline .arcade__status div {
+          background: $flynns-offline-bg;
+          color: $flynns-offline-color;
+
+          &::after {
+            border-color: transparent black transparent transparent;
+          }
+        }
+
+        .arcade__status {
+          position: relative;
+          margin-left: -10px;
+
+          div {
+            position: relative;
+            font-weight: bold;
+            font-size: 10px;
+            padding: 3px 20px 2px;
+
+            &::after {
+              position: absolute;
+              left: 0;
+              top: 100%;
+              border-style: solid;
+              border-width: 0 10px 10px 0;
+              content: '';
+            }
+          }
+        }
+
+        .arcade__favorite {
+          position: absolute;
+          left: -10px;
+          margin-top: 12px;
+        }
+
+        .fa-heart {
+          background-color: #000000;  
+          padding: $padding + 1;
+          border-radius: 12px;
+        }
+
+        .arcade__rating {
+          padding-left: $padding;
+          position: absolute;
+          bottom: 0;
+        }
+      }
+
+      &--gamma {
+        color: #666;
+        position: absolute;
+        bottom: -54px;
+        height: 30px;
+
+        @if $flynns-hide-headline {
+          display: none;
+        }
+      }
+
+      &--delta {
+        display: none;
+      }
     }
   }
 }
