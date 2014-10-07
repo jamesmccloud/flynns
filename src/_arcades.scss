@@ -142,12 +142,14 @@
     h3 {
       @include ellipsis;
       display: block;
-      font-size: inherit;
 
       // Foundation panels mess with the headers in them, so we need this :(
       margin: 0 !important;
-      letter-spacing: (10em / 1000);
       line-height: inherit;
+      font-size: inherit;
+      font-family: $flynns-font-family;
+      font-weight: 500;
+      letter-spacing: (25em / 1000);
     }
   }
 
@@ -156,13 +158,15 @@
     user-select: none;
 
     ul {
+      @include clearfix;
       margin: 0;
       padding: 0;
       list-style: none;
     }
 
     li {
-      display: inline-block;
+      float: left;
+      display: block;
       margin-right: 4px;
 
       &:last-child {
@@ -175,15 +179,27 @@
       display: inline-block;
       line-height: 1;
       font-weight: 500;
-      letter-spacing: (20em / 1000);
+      letter-spacing: (25em / 1000);
+    }
+
+    .phone .icon {
+      color: inherit;
     }
 
     .age {
-      letter-spacing: (20em / 1000);
+      font-weight: 500;
+      letter-spacing: (25em / 1000);
     }
 
     .country {
-      letter-spacing: (20em / 1000);
+      font-weight: 500;
+      letter-spacing: (25em / 1000);
+    }
+
+    .spacer {
+      .icon {
+        vertical-align: middle;
+      }
     }
   }
 
@@ -191,8 +207,7 @@
   .arcade__status {
     .text {
       text-transform: uppercase;
-      letter-spacing: (20em / 1000);
-      display: inline-block;
+      letter-spacing: (25em / 1000);
       vertical-align: middle;
     }
   }
