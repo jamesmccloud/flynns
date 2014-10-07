@@ -1,27 +1,133 @@
 .arcade--frogger {
   $spacing: 4px;
-  $delta-line-height: 16px;
-  $alpha-line-height: 20px;
-  $gamma-height: 24px;
+
+
+  // @if $flynns-hide-headline {
+  //   $alpha-total: $alpha-line-height + $spacing;
+  // } @else {
+  //   $alpha-total: $alpha-line-height + $spacing + $gamma-total;
+  //   $gamma-offset: $alpha-line-height + $spacing;
+  // }
+
+  $alpha-total: 20px;
+  $gamma-total: 24px;
+
+  $delta-line-height: 1.4;
+  $delta-font-size: 10px;
+  $delta-border-height: 5px;
+  $delta-total: ($delta-line-height * $delta-font-size) + $delta-border-height;
+
+  $text-shadow: 0.5px 0.5px 1px #000000;
+
 
   .arcade {
 
-    &__info {
-      @include display(flex);
-      @include flex-direction(column);
-      @include align-items(stretch);
-      height: 100%;
-      margin-bottom: -($alpha-line-height + $gamma-height);
+    &__cabinet {
+      position: relative;
+      border: 1px solid #999;
+      border-radius: 10px;
+      padding-left: ($spacing * 4);
+      padding-right: ($spacing * 4);
+      padding-top: $spacing + $delta-total;
+      padding-bottom: ($spacing * 2) + $alpha-total + $gamma-total;
+      background: white;
+
+      @if $flynns-show-dropshadow {
+        box-shadow: $flynns-arcade-dropshadow;
+      }
     }
+
+    &__info {
+      position: absolute;
+      top: 100%;
+      width: 100%;
+    }
+
+    &__name h3 {
+      color: $flynns-link-color;
+    }
+
+    &__headline p {
+      color: #999;
+    }
+
+    &__favorite {
+      float: left;
+      vertical-align: bottom;
+      line-height: 16px;
+      margin-right: $spacing;
+    }
+
+    &__rating {
+      float: left;
+      font-size: 10px;
+      line-height: 16px;
+
+      .fa {
+        vertical-align: bottom;
+      }
+    }
+
+    &__details {
+      float: right;
+
+      .country {
+        color: white;
+        text-shadow: $text-shadow;
+      }
+
+      .age {
+        color: white;
+        text-shadow: $text-shadow;
+      }
+    }
+
+    &__status {
+      float: left;
+
+      .text {
+        color: #666;
+      }
+    }
+
 
     &__line {
 
-      &--delta {
+      &--alpha {
+        padding-top: $spacing;
+
+        .arcade__details {
+          display: none;
+        }
+      }
+
+      &--beta {
+        @include clearfix;
         position: absolute;
         bottom: 100%;
         width: 100%;
-        border-bottom-width: 5px;
+        padding: 0 $spacing;
+
+        .arcade__status, .spacer,
+        .high-def, .phone {
+          display: none;
+        }
+      }
+
+      &--delta {
+        @include clearfix;
+        position: absolute;
+        bottom: 100%;
+        width: 100%;
+        border-bottom-width: $delta-border-height;
         border-bottom-style: solid;
+        font-size: 10px;
+        line-height: 1.4;
+
+        .phone,
+        .high-def .text {
+          color: #999;
+        }
 
         &.goldshow {
           border-bottom-color: $flynns-goldshow-bg;
@@ -38,6 +144,11 @@
         &.offline {
           border-bottom-color: $flynns-offline-bg;
         }
+
+        .country, .spacer, .age,
+        .arcade__favorite, .arcade__rating {
+          display: none;
+        }
       }
     }
   }
@@ -48,16 +159,33 @@
     }
 
     .arcade__line {
+      &--alpha {
+        margin-top: 3px;
+      }
       &--delta {
         width: auto;
-        left: -3px;
-        right: -3px;
+        left: -$flynns-special-border-width;
+        right: -$flynns-special-border-width;
         border-bottom-color: $flynns-special-bg;
       }
     }
 
     .arcade__special {
-      top: -3px;
+      top: -$flynns-special-border-width;
+    }
+  }
+
+  &.arcade--open {
+    .arcade__cabinet {
+      margin-bottom: 21px;
+
+      &::before {
+        @include flynns_arrow(84px, 21px, rgba(0, 0, 0, 0.75));
+      }
+
+      &::after {
+        @include flynns_arrow(80px, 20px, white);
+      }
     }
   }
 }

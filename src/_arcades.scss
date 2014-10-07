@@ -167,7 +167,10 @@
     li {
       float: left;
       display: block;
-      margin-right: 4px;
+
+      & + li {
+        margin-left: 4px;
+      }
 
       &:last-child {
         margin-right: 0;
