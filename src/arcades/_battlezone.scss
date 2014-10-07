@@ -38,9 +38,10 @@
     &__details {
 
       .high-def {
+        color: #999;
 
         .text {
-          color: #999;
+          vertical-align: text-bottom;
         }
 
         @media screen and (max-width: $screen-sm - 1) {
@@ -51,6 +52,9 @@
       .phone {
         color: #999;
 
+        .icon {
+          vertical-align: text-bottom;
+        }
         @media screen and (max-width: $screen-sm - 1) {
           display: none;
         }
@@ -61,12 +65,10 @@
       }
 
       .country {
-        font-weight: bold;
         color: $flynns-link-color;
       }
 
       .age {
-        font-weight: bold;
         color: $flynns-link-color;
       }
     }
