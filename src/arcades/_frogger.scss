@@ -1,35 +1,32 @@
 .arcade--frogger {
   $spacing: 4px;
 
-
-  // @if $flynns-hide-headline {
-  //   $alpha-total: $alpha-line-height + $spacing;
-  // } @else {
-  //   $alpha-total: $alpha-line-height + $spacing + $gamma-total;
-  //   $gamma-offset: $alpha-line-height + $spacing;
-  // }
-
   $alpha-total: 20px;
   $gamma-total: 24px;
+  $bottom-total: $alpha-total + $gamma-total;
+
+  @if $flynns-hide-headline {
+    $bottom-total: $alpha-total;
+  }
+
 
   $delta-line-height: 1.4;
   $delta-font-size: 10px;
   $delta-border-height: 5px;
-  $delta-total: ($delta-line-height * $delta-font-size) + $delta-border-height;
+  $delta-total: ($delta-line-height * $delta-font-size);
 
-  $text-shadow: 0.5px 0.5px 1px #000000;
-
+  $text-shadow: 0.5px 0.5px 1px rgba(#000, 0.5);
 
   .arcade {
 
     &__cabinet {
       position: relative;
-      border: 1px solid #999;
+      border: 1px solid #aaa;
       border-radius: 10px;
       padding-left: ($spacing * 4);
       padding-right: ($spacing * 4);
       padding-top: $spacing + $delta-total;
-      padding-bottom: ($spacing * 2) + $alpha-total + $gamma-total;
+      padding-bottom: ($spacing * 2) + $bottom-total;
       background: white;
 
       @if $flynns-show-dropshadow {
@@ -80,16 +77,29 @@
         color: white;
         text-shadow: $text-shadow;
       }
-    }
 
-    &__status {
-      float: left;
-
-      .text {
-        color: #666;
+      .spacer .icon {
+        color: #999;
+        text-shadow: $text-shadow;
       }
     }
 
+    &__status {
+      padding-top: .5em;
+
+      .text {
+        padding: .25em 1em;
+        font-weight: 500;
+        text-shadow: $text-shadow;
+        color: white;
+      }
+    }
+
+    &__special {
+      .text {
+        text-shadow: $text-shadow;
+      }
+    }
 
     &__line {
 
@@ -108,8 +118,14 @@
         width: 100%;
         padding: 0 $spacing;
 
-        .arcade__status, .spacer,
+        .arcade__status,
         .high-def, .phone {
+          display: none;
+        }
+      }
+
+      &--gamma {
+        @if $flynns-hide-headline {
           display: none;
         }
       }
@@ -119,30 +135,35 @@
         position: absolute;
         bottom: 100%;
         width: 100%;
-        border-bottom-width: $delta-border-height;
-        border-bottom-style: solid;
-        font-size: 10px;
-        line-height: 1.4;
+        font-size: $delta-font-size;
+        line-height: $delta-line-height;
 
         .phone,
         .high-def .text {
           color: #999;
         }
 
-        &.goldshow {
-          border-bottom-color: $flynns-goldshow-bg;
+        .arcade__status {
+          position: absolute;
+          top: 100%;
+          left: -1em;
+          padding-top: .5;
         }
 
-        &.partychat {
-          border-bottom-color: $flynns-partychat-bg;
+        &.goldshow .arcade__status .text {
+          background: $flynns-goldshow-bg;
         }
 
-        &.online {
-          border-bottom-color: $flynns-online-bg;
+        &.partychat .arcade__status .text {
+          background: $flynns-partychat-bg;
         }
 
-        &.offline {
-          border-bottom-color: $flynns-offline-bg;
+        &.online .arcade__status .text {
+          background: $flynns-online-bg;
+        }
+
+        &.offline .arcade__status .text {
+          background: $flynns-offline-bg;
         }
 
         .country, .spacer, .age,
@@ -154,33 +175,26 @@
   }
 
   &.is--special {
-    .arcade__marquee {
-      border-top-width: 0;
-    }
-
     .arcade__line {
-      &--alpha {
-        margin-top: 3px;
-      }
       &--delta {
+        margin-bottom: $flynns-special-border-width;
         width: auto;
         left: -$flynns-special-border-width;
         right: -$flynns-special-border-width;
-        border-bottom-color: $flynns-special-bg;
       }
     }
 
-    .arcade__special {
-      top: -$flynns-special-border-width;
+    .arcade__status {
+      display: none;
     }
   }
 
   &.arcade--open {
     .arcade__cabinet {
-      margin-bottom: 21px;
+      margin-bottom: 22px;
 
       &::before {
-        @include flynns_arrow(84px, 21px, rgba(0, 0, 0, 0.75));
+        @include flynns_arrow(84px, 22px, rgba(0, 0, 0, 0.75));
       }
 
       &::after {
