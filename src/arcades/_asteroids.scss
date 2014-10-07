@@ -214,8 +214,8 @@
 
     .arcade__line--delta {
       width: auto;
-      left: -3px;
-      right: -3px;
+      left: -$flynns-special-border-width;
+      right: -$flynns-special-border-width;
     }
   }
 }
