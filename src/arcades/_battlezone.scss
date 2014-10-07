@@ -149,22 +149,6 @@
       margin-bottom: 21px;
     }
 
-    &.goldshow .arcade__marquee::after {
-      border-top-color: $flynns-goldshow-bg;
-    }
-
-    &.partychat .arcade__marquee::after {
-      border-top-color: $flynns-partychat-bg;
-    }
-
-    &.online .arcade__marquee::after {
-      border-top-color: $flynns-online-bg;
-    }
-
-    &.offline .arcade__marquee::after {
-      border-top-color: $flynns-offline-bg;
-    }
-
     .arcade__marquee {
       &::before {
         @include flynns_arrow(84px, 21px, rgba(0, 0, 0, 0.75));
