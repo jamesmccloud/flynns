@@ -1,115 +1,181 @@
-.arcade {
-  $padding: 4px;
-  $link-color: $flynns-link-color;
+.arcade--battlezone {
+  $spacing: 4px;
 
-  &__marquee {
-    // @TODO JeffD
-    @include linear-gradient(top, rgba(0,0,0,0) 75%,rgba(0,0,0,.85) 100%);
-  }
+  .arcade {
 
-  &__info {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-  }
-
-  &__name {
-    color: $link-color;
-  }
-
-  &__details {
-    text-align: right;
-    color: $link-color;
-
-    @media (max-width: $screen-md - 1) {
-      width: 65px;
-    }
-
-    .hd span {
-      color: #999;
-      font-weight: bold;
-
-      @media (max-width: $screen-md - 1) {
-        display: none;
+    &__cabinet {
+      @if $flynns-show-dropshadow {
+        box-shadow: $flynns-arcade-dropshadow;
       }
     }
 
-    .phone {
-      color: #999;
-
-      @media (max-width: $screen-md - 1) {
-        display: none;
-      }
+    &__marquee {
+      @include linear-gradient(
+        to top,
+        rgba(0, 0, 0, 1.00) 0%,
+        rgba(0, 0, 0, 0.87) 5%,
+        rgba(0, 0, 0, 0.25) 25%,
+        rgba(0, 0, 0, 0.00) 100%
+      );
+      background-color: transparent;
     }
 
-    .spacer {
-      color: #666;
-    }
-  }
-
-  &__favorite {
-    float: right;
-    padding-right: $padding;
-
-    i {
-      vertical-align: bottom;
-    }
-  }
-
-  &__rating {
-    display: none;
-  }
-
-  &__status {
-    float: left;
-    padding: 0 $padding ($padding / 2);
-
-    span {
-      display: inline-block;
-      font-size: 10px;
-      line-height: 16px;
-      padding: 0 ($padding * 2);
-      font-weight: bold;
-
-      .gold-show & {
-        background: $GOLD;
-        color: black;
-      }
-
-      .party-chat &, .online & {
-        background: #3C0;
-        color: black;
-      }
-
-      .offline & {
-        background: black;
-        text: white;
-      }
-
-    }
-  }
-
-  &__line {
-    &--alpha {
-      padding: 0 $padding $padding;
-    }
-
-    &--beta {
-      position: absolute;
-      bottom: 100%;
+    &__info {
+      @include display(flex);
+      @include flex-direction(column);
+      @include justify-content(flex-end);
+      @include align-items(stretch);
       width: 100%;
+      height: 100%;
+    }
 
-      .arcade__details {
-        display: none;
+    &__name {
+      h3 {
+        color: $flynns-link-color;
       }
     }
 
-    &--gamma {
+    &__details {
+
+      .high-def {
+        color: #999;
+
+        .text {
+          vertical-align: text-bottom;
+        }
+
+        @media screen and (max-width: $screen-sm - 1) {
+          display: none;
+        }
+      }
+
+      .phone {
+        color: #999;
+
+        .icon {
+          vertical-align: text-bottom;
+        }
+        @media screen and (max-width: $screen-sm - 1) {
+          display: none;
+        }
+      }
+
+      .spacer {
+        color: #666;
+      }
+
+      .country {
+        color: $flynns-link-color;
+      }
+
+      .age {
+        color: $flynns-link-color;
+      }
+    }
+
+    &__favorite {
+      float: right;
+      padding-top: $spacing;
+    }
+
+    &__rating {
       display: none;
     }
 
-    &--delta {
+    &__status {
+      float: left;
+      padding-bottom: $spacing;
+
+      .text {
+        font-size: 8px;
+        line-height: inherit;
+        padding: 0 1.5em;
+        font-weight: bold;
+        display: block;
+      }
+    }
+
+    &__line {
+      &--alpha {
+        @include flex(0 1 auto);
+        @include order(1);
+
+        padding: 0 $spacing;
+      }
+
+      &--beta {
+        @include flex(0 1 auto);
+        @include order(0);
+        @include clearfix;
+
+        padding: 0 $spacing;
+        line-height: 16px;
+
+        .arcade__details {
+          display: none;
+        }
+
+        &.goldshow .arcade__status .text {
+          background: $flynns-goldshow-bg;
+          color: $flynns-goldshow-color;
+        }
+
+        &.partychat .arcade__status .text {
+          background: $flynns-partychat-bg;
+          color: $flynns-partychat-color;
+        }
+
+        &.online .arcade__status .text {
+          background: $flynns-online-bg;
+          color: $flynns-online-color;
+        }
+
+        &.offline .arcade__status .text {
+          background: $flynns-offline-bg;
+          color: $flynns-offline-color;
+        }
+      }
+
+      &--gamma {
+        display: none;
+      }
+
+      &--delta {
+        display: none;
+      }
+    }
+  }
+
+  &.arcade--open {
+    .arcade__display {
+      margin-bottom: 21px;
+    }
+
+    .arcade__marquee {
+      &::before {
+        @include flynns_arrow(84px, 21px, rgba(0, 0, 0, 0.75));
+      }
+
+      &::after {
+        @include flynns_arrow(80px, 20px, $flynns-link-color);
+      }
+    }
+  }
+
+  &.is--special {
+    .arcade__status {
       display: none;
+    }
+
+    &.arcade--open .arcade__marquee {
+      &::before {
+        margin-top: 3px;
+      }
+
+      &::after {
+        margin-top: 3px;
+        border-top-color: $flynns-special-bg;
+      }
     }
   }
 }
