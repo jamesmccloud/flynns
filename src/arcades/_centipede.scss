@@ -22,12 +22,12 @@ $centipede-headline-font-size: 10px;
   }
 
   &.is--special .arcade__marquee {
-    border-width: 3px;  
+    border-width: 3px;
 
     & .arcade__line--alpha {
-      top: -23px;    
+      top: -23px;
       left: -3px;
-      right: -3px;  
+      right: -3px;
       width: auto;
     }
 
@@ -53,7 +53,7 @@ $centipede-headline-font-size: 10px;
 
     &__line--delta,
     &__rating {
-      display: none;  
+      display: none;
     }
 
     &__display {
@@ -71,6 +71,10 @@ $centipede-headline-font-size: 10px;
         margin: 0;
         text-align: right;
         width: 100%;
+
+        @if $flynns-grid-spacing == none {
+          padding: 0 $centipede-padding;
+        }
 
         .arcade__name {
           @include ellipsis;
@@ -140,7 +144,7 @@ $centipede-headline-font-size: 10px;
           background: $flynns-partychat-bg;
           color: $flynns-online-color;
         }
-        
+
         &.offline .arcade__status div {
           background: $flynns-offline-color;
           color: $flynns-offline-color;

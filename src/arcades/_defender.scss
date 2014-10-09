@@ -37,7 +37,7 @@ $padding: 4px;
       font-size: 10px;
       letter-spacing: (20em / 1000);
     }
-    
+
     & .arcade__line--alpha {
       top: 102%;
       left: -3px;
@@ -113,15 +113,15 @@ $padding: 4px;
         bottom: 0;
 
         .arcade__details {
-          display: none;  
+          display: none;
         }
-  
+
         &.goldshow .arcade__status div {
           background: $flynns-goldshow-bg;
           color: $flynns-goldshow-color;
 
           &::after {
-            border-color: transparent darken($GOLD, 15%) transparent transparent;
+            border-color: transparent darken($flynns-goldshow-bg, 15%) transparent transparent;
           }
         }
 
@@ -172,7 +172,7 @@ $padding: 4px;
         }
 
         .fa-heart {
-          background-color: #000000;  
+          background-color: #000000;
           padding: $padding + 1;
           border-radius: 12px;
         }

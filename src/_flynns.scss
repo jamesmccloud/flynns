@@ -51,17 +51,6 @@ $flynns-gutter-small: 2.5% !default;
 $flynns-gutter-medium: 5% !default;
 $flynns-gutter-large: 10% !default;
 
-// Sass could really use a switch statement...
-// {small: $small, medium: $med..., youget: $thepicture}
-$flynns-gutter-value: 0;
-@if $flynns-gutter-size == small {
-  $flynns-gutter-value: $flynns-gutter-small;
-} @else if $flynns-gutter-size == medium {
-  $flynns-gutter-value: $flynns-gutter-medium;
-} @else if $flynns-gutter-size == large {
-  $flynns-gutter-value: $flynns-gutter-large;
-}
-
 // Option for choosing the thumbnail display.
 // * (a)steroids
 // * (b)attlezone
@@ -87,7 +76,7 @@ $flynns-online-color: black !default;
 $flynns-partychat-bg: #3C0 !default;
 $flynns-partychat-color: black !default;
 
-$flynns-goldshow-bg: $GOLD !default;
+$flynns-goldshow-bg: gold !default;
 $flynns-goldshow-color: black !default;
 
 $flynns-special-bg: #09F !default;
@@ -95,7 +84,7 @@ $flynns-special-color: contrast-color($flynns-special-bg) !default;
 $flynns-special-border-width: 3px;
 
 // Thumbnail size.
-// Options: small, medium, large
+// Options: medium, large
 $flynns-thumbnail-size: medium !default;
 
 // Should the images hover?
@@ -156,7 +145,11 @@ $flynns-grid-spacing: small !default;
 
     // Flex gutter is a neat mixin that calculates the golden-ratio
     // 'per column' for the total number of columns.
-    margin-bottom: flex-gutter($total);
+    @if $flynns-grid-spacing == none {
+      margin-bottom: flex-gutter($flynns-grid-small * $columns);
+    } @else {
+      margin-bottom: flex-gutter($total);
+    }
 
     &:nth-child(#{$columns}n + 1) {
       clear: both;
@@ -172,7 +165,6 @@ $flynns-grid-spacing: small !default;
   }
 }
 
-
 @mixin flynns_arrow($width, $height, $color) {
   content: '';
   position: absolute;
@@ -182,6 +174,17 @@ $flynns-grid-spacing: small !default;
   margin-left: -($width / 2);
 }
 
+
+// Sass could really use a switch statement...
+// {small: $small, medium: $med..., youget: $thepicture}
+$flynns-gutter-value: 0;
+@if $flynns-gutter-size == small {
+  $flynns-gutter-value: $flynns-gutter-small;
+} @else if $flynns-gutter-size == medium {
+  $flynns-gutter-value: $flynns-gutter-medium;
+} @else if $flynns-gutter-size == large {
+  $flynns-gutter-value: $flynns-gutter-large;
+}
 
 // The parent container. No position definitions are allowed between this
 // class, and the player frame so that we can use position: absolute to
@@ -232,26 +235,26 @@ $flynns-grid-spacing: small !default;
   @media (min-width: $screen-md) and (max-width: $screen-lg - 1 ) {
     @if $size == large  { @include flynns_pixel(3); }
     @if $size == medium { @include flynns_pixel(4); }
-    @if $size == small  { @include flynns_pixel(5); }
+    // @if $size == small  { @include flynns_pixel(5); }
   }
 
   // Small desktops
   @media (min-width: $screen-lg) and (max-width: $screen-xl - 1) {
     @if $size == large  { @include flynns_pixel(4); }
     @if $size == medium { @include flynns_pixel(5); }
-    @if $size == small  { @include flynns_pixel(6); }
+    // @if $size == small  { @include flynns_pixel(6); }
   }
 
   @media (min-width: $screen-xl) and (max-width: $screen-2x - 1) {
     @if $size == large  { @include flynns_pixel(5); }
     @if $size == medium { @include flynns_pixel(6); }
-    @if $size == small  { @include flynns_pixel(7); }
+    // @if $size == small  { @include flynns_pixel(7); }
   }
 
   @media (min-width: $screen-2x) {
     @if $size == large  { @include flynns_pixel(6); }
     @if $size == medium { @include flynns_pixel(7); }
-    @if $size == small  { @include flynns_pixel(8); }
+    // @if $size == small  { @include flynns_pixel(8); }
   }
 
   + .grid--admin {
