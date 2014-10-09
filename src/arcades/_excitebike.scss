@@ -5,156 +5,157 @@
 // ❤
 // ★★★★★
 // party-chat
+.arcade--excitebike {
+  .arcade {
+    $padding: 4px;
+    $radius: 10px;
+    $headline: true;
 
-.arcade {
-  $padding: 4px;
-  $radius: 10px;
-  $headline: true;
+    // padding-bottom.
+    $pb: 20px + $padding + 7px; // Name Line Height + padding +  bubble space
 
-  // padding-bottom.
-  $pb: 20px + $padding + 7px; // Name Line Height + padding +  bubble space
+    @if $headline {
+      $pb: $pb + (12 * 2); // Add some more space for the headline.
+    }
 
-  @if $headline {
-    $pb: $pb + (12 * 2); // Add some more space for the headline.
-  }
+    &__cabinet {
+      margin-left: 10px;
+      border-radius: 7px;
+      border: 1px solid #a8a8a8;
+      padding: 7px 7px $pb;
+      background-color: white;
+      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+    }
 
-  &__cabinet {
-    margin-left: 10px;
-    border-radius: 7px;
-    border: 1px solid #a8a8a8;
-    padding: 7px 7px $pb;
-    background-color: white;
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
-  }
+    &__status {
+      float: left;
+      margin-left: -18px;
 
-  &__status {
-    float: left;
-    margin-left: -18px;
+      span {
+        position: relative;
+        padding: ($padding / 2) 20px;
+        text-transform: uppercase;
+        color: white;
+        font-size: 10px;
+        text-shadow: 1px 1px 0px rgba(#000000, 0.4);
 
-    span {
-      position: relative;
-      padding: ($padding / 2) 20px;
-      text-transform: uppercase;
-      color: white;
+        &::after {
+          position: absolute;
+          left: 0;
+          top: 100%;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 0 10px 10px 0;
+          content: '';
+        }
+
+        .gold-show & {
+          background: $GOLD;
+
+          &::after {
+            border-color: transparent darken($GOLD, 15%) transparent transparent;
+          }
+        }
+
+        .party-chat &, .online & {
+          background: #3C0;
+
+          &::after {
+            border-color: transparent darken(#3C0, 15%) transparent transparent;
+          }
+        }
+
+        .offline & {
+          background: black;
+
+          &::after {
+            border-color: transparent black transparent transparent;
+          }
+        }
+      }
+    }
+
+    &__details {
+      .hd {
+        color: #999;
+
+        @media (max-width: $screen-md - 1) {
+          display: none;
+        }
+      }
+
+      .phone {
+        color: #999;
+
+        @media (max-width: $screen-md - 1) {
+          display: none;
+        }
+      }
+
+      .spacer {
+        color: #999;
+      }
+
+      .age {
+        color: $flynns-link-color;
+      }
+
+      .country {
+        color: $flynns-link-color;
+        margin-left: 0;
+      }
+    }
+
+    &__rating {
+      display: inline-block;
+      padding-right: $padding;
       font-size: 10px;
-      text-shadow: 1px 1px 0px rgba(#000000, 0.4);
-
-      &::after {
-        position: absolute;
-        left: 0;
-        top: 100%;
-        width: 0;
-        height: 0;
-        border-style: solid;
-        border-width: 0 10px 10px 0;
-        content: '';
-      }
-
-      .gold-show & {
-        background: $GOLD;
-
-        &::after {
-          border-color: transparent darken($GOLD, 15%) transparent transparent;
-        }
-      }
-
-      .party-chat &, .online & {
-        background: #3C0;
-
-        &::after {
-          border-color: transparent darken(#3C0, 15%) transparent transparent;
-        }
-      }
-
-      .offline & {
-        background: black;
-
-        &::after {
-          border-color: transparent black transparent transparent;
-        }
-      }
-    }
-  }
-
-  &__details {
-    .hd {
-      color: #999;
-
-      @media (max-width: $screen-md - 1) {
-        display: none;
-      }
     }
 
-    .phone {
-      color: #999;
-
-      @media (max-width: $screen-md - 1) {
-        display: none;
-      }
+    &__favorite {
+      display: inline-block;
+      padding-right: $padding;
     }
 
-    .spacer {
-      color: #999;
-    }
-
-    .age {
-      color: $flynns-link-color;
-    }
-
-    .country {
-      color: $flynns-link-color;
-      margin-left: 0;
-    }
-  }
-
-  &__rating {
-    display: inline-block;
-    padding-right: $padding;
-    font-size: 10px;
-  }
-
-  &__favorite {
-    display: inline-block;
-    padding-right: $padding;
-  }
-
-  &__info {
-    position: absolute;
-    top: 100%;
-    width: 100%;
-  }
-
-  &__name {
-    color: $flynns-link-color;
-  }
-
-  &__headline {
-    padding: 0;
-  }
-
-  &__line {
-    &--alpha {
-      padding-top: $padding;
-    }
-    &--gamma {
-      color: #999999;
-      max-height: 24px;
-    }
-
-    &--beta {
+    &__info {
       position: absolute;
-      bottom: 100%;
-      padding-bottom: $padding;
+      top: 100%;
       width: 100%;
-      text-align: right;
-
-      .arcade__details {
-        display: none;
-      }
     }
 
-    &--delta {
-      display: none;
+    &__name {
+      color: $flynns-link-color;
+    }
+
+    &__headline {
+      padding: 0;
+    }
+
+    &__line {
+      &--alpha {
+        padding-top: $padding;
+      }
+      &--gamma {
+        color: #999999;
+        max-height: 24px;
+      }
+
+      &--beta {
+        position: absolute;
+        bottom: 100%;
+        padding-bottom: $padding;
+        width: 100%;
+        text-align: right;
+
+        .arcade__details {
+          display: none;
+        }
+      }
+
+      &--delta {
+        display: none;
+      }
     }
   }
 }
