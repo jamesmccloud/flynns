@@ -1,0 +1,88 @@
+// Ratings.
+$ranks-color: gold !default;
+
+@mixin get_content($p, $r, $half: false) {
+  $next: $r + 1;
+  @if $p > $next {
+    content: $fa-var-star-o;
+  } @else if $p == $next {
+    @if $half {
+      content: $fa-var-star-half-o;
+    } @else {
+      content: $fa-var-star-o;
+    }
+  } @else if $p < $next {
+    content: $fa-var-star;
+  }
+}
+
+
+// Class Name.
+.ranks {
+
+  // The basic structure for the ranks class is a simple `ul > li(x5) > i`,
+  // with an optional container.  There are no real styles that come with
+  // the container
+  //
+  // ```html
+  // <div class="ranks__box">
+  //   <ul class="ranks__list ranks__{number}[--half]">
+  //     <li class="ranks__item"><i class="ranks__point point--1"></i></li>
+  //     <li class="ranks__item"><i class="ranks__point point--2"></i></li>
+  //     <li class="ranks__item"><i class="ranks__point point--3"></i></li>
+  //     <li class="ranks__item"><i class="ranks__point point--4"></i></li>
+  //     <li class="ranks__item"><i class="ranks__point point--5"></i></li>
+  //   </ul>
+  // </div>
+  // ```
+
+  &__box {
+    margin: 0;
+    padding: 0;
+  }
+
+  // The list containing the each of the points.
+  &__list {
+    @include clearfix;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  // Each list item.
+  &__item {
+    display: block;
+    float: left;
+
+    & + & {
+      margin-left: 2px;
+    }
+  }
+
+  // Each of the point markers.
+  &__point {
+    color: $ranks-color;
+    text-shadow: 0 0 2px darken($ranks-color, 15%);
+    font-size: 10px;
+  }
+
+  @each $r in 5, 4, 3, 2, 1, 0 {
+    @if $r < 5 {
+      &__#{$r}--half {
+        @each $p in 1, 2, 3, 4, 5 {
+          .point--#{$p}::before {
+            @include get_content($p, $r, true)
+          }
+        }
+      }
+    }
+
+    &__#{$r} {
+      @each $p in 1, 2, 3, 4, 5 {
+        .point--#{$p}::before{
+          @include get_content($p, $r)
+        }
+      }
+    }
+  }
+}

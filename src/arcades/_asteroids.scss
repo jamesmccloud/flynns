@@ -111,12 +111,12 @@
         @include clearfix;
         position: absolute;
         top: 100%;
-        font-size: 9px;
         width: 100%;
         padding: 0 $spacing;
         line-height: 10px;
         color: #000000;
         vertical-align: middle;
+        font-size: 9px;
 
         @if $flynns-show-dropshadow {
           box-shadow: $flynns-arcade-dropshadow;

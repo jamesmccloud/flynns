@@ -1,6 +1,4 @@
 // @TODO CHANGES
-// A: slim down status (loose 2 px)
-// A: move HD/P on hover
 // C: bottom margin if small or none
 // C: always white line-alpha
 // C: details font-size 90%
@@ -64,13 +62,13 @@ $flynns-gutter-medium: 5% !default;
 $flynns-gutter-large: 10% !default;
 
 // Option for choosing the thumbnail display.
-// * (a)steroids
-// * (b)attlezone
-// * (c)entipede
-// * (d)efender
-// * (e)xcitebike
-// * (f)rogger
-$flynns-arcade: defender !default;
+// * asteroids
+// * battlezone
+// * centipede
+// * defender
+// * excitebike
+// * frogger
+$flynns-arcade: asteroids !default;
 
 // What font for the names
 $flynns-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !default;

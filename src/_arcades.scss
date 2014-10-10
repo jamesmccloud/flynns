@@ -181,18 +181,14 @@
       color: inherit;
       text-transform: uppercase;
       display: inline-block;
-      line-height: 1;
+      line-height: inherit;
       font-weight: 500;
       letter-spacing: (25em / 1000);
     }
 
     .phone .icon {
+      line-height: inherit;
       color: inherit;
-    }
-
-    .age {
-      font-weight: 500;
-      letter-spacing: (25em / 1000);
     }
 
     .country {
@@ -200,19 +196,25 @@
       letter-spacing: (25em / 1000);
     }
 
-    .spacer {
-      .icon {
-        vertical-align: middle;
-      }
+    .spacer .icon {
+      line-height: inherit;
+      vertical-align: middle;
     }
+
+    .age {
+      font-weight: 500;
+      letter-spacing: (25em / 1000);
+    }
+
   }
 
   // .arcade__status
   .arcade__status {
+    font-size: 10px;
+
     .text {
       text-transform: uppercase;
       letter-spacing: (25em / 1000);
-      vertical-align: middle;
     }
   }
 
@@ -242,6 +244,7 @@
       @include display(flex);
       @include flex-direction(row);
       @include align-items(flex-end);
+      @include transform(translateZ(0));
       line-height: 20px;
       font-size: 14px;
 
@@ -258,6 +261,10 @@
       .arcade__details {
         @include flex(none);
         line-height: inherit;
+
+        & > li {
+          vertical-align: text-bottom;
+        }
       }
 
       .small {
@@ -276,7 +283,7 @@
   // .arcade__special
   &__special {
     position: absolute;
-    top: -.1em;
+    top: -$flynns-special-border-width;
     right: 0;
     background: $flynns-special-bg;
     padding: .3em 1.5em;
