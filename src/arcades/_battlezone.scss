@@ -77,14 +77,8 @@
 
     &__status {
       float: left;
-      padding-bottom: $spacing;
-
-      .text {
-        line-height: inherit;
-        padding: 0 1.5em;
-        font-weight: bold;
-        display: block;
-      }
+      margin-bottom: $spacing;
+      line-height: 14px;
     }
 
     &__line {
