@@ -19,7 +19,7 @@ $screen-2x: 1900px !default;
 // Some of the arcades will check for a variable called $page-gradient.
 // The default here is to make sure that `@if` doesn't fail for a variable
 // not existing.
-$page-gradient: false !default;
+$include-page-gradient: true !default;
 
 // This is a basic breakdown of how the grid looks.  The number of elements
 // per row, and the gutters between them can be customized.
@@ -197,7 +197,7 @@ $flynns-grid-spacing: small !default;
 //
 @mixin flynns_background_check() {
   @if rgba($body-bg, 1) == rgba(white, 1) {
-    @if $page-gradient == false {
+    @if $include-page-gradient == false {
       @if $flynns-grid-spacing != none {
         @content;
       }

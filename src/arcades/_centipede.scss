@@ -10,42 +10,15 @@
     @return ($centipede-headline-line-height * 2) + $spacing;
   }
 
-  &.arcade--open {
-    & .arcade__marquee::before {
-      @include flynns_arrow(82px, 21px, rgba(0, 0, 0, 0.75));
-    }
-    & .arcade__marquee::after {
-      @include flynns_arrow(80px, 20px, $flynns-link-color);
-    }
-  }
-
-  &.is--special {
-    .arcade__marquee {
-      border-width: $flynns-special-spacing;
-    }
-
-    .arcade__status {
-      display: none;
-    }
-
-    .arcade__line--alpha {
-      bottom: 100%;
-      left: -$flynns-special-spacing;
-      right: -$flynns-special-spacing;
-      width: auto;
-      margin-bottom: $flynns-special-spacing;
-    }
-  }
-
-  @if $flynns-grid-spacing == "none" {
-    margin-bottom: 1em;
-  } @else if $flynns-grid-spacing == "small" {
-    margin-bottom: .5em;
-  }
-
   .arcade {
     &__cabinet {
       margin-top: 20px;
+
+      @if $flynns-grid-spacing == "none" {
+        margin-bottom: 1em;
+      } @else if $flynns-grid-spacing == "small" {
+        margin-bottom: .5em;
+      }
     }
 
     &__info {
@@ -114,7 +87,7 @@
 
         @include display(flex);
         @include flex-direction(column);
-        @include align-items(stretch);
+        @include align-items(flex-start);
 
         .arcade__favorite {
           @include order(0);
@@ -123,7 +96,13 @@
 
         .arcade__status {
           @include order(1);
-          padding-left: $spacing;
+          margin-left: $spacing;
+          margin-bottom: $spacing;
+          display: inline-block;
+
+          .text {
+            line-height: inherit;
+          }
         }
 
         .arcade__ratings {
@@ -134,29 +113,24 @@
           display: none;
         }
 
-        &.goldshow .arcade__status .text {
+        &.goldshow .arcade__status {
           background: $flynns-goldshow-bg;
           color: $flynns-goldshow-color;
         }
 
-        &.online .arcade__status .text, {
+        &.online .arcade__status, {
           background: $flynns-online-bg;
           color: $flynns-online-color;
         }
 
-        &.partychat .arcade__status .text{
+        &.partychat .arcade__status{
           background: $flynns-partychat-bg;
           color: $flynns-partychat-color;
         }
 
-        &.offline .arcade__status .text {
+        &.offline .arcade__status {
           background: $flynns-offline-color;
           color: $flynns-offline-color;
-        }
-
-        .arcade__status {
-          padding-left: $spacing;
-          padding-bottom: $spacing;
         }
       }
 
@@ -178,6 +152,33 @@
       &--delta {
         display: none;
       }
+    }
+  }
+
+  &.arcade--open {
+    & .arcade__marquee::before {
+      @include flynns_arrow(82px, 21px, rgba(0, 0, 0, 0.75));
+    }
+    & .arcade__marquee::after {
+      @include flynns_arrow(80px, 20px, $flynns-link-color);
+    }
+  }
+
+  &.is--special {
+    .arcade__marquee {
+      border-width: $flynns-special-spacing;
+    }
+
+    .arcade__status {
+      display: none;
+    }
+
+    .arcade__line--alpha {
+      bottom: 100%;
+      left: -$flynns-special-spacing;
+      right: -$flynns-special-spacing;
+      width: auto;
+      margin-bottom: $flynns-special-spacing;
     }
   }
 }
