@@ -6,6 +6,9 @@ html {
   font-size: 14px;
 }
 
+$body-bg: white;
+$page-gradient: false;
+
 .container {
   padding: 0;
   margin: 0;
@@ -21,19 +24,27 @@ $DEBUG: true;
 $GOLD: #f5cb07;
 
 h1, h2, h3, h4, h5, h6 {
-  &.headline {
-    font-family: "Raleway";
-    font-weight: 300;
-  }
+  font-family: "Raleway";
+  font-weight: 300;
 
   &.thin {
-    font-family: "Raleway";
     font-weight: 200;
   }
 }
 
+$flynns-arcade: centipede;
+$flynns-grid-spacing: small;
+
+
 // Flynns base
 @import "src/build";
 @import "src/ranks";
-
 @import "src/junk";
+
+body {
+  background: $body-bg;
+  @if $page-gradient {
+    @include linear-gradient(top, rgba(254,255,255,1) 0%, rgba(221,241,249,1) 35%, rgba(160,216,239,1) 100%);
+  }
+}
+

@@ -61,14 +61,16 @@ $padding: 4px;
   }
 
   .arcade {
+
     &__cabinet {
-    $extra-padding: 50px;
-    @if $flynns-hide-headline {
-      $extra-padding: 20px;
-    }
+      $extra-padding: 50px;
+
+      @if $flynns-hide-headline {
+        $extra-padding: 20px;
+      }
       padding-bottom: $padding + $extra-padding;
       padding-left: 10px;
-    }
+  }
 
     &__display {
       @if $flynns-show-dropshadow {

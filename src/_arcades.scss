@@ -101,7 +101,7 @@
 
         // All the images scale 1.5% on hover.
         .arcade__display:hover & {
-          @include transform(scale(1.1));
+          @include transform(translateZ(0) scale(1.1));
         }
       }
     }
@@ -112,12 +112,23 @@
   }
 
   &__marquee {
+    @include linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.70) 0,
+      rgba(0, 0, 0, 0.50) 24px,
+      rgba(0, 0, 0, 0.25) 25%,
+      rgba(0, 0, 0, 0.00) 100%
+    );
+    background-color: transparent;
     z-index: 30;
 
     &:hover {
       text-decoration: none;
       color: inherit;
     }
+
+    height: auto;
+    bottom: -1px;
   }
 
   &__out-of-order {
@@ -139,9 +150,8 @@
 
   // .arcade__name
   &__name {
-    h3 {
+    .text {
       @include ellipsis;
-      display: block;
 
       // Foundation panels mess with the headers in them, so we need this :(
       margin: 0 !important;
@@ -155,7 +165,7 @@
 
   // .arcade__details
   &__details {
-    user-select: none;
+    @include user-select(none);
 
     ul {
       @include clearfix;
@@ -181,24 +191,17 @@
       color: inherit;
       text-transform: uppercase;
       display: inline-block;
-      line-height: inherit;
       font-weight: 500;
       letter-spacing: (25em / 1000);
     }
 
     .phone .icon {
-      line-height: inherit;
       color: inherit;
     }
 
     .country {
       font-weight: 500;
       letter-spacing: (25em / 1000);
-    }
-
-    .spacer .icon {
-      line-height: inherit;
-      vertical-align: middle;
     }
 
     .age {
@@ -210,11 +213,14 @@
 
   // .arcade__status
   .arcade__status {
-    font-size: 10px;
 
     .text {
+      padding: .15em 1.5em;
+      font-size: 10px;
+      line-height: 1;
       text-transform: uppercase;
       letter-spacing: (25em / 1000);
+      font-weight: 500;
     }
   }
 
@@ -245,25 +251,25 @@
       @include flex-direction(row);
       @include align-items(flex-end);
       @include transform(translateZ(0));
-      line-height: 20px;
       font-size: 14px;
 
       .arcade__name {
         @include flex(auto);
-        line-height: inherit;
+        line-height: 20px;
+        height: 20px;
 
         // @TODO Remove after Foundation is gone.
-        h3 {
-          line-height: 20px;
+        .text {
+          vertical-align: baseline;
         }
       }
 
       .arcade__details {
         @include flex(none);
-        line-height: inherit;
 
-        & > li {
-          vertical-align: text-bottom;
+        li {
+          line-height: 20px;
+          height: 20px;
         }
       }
 
@@ -283,7 +289,7 @@
   // .arcade__special
   &__special {
     position: absolute;
-    top: -$flynns-special-border-width;
+    top: -$flynns-special-spacing;
     right: 0;
     background: $flynns-special-bg;
     padding: .3em 1.5em;
@@ -349,7 +355,7 @@
   &.is--special {
     .arcade__marquee {
       border-color: $flynns-special-bg;
-      border-width: $flynns-special-border-width;
+      border-width: $flynns-special-spacing;
       border-style: solid;
     }
 

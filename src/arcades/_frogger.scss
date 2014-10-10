@@ -122,12 +122,6 @@
         }
       }
 
-      &--gamma {
-        @if $flynns-hide-headline {
-          display: none;
-        }
-      }
-
       &--delta {
         @include clearfix;
         position: absolute;
@@ -175,10 +169,10 @@
   &.is--special {
     .arcade__line {
       &--delta {
-        margin-bottom: $flynns-special-border-width;
+        margin-bottom: $flynns-special-spacing;
         width: auto;
-        left: -$flynns-special-border-width;
-        right: -$flynns-special-border-width;
+        left: -$flynns-special-spacing;
+        right: -$flynns-special-spacing;
       }
     }
 

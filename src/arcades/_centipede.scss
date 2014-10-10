@@ -1,16 +1,19 @@
-// Centipede Configurable Variables
-$centipede-padding: 6px !default;
+// Centipede is going to check later on for a variable called $page-gradient.
+// The default here is to make sure that `@if` doesn't fail for a variable
+// not existing.
+$page-gradient: false !default;
 
-// Centipede Variables
-$centipede-headline-line-height: 12px;
-$centipede-headline-font-size: 10px;
-
-@function centipede_headline_height {
-  @return ($centipede-headline-line-height * 2) + $centipede-padding;
-}
-
-// Centipede
+// Modifier Class
 .arcade--centipede {
+  $spacing: 6px;
+
+  // Centipede Variables
+  $centipede-headline-line-height: 12px;
+  $centipede-headline-font-size: 10px;
+
+  @function centipede_headline_height {
+    @return ($centipede-headline-line-height * 2) + $spacing;
+  }
 
   &.arcade--open {
     & .arcade__marquee::before {
@@ -21,53 +24,48 @@ $centipede-headline-font-size: 10px;
     }
   }
 
-  &.is--special .arcade__marquee {
-    border-width: 3px;
+  &.is--special {
+    .arcade__marquee {
+      border-width: $flynns-special-spacing;
+    }
 
     .arcade__status {
       display: none;
     }
 
     .arcade__line--alpha {
-      top: -23px;
-      left: -3px;
-      right: -3px;
+      bottom: 100%;
+      left: -$flynns-special-spacing;
+      right: -$flynns-special-spacing;
       width: auto;
-    }
-
-    .arcade__special {
-      color: #fff;
-      padding: ($centipede-padding / 2) ($centipede-padding * 2) ($centipede-padding / 3);
-      font-weight: bold;
-      text-transform: uppercase;
-      font-size: 8px;
-      letter-spacing: (20em / 1000);
+      margin-bottom: $flynns-special-spacing;
     }
   }
 
+  @if $flynns-grid-spacing == "none" {
+    margin-bottom: 1em;
+  } @else if $flynns-grid-spacing == "small" {
+    margin-bottom: .5em;
+  }
+
   .arcade {
-
-    &__marquee {
-      @include linear-gradient(
-        to top,
-        rgba(0, 0, 0, 0.70) 0%,
-        rgba(0, 0, 0, 0.50) 5%,
-        rgba(0, 0, 0, 0.25) 25%,
-        rgba(0, 0, 0, 0.00) 100%
-      );
-      background-color: transparent;
-    }
-
     &__cabinet {
-      padding-top: 16px;
-      margin-bottom: 1em;
+      margin-top: 20px;
     }
 
-    img {
-      max-width: 100%;
+    &__info {
+      @include display(flex);
+      @include flex-direction(column);
+      @include justify-content(flex-end);
+      @include align-items(stretch);
+      width: 100%;
+      height: 100%;
     }
 
-    &__line--delta,
+    &__headline {
+      @include order(1);
+    }
+
     &__rating {
       display: none;
     }
@@ -80,126 +78,120 @@ $centipede-headline-font-size: 10px;
 
     &__line {
 
+      // By default we want the headline to look like it's in a white box, so
+      // standard padding rules apply.
       &--alpha {
+        background: white;
         position: absolute;
-        right: 0;
-        top: -20px;
-        margin: 0;
-        text-align: right;
+        left: 0;
+        bottom: 100%;
         width: 100%;
+        padding: 0 $spacing;
 
-        @if $flynns-grid-spacing == none {
-          padding: 0 $centipede-padding;
+        // Always an exception to the rule.
+        // If:
+        //    A: the background is white.
+        //    B: there is no gradient.
+        //    C: the grid spacing is not "none"
+        // Then:
+        //    No padding.
+        @if rgba($body-bg, 1) == rgba(white, 1) {
+          @if $page-gradient == false {
+            @if $flynns-grid-spacing != none {
+              padding: 0;
+            }
+          }
         }
 
         .arcade__name {
-          @include ellipsis;
-
-          h3 {
-            color: $flynns-link-color;
-            text-align: left;
-          }
+          color: $flynns-link-color;
         }
 
         .arcade__details {
-          float: right;
-          margin: 0;
-          text-align: right;
+          font-size: 80%;
+          margin-bottom: -1px;
 
-          li + li {
-            margin-left: 0.25em;
-          }
-
-          .small {
-            font-size: 80%;
-          }
-
-          .age,
-          .name,
-          .country {
+          .age, .country {
             color: $flynns-link-color;
           }
 
-          .phone,
-          .fa-ellipsis-v {
-            color: #6f6f6f;
-          }
-
-          .high-def span {
-            font-weight: bold;
+          .spacer .icon,
+          .phone .icon,
+          .high-def .text {
             color: #6f6f6f;
           }
         }
       }
 
       &--beta {
-        position: absolute;
-        bottom: 30px;
+        @include flex(0 1 auto);
+        @include order(0);
+
+        @include display(flex);
+        @include flex-direction(column);
+        @include align-items(stretch);
+
+        .arcade__favorite {
+          @include order(0);
+          padding-left: $spacing;
+        }
+
+        .arcade__status {
+          @include order(1);
+          padding-left: $spacing;
+        }
+
+        .arcade__ratings {
+          display: none;
+        }
 
         .arcade__details {
           display: none;
         }
 
-        .arcade__favorite {
-          position: absolute;
-          bottom: 100%;
-          padding-left: $centipede-padding;
-
-          .fa-heart {
-            color: red;
-          }
-        }
-
-        &.goldshow .arcade__status div {
+        &.goldshow .arcade__status .text {
           background: $flynns-goldshow-bg;
           color: $flynns-goldshow-color;
         }
 
-        &.online .arcade__status div,
-        &.partychat .arcade__status div{
-          background: $flynns-partychat-bg;
+        &.online .arcade__status .text, {
+          background: $flynns-online-bg;
           color: $flynns-online-color;
         }
 
-        &.offline .arcade__status div {
+        &.partychat .arcade__status .text{
+          background: $flynns-partychat-bg;
+          color: $flynns-partychat-color;
+        }
+
+        &.offline .arcade__status .text {
           background: $flynns-offline-color;
           color: $flynns-offline-color;
         }
 
         .arcade__status {
-          float: left;
-          padding-left: $centipede-padding;
-          padding-bottom: $centipede-padding;
-
-          div {
-            padding: ($centipede-padding / 2) ($centipede-padding * 2) ($centipede-padding / 3);
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 8px;
-            letter-spacing: (20em / 1000);
-          }
+          padding-left: $spacing;
+          padding-bottom: $spacing;
         }
       }
 
       &--gamma {
-        position: absolute;
-        bottom: 0;
-        left: 0;
+        @include flex(0 1 auto);
+        @include order(1);
 
+        // Using tanslateZ to move the content to it's own blending layer.  This
+        // prevents some flashing during the transitions.
         .arcade__headline {
-          // This puts the text on it's own blending layer, and stops it from
-          // flashing during the transitions.
           @include transform(translateZ(0));
           @include word-wrap(break-all);
           height: centipede_headline_height();
-          padding: $centipede-padding;
-          padding-top: 0;
+          padding: 0 $spacing $spacing;
           color: #ffffff;
-
-          @if $flynns-hide-headline {
-            display: none;
-          }
         }
+      }
+
+      &--delta {
+        display: none;
       }
     }
   }

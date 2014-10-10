@@ -40,10 +40,6 @@
       .high-def {
         color: #999;
 
-        .text {
-          vertical-align: text-bottom;
-        }
-
         @media screen and (max-width: $screen-sm - 1) {
           display: none;
         }
@@ -52,9 +48,6 @@
       .phone {
         color: #999;
 
-        .icon {
-          vertical-align: text-bottom;
-        }
         @media screen and (max-width: $screen-sm - 1) {
           display: none;
         }

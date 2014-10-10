@@ -16,6 +16,10 @@
       will-change: margin;
     }
 
+    &__marquee {
+      background-image: none;
+    }
+
     &__info {
       width: 100%;
       position: absolute;
@@ -23,10 +27,8 @@
     }
 
     &__name {
-      h3 {
-        text-shadow: 0.5px 0.5px 1px #000000;
-        color: white;
-      }
+      text-shadow: 0.5px 0.5px 1px #000000;
+      color: white;
     }
 
     &__rating {
@@ -99,10 +101,6 @@
         @include transition(padding .1s, height .1s);
         color: #ffffff;
         overflow: hidden;
-
-        @if $flynns-hide-headline {
-          display: none;
-        }
       }
 
       // .arcade__line--delta
@@ -218,8 +216,8 @@
 
     .arcade__line--delta {
       width: auto;
-      left: -$flynns-special-border-width;
-      right: -$flynns-special-border-width;
+      left: -$flynns-special-spacing;
+      right: -$flynns-special-spacing;
     }
   }
 }
