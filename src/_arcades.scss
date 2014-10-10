@@ -155,6 +155,8 @@
 
       // Foundation panels mess with the headers in them, so we need this :(
       margin: 0 !important;
+
+      color: inherit;
       line-height: inherit;
       font-size: inherit;
       font-family: $flynns-font-family;

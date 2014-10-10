@@ -73,7 +73,9 @@ $ranks-color: gold !default;
 
     // We don't need to include the half-rating for 5, so lave it out.
     @if $r < 5 {
-      &__#{$r}--half {
+
+      // The second selector is to support the existing codebase.
+      &__#{$r}--half, .rating#{$r}_half {
 
         // Loop through the each of the point markers, and include the content.
         @each $p in 1, 2, 3, 4, 5 {
@@ -85,7 +87,7 @@ $ranks-color: gold !default;
     }
 
     // Same as above, but with out the half.
-    &__#{$r} {
+    &__#{$r}, .rating#{$r} {
       @each $p in 1, 2, 3, 4, 5 {
         .point--#{$p}::before{
           @include get_content($p, $r)

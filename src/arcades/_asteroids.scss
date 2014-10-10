@@ -44,12 +44,9 @@
     }
 
     &__details {
-      .arcade__line--alpha & {
-        text-align: right;
-      }
 
-      .arcade__line--delta & {
-        float: right;
+      li {
+        @include transition(line-height .1s);
       }
 
       .country, .age {
@@ -62,11 +59,10 @@
     }
 
     &__status {
+      display: block;
       float: left;
-
-      .text {
-        display: inline-block;
-      }
+      padding: 0;
+      line-height: inherit;
     }
 
     &__line {
@@ -105,6 +101,7 @@
 
       // .arcade__line--delta
       &--delta {
+        @include transform(translateZ(0));
         @include transition(line-height .1s);
         @include clearfix;
         position: absolute;
@@ -145,6 +142,10 @@
           color: $flynns-special-color;
         }
 
+        .high-def {
+          font-weight: 600;
+        }
+
         .arcade__details {
           float: right;
         }
@@ -161,15 +162,20 @@
   .arcade__marquee:hover {
 
     // Status Hover Effect
-    .arcade__line--delta {
-      line-height: 20px;
-    }
+    .arcade__line {
 
-    // Headline Hover
-    .arcade__line--gamma {
-      // .line--gamma line-height + half the padding
-      height: (12 * 2) + $spacing / 2;
-      padding-bottom: $spacing / 2;
+      &--gamma {
+        height: (12 * 2) + $spacing / 2;
+        padding-bottom: $spacing / 2;
+      }
+
+      &--delta {
+        line-height: 20px;
+
+        .arcade__details li {
+          line-height: 20px;
+        }
+      }
     }
   }
 
