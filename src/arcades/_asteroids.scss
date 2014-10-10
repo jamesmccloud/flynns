@@ -45,10 +45,6 @@
 
     &__details {
 
-      li {
-        @include transition(line-height .1s);
-      }
-
       .country, .age {
         color: #ffffff;
       }
@@ -62,7 +58,6 @@
       display: block;
       float: left;
       padding: 0;
-      line-height: inherit;
     }
 
     &__line {
@@ -101,17 +96,14 @@
 
       // .arcade__line--delta
       &--delta {
-        @include transform(translateZ(0));
-        @include transition(line-height .1s);
+        $delta-lh: 10px;
         @include clearfix;
         position: absolute;
         top: 100%;
         width: 100%;
         padding: 0 $spacing;
-        line-height: 10px;
         color: #000000;
         vertical-align: middle;
-        font-size: 9px;
 
         @if $flynns-show-dropshadow {
           box-shadow: $flynns-arcade-dropshadow;
@@ -146,8 +138,23 @@
           font-weight: 600;
         }
 
+        .arcade__status {
+          @include transition(line-height .1s);
+          line-height: $delta-lh;
+
+          .text {
+            font-size: 8px;
+          }
+        }
+
         .arcade__details {
           float: right;
+
+          li {
+            @include transition(line-height .1s);
+            font-size: 8px;
+            line-height: $delta-lh;
+          }
         }
 
         .arcade__favorite,
@@ -160,6 +167,7 @@
   }
 
   .arcade__marquee:hover {
+    $hover-lh: 20px;
 
     // Status Hover Effect
     .arcade__line {
@@ -170,10 +178,12 @@
       }
 
       &--delta {
-        line-height: 20px;
+        .arcade__status {
+          line-height: $hover-lh;
+        }
 
         .arcade__details li {
-          line-height: 20px;
+          line-height: $hover-lh;
         }
       }
     }
