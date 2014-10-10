@@ -1,9 +1,11 @@
 // Ratings.
 $ranks-color: gold !default;
 
+// This mixin outpus the content based on the current rating and point number.
+// Takes an optional boolean for including half stars.
 @mixin get_content($p, $r, $half: false) {
   $next: $r + 1;
-  @if $p > $next {
+  @if ($p > $next) {
     content: $fa-var-star-o;
   } @else if $p == $next {
     @if $half {
@@ -16,32 +18,32 @@ $ranks-color: gold !default;
   }
 }
 
+// The basic structure for the ranks class is a simple `ul > li(x5) > i`,
+// with an optional container.  There are no real styles that come with
+// the container
+//
+// ```html
+// <div class="ranks__box">
+//   <ul class="ranks__list ranks__{number}[--half]">
+//     <li class="ranks__item"><i class="ranks__point point--1"></i></li>
+//     <li class="ranks__item"><i class="ranks__point point--2"></i></li>
+//     <li class="ranks__item"><i class="ranks__point point--3"></i></li>
+//     <li class="ranks__item"><i class="ranks__point point--4"></i></li>
+//     <li class="ranks__item"><i class="ranks__point point--5"></i></li>
+//   </ul>
+// </div>
+// ```
 
-// Class Name.
+// Class base
 .ranks {
 
-  // The basic structure for the ranks class is a simple `ul > li(x5) > i`,
-  // with an optional container.  There are no real styles that come with
-  // the container
-  //
-  // ```html
-  // <div class="ranks__box">
-  //   <ul class="ranks__list ranks__{number}[--half]">
-  //     <li class="ranks__item"><i class="ranks__point point--1"></i></li>
-  //     <li class="ranks__item"><i class="ranks__point point--2"></i></li>
-  //     <li class="ranks__item"><i class="ranks__point point--3"></i></li>
-  //     <li class="ranks__item"><i class="ranks__point point--4"></i></li>
-  //     <li class="ranks__item"><i class="ranks__point point--5"></i></li>
-  //   </ul>
-  // </div>
-  // ```
-
+  // Container
   &__box {
     margin: 0;
     padding: 0;
   }
 
-  // The list containing the each of the points.
+  // List
   &__list {
     @include clearfix;
     margin: 0;
@@ -49,7 +51,7 @@ $ranks-color: gold !default;
     list-style: none;
   }
 
-  // Each list item.
+  // List Item
   &__item {
     display: block;
     float: left;
@@ -59,16 +61,21 @@ $ranks-color: gold !default;
     }
   }
 
-  // Each of the point markers.
+  // Icon
   &__point {
     color: $ranks-color;
     text-shadow: 0 0 2px darken($ranks-color, 15%);
     font-size: 10px;
   }
 
+  // Loop through all the ratings
   @each $r in 5, 4, 3, 2, 1, 0 {
+
+    // We don't need to include the half-rating for 5, so lave it out.
     @if $r < 5 {
       &__#{$r}--half {
+
+        // Loop through the each of the point markers, and include the content.
         @each $p in 1, 2, 3, 4, 5 {
           .point--#{$p}::before {
             @include get_content($p, $r, true)
@@ -77,6 +84,7 @@ $ranks-color: gold !default;
       }
     }
 
+    // Same as above, but with out the half.
     &__#{$r} {
       @each $p in 1, 2, 3, 4, 5 {
         .point--#{$p}::before{
