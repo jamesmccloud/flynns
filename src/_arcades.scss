@@ -213,11 +213,12 @@
 
   // .arcade__status
   .arcade__status {
+    position: relative;
+    padding: 2px 20px;
+    line-height: 12px;
 
     .text {
-      padding: .15em 1.5em;
       font-size: 10px;
-      line-height: 1;
       text-transform: uppercase;
       letter-spacing: (25em / 1000);
       font-weight: 500;

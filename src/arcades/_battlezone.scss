@@ -107,22 +107,22 @@
           display: none;
         }
 
-        &.goldshow .arcade__status .text {
+        &.goldshow .arcade__status {
           background: $flynns-goldshow-bg;
           color: $flynns-goldshow-color;
         }
 
-        &.partychat .arcade__status .text {
+        &.partychat .arcade__status {
           background: $flynns-partychat-bg;
           color: $flynns-partychat-color;
         }
 
-        &.online .arcade__status .text {
+        &.online .arcade__status {
           background: $flynns-online-bg;
           color: $flynns-online-color;
         }
 
-        &.offline .arcade__status .text {
+        &.offline .arcade__status {
           background: $flynns-offline-bg;
           color: $flynns-offline-color;
         }

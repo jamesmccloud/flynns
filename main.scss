@@ -32,9 +32,13 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-$flynns-arcade: centipede;
+$flynns-arcade: defender;
+$flynns-gutter-size: medium;
+$flynns-thumbnail-size: large;
+$flynns-image-hover: true;
+$flynns-hide-headline: false;
+$flynns-show-dropshadow: true;
 $flynns-grid-spacing: small;
-
 
 // Flynns base
 @import "src/build";

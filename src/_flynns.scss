@@ -1,7 +1,4 @@
 // @TODO CHANGES
-// C: bottom margin if small or none
-// C: always white line-alpha
-// C: details font-size 90%
 // D: align spacers
 // D: move special show to flag
 // F: copy gradient from C
@@ -18,6 +15,12 @@ $screen-md: 992px !default;
 $screen-lg: 1200px !default;
 $screen-xl: 1550px !default;
 $screen-2x: 1900px !default;
+
+
+// Some of the arcades will check for a variable called $page-gradient.
+// The default here is to make sure that `@if` doesn't fail for a variable
+// not existing.
+$page-gradient: false !default;
 
 // This is a basic breakdown of how the grid looks.  The number of elements
 // per row, and the gutters between them can be customized.
@@ -184,6 +187,24 @@ $flynns-grid-spacing: small !default;
   margin-left: -($width / 2);
 }
 
+// There are always exceptions to the rules. For some of the designs we have
+// content in a white box. This mixin checks the background;
+// If:
+//    A: the background is white.
+//    B: there is no gradient.
+//    C: the grid spacing is not "none"
+// Then:
+//    No padding.
+//
+@mixin flynns_background_check() {
+  @if rgba($body-bg, 1) == rgba(white, 1) {
+    @if $page-gradient == false {
+      @if $flynns-grid-spacing != none {
+        @content;
+      }
+    }
+  }
+}
 
 // Sass could really use a switch statement...
 // {small: $small, medium: $med..., youget: $thepicture}

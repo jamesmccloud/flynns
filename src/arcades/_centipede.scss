@@ -1,8 +1,3 @@
-// Centipede is going to check later on for a variable called $page-gradient.
-// The default here is to make sure that `@if` doesn't fail for a variable
-// not existing.
-$page-gradient: false !default;
-
 // Modifier Class
 .arcade--centipede {
   $spacing: 6px;
@@ -89,18 +84,8 @@ $page-gradient: false !default;
         padding: 0 $spacing;
 
         // Always an exception to the rule.
-        // If:
-        //    A: the background is white.
-        //    B: there is no gradient.
-        //    C: the grid spacing is not "none"
-        // Then:
-        //    No padding.
-        @if rgba($body-bg, 1) == rgba(white, 1) {
-          @if $page-gradient == false {
-            @if $flynns-grid-spacing != none {
-              padding: 0;
-            }
-          }
+        @include flynns_background_check {
+          padding: 0;
         }
 
         .arcade__name {

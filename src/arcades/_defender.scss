@@ -1,12 +1,182 @@
 // Defender global variables
-$padding: 4px;
-
 .arcade--defender {
+  $spacing: 4px;
+  $flag-spacing: 10px;
+
 
   $top: 132% !important;
   @if $flynns-hide-headline {
     $top: 113% !important;
   }
+
+  .arcade {
+
+    &__cabinet {
+      $extra-padding: 50px;
+
+      @if $flynns-hide-headline {
+        $extra-padding: 20px;
+      }
+      padding-bottom: $spacing + $extra-padding;
+      padding-left: $flag-spacing;
+    }
+
+    &__display {
+      @if $flynns-show-dropshadow {
+        box-shadow: $flynns-arcade-dropshadow;
+      }
+    }
+
+    &__marquee {
+      background-image: none;
+    }
+
+    &__info {
+      position: absolute;
+      top: 100%;
+      width: 100%;
+    }
+
+    &__display {
+      .high-def, .phone {
+        color: #6f6f6f;
+      }
+
+      .spacer {
+        font-size: 75%;
+        color: #cccccc;
+      }
+    }
+
+    &__status {
+      margin-left: -$flag-spacing;
+
+      &::after {
+        position: absolute;
+        left: 0;
+        top: 100%;
+        border-style: solid;
+        border-width: 0 $flag-spacing $flag-spacing 0;
+        content: '';
+      }
+    }
+
+    &__favorite {
+      position: absolute;
+      left: -$flag-spacing;
+      margin-top: 12px;
+      background: #000000;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+
+      .fa {
+        font-size: 1.2em;
+        vertical-align: middle;
+      }
+    }
+
+
+
+    &__headline {
+      padding: $spacing;
+
+      @include flynns_background_check {
+        padding: $spacing 0;
+      }
+    }
+
+    &__line {
+      &--alpha {
+        background: white;
+        color: $flynns-link-color;
+        padding: 0 $spacing;
+
+        // Always an exception to the rule.
+        @include flynns_background_check {
+          padding: 0;
+        }
+
+        .arcade__details {
+        }
+      }
+
+      &--beta {
+        position: absolute;
+        bottom: 100%;
+        padding-left: $spacing;
+
+        .arcade__details {
+          display: none;
+        }
+
+        .arcade__status {
+          display: none;
+        }
+
+        .arcade__favorite {
+          display: none;
+        }
+      }
+
+      &--gamma {
+        color: contrast-color($body-bg, #222, #ddd);
+      }
+
+      &--delta {
+        position: absolute;
+        top: 0;
+        padding-top: 10px;
+
+        .arcade__details {
+          display: none;
+        }
+
+        .arcade__rating {
+          display: none;
+        }
+
+        &.goldshow .arcade__status{
+          background: $flynns-goldshow-bg;
+          color: $flynns-goldshow-color;
+
+          &::after {
+            border-color: transparent darken($flynns-goldshow-bg, 15%) transparent transparent;
+          }
+        }
+
+        &.online .arcade__status{
+          background: $flynns-online-bg;
+          color: $flynns-online-color;
+
+          &::after {
+            border-color: transparent darken($flynns-online-bg, 15%) transparent transparent;
+          }
+        }
+
+        &.partychat .arcade__status{
+          background: $flynns-partychat-bg;
+          color: $flynns-partychat-color;
+
+          &::after {
+            border-color: transparent darken($flynns-partychat-bg, 15%) transparent transparent;
+          }
+        }
+
+        &.offline .arcade__status{
+          background: $flynns-offline-bg;
+          color: $flynns-offline-color;
+
+          &::after {
+            border-color: transparent darken($flynns-offline-bg, 15%) transparent transparent;
+          }
+        }
+      }
+    }
+  }
+
   &.arcade--open {
     & .arcade__marquee::before {
       top: $top;
@@ -18,188 +188,31 @@ $padding: 4px;
     }
   }
 
-  &.is--special .arcade__marquee {
-    border-width: 3px;
-
-    &::before,
-    &::after {
-      top: 135% !important;
-      @if $flynns-hide-headline {
-        top: 116% !important;
-      }
+  &.is--special {
+    .arcade__special {
+      display: none;
     }
 
-    & .arcade__special {
-      color: #fff;
-      padding: 3px 20px;
-      font-weight: bold;
-      text-transform: uppercase;
-      font-size: 10px;
-      letter-spacing: (20em / 1000);
-    }
-
-    & .arcade__line--alpha {
-      top: 102%;
-      left: -3px;
-      right: -3px;
-      width: auto;
-
-      & h3 {
-        position: relative;
-        top: 0px;
-      }
-    }
-
-    & .arcade__headline {
-      position: relative;
-      top: 3px;
-    }
-
-    & .arcade__line--beta .arcade__status .text {
-      visibility: hidden;
-    }
-  }
-
-  .arcade {
-
-    &__cabinet {
-      $extra-padding: 50px;
-
-      @if $flynns-hide-headline {
-        $extra-padding: 20px;
-      }
-      padding-bottom: $padding + $extra-padding;
-      padding-left: 10px;
-  }
-
-    &__display {
-      @if $flynns-show-dropshadow {
-        box-shadow: $flynns-arcade-dropshadow;
-      }
-    }
-
-    &__line {
+    .arcade__line {
       &--alpha {
-        background: white;
-        position: absolute;
-        top: 100%;
-        width: 100%;
-        color: $flynns-link-color;
-
-        & h3 {
-          padding-left: 3px;
-          position: relative;
-          top: 0px;
-        }
-
-        .arcade__details {
-          padding-right : 3px;
-
-          .high-def, .phone, .spacer {
-            color: #6f6f6f;
-          }
-
-          .high-def span {
-            font-weight: bold;
-          }
-
-          .spacer {
-            font-size: 75%;
-            color: #cccccc;
-          }
-        }
-      }
-
-      &--beta {
-        position: absolute;
-        top: 10px;
-        bottom: 0;
-
-        .arcade__details {
-          display: none;
-        }
-
-        &.goldshow .arcade__status div {
-          background: $flynns-goldshow-bg;
-          color: $flynns-goldshow-color;
-
-          &::after {
-            border-color: transparent darken($flynns-goldshow-bg, 15%) transparent transparent;
-          }
-        }
-
-        &.online .arcade__status div,
-        &.partychat .arcade__status div {
-          background: $flynns-online-bg;
-          color: $flynns-online-color;
-
-          &::after {
-            border-color: transparent darken(#3C0, 15%) transparent transparent;
-          }
-        }
-
-        &.offline .arcade__status div {
-          background: $flynns-offline-bg;
-          color: $flynns-offline-color;
-
-          &::after {
-            border-color: transparent black transparent transparent;
-          }
-        }
-
-        .arcade__status {
-          position: relative;
-          margin-left: -10px;
-
-          div {
-            position: relative;
-            font-weight: bold;
-            font-size: 10px;
-            padding: 3px 20px 2px;
-
-            &::after {
-              position: absolute;
-              left: 0;
-              top: 100%;
-              border-style: solid;
-              border-width: 0 10px 10px 0;
-              content: '';
-            }
-          }
-        }
-
-        .arcade__favorite {
-          position: absolute;
-          left: -10px;
-          margin-top: 12px;
-        }
-
-        .fa-heart {
-          background-color: #000000;
-          padding: $padding + 1;
-          border-radius: 12px;
-        }
-
-        .arcade__rating {
-          padding-left: $padding;
-          position: absolute;
-          bottom: 0;
-        }
-      }
-
-      &--gamma {
-        color: #666;
-        position: absolute;
-        bottom: -54px;
-        height: 30px;
-
-        @if $flynns-hide-headline {
-          display: none;
-        }
+        margin-top: $flynns-special-spacing;
+        width: auto;
+        margin-left: -$flynns-special-spacing;
+        margin-right: -$flynns-special-spacing;
       }
 
       &--delta {
-        display: none;
+        .arcade__status {
+          left: -$flynns-special-spacing;
+          top: -$flynns-special-spacing;
+
+          background: $flynns-special-bg;
+          color: $flynns-special-color;
+
+          &::after {
+            border-color: transparent darken($flynns-special-bg, 15%) transparent transparent;
+          }
+        }
       }
     }
   }
