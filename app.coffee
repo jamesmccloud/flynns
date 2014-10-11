@@ -16,9 +16,11 @@ angular.module 'flynns', []
   $scope.base = +$('.grid--admin').css('z-index');
 
 
-  $scope.option = (index) ->
-    $num = Math.ceil (index + 1) / $scope.base
-    $type = switch $num
+  $scope.option = (idx) ->
+    num = Math.ceil (idx + 1) / $scope.base
+    num -= 6 while num > 6
+
+    type = switch num
       when 1 then 'asteroids'
       when 2 then 'battlezone'
       when 3 then 'centipede'
@@ -26,7 +28,7 @@ angular.module 'flynns', []
       when 5 then 'excitebike'
       when 6 then 'frogger'
 
-    "arcade--#{$type}"
+    "arcade--#{type}"
   # $scope.option = $('.grid--admin').css('content').replace(/\"/g,'')
 
   $scope.status = (text) ->

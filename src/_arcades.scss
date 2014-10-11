@@ -214,17 +214,38 @@
   }
 
   // .arcade__status
-  .arcade__status {
+  &__status {
     position: relative;
-    padding: 2px 20px;
-    line-height: 12px;
+    padding: 0 1.5em;
+    line-height: 1.4;
 
     .text {
+      display: block;
       font-size: 10px;
       text-transform: uppercase;
       letter-spacing: (25em / 1000);
       font-weight: 500;
-      line-height: 1;
+      vertical-align: middle;
+    }
+  }
+
+  // .arcade__special
+  &__special {
+    position: absolute;
+    top: -$flynns-special-spacing;
+    right: 0;
+    background: $flynns-special-bg;
+    padding: 0 1.5em;
+    line-height: 1.4;
+    box-shadow: -2px 2px 3px 0 rgba(0,0,0,0.43);
+
+    .text {
+      color: $flynns-special-color;
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: (25em / 1000);
+      font-weight: 500;
     }
   }
 
@@ -287,24 +308,6 @@
       @if $flynns-hide-headline {
         display: none;
       }
-    }
-  }
-
-  // .arcade__special
-  &__special {
-    position: absolute;
-    top: -$flynns-special-spacing;
-    right: 0;
-    background: $flynns-special-bg;
-    padding: .3em 1.5em;
-    line-height: 1;
-    box-shadow: -2px 2px 3px 0 rgba(0,0,0,0.43);
-
-    .text {
-      font-size: 10px;
-      color: $flynns-special-color;
-      text-transform: uppercase;
-      letter-spacing: (20em / 1000);
     }
   }
 

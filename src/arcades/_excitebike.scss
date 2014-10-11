@@ -6,78 +6,55 @@
 // ★★★★★
 // party-chat
 .arcade--excitebike {
+  $spacing: 4px;
+  $padding: 10px;
+  $radius: 10px;
+
   .arcade {
-    $padding: 4px;
-    $radius: 10px;
-    $headline: true;
 
     // padding-bottom.
-    $pb: 20px + $padding + 7px; // Name Line Height + padding +  bubble space
+    $pb: 20px + $spacing + 7px; // Name Line Height + padding +  bubble space
 
-    @if $headline {
+    @if $flynns-hide-headline == false {
       $pb: $pb + (12 * 2); // Add some more space for the headline.
     }
 
     &__cabinet {
       margin-left: 10px;
-      border-radius: 7px;
+      border-radius: $radius;
       border: 1px solid #a8a8a8;
-      padding: 7px 7px $pb;
+      padding: $padding $padding $pb;
       background-color: white;
-      box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+
+      @if $flynns-show-dropshadow {
+        box-shadow: $flynns-arcade-dropshadow;
+      }
     }
 
     &__status {
       float: left;
-      margin-left: -18px;
+      margin-left: -($padding + 1px + 10px);
+      line-height: 16px;
 
-      span {
-        position: relative;
-        padding: ($padding / 2) 20px;
-        text-transform: uppercase;
+      .text {
         color: white;
-        font-size: 10px;
         text-shadow: 1px 1px 0px rgba(#000000, 0.4);
+      }
 
-        &::after {
-          position: absolute;
-          left: 0;
-          top: 100%;
-          width: 0;
-          height: 0;
-          border-style: solid;
-          border-width: 0 10px 10px 0;
-          content: '';
-        }
-
-        .gold-show & {
-          background: $flynns-goldshow-bg;
-
-          &::after {
-            border-color: transparent darken($flynns-goldshow-bg, 15%) transparent transparent;
-          }
-        }
-
-        .party-chat &, .online & {
-          background: #3C0;
-
-          &::after {
-            border-color: transparent darken(#3C0, 15%) transparent transparent;
-          }
-        }
-
-        .offline & {
-          background: black;
-
-          &::after {
-            border-color: transparent black transparent transparent;
-          }
-        }
+      &::after {
+        position: absolute;
+        left: 0;
+        top: 100%;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 10px 10px 0;
+        content: '';
       }
     }
 
     &__details {
-      .hd {
+      .high-def {
         color: #999;
 
         @media (max-width: $screen-md - 1) {
@@ -134,11 +111,7 @@
 
     &__line {
       &--alpha {
-        padding-top: $padding;
-      }
-      &--gamma {
-        color: #999999;
-        max-height: 24px;
+        padding-top: $padding / 3;
       }
 
       &--beta {
@@ -148,9 +121,45 @@
         width: 100%;
         text-align: right;
 
+        &.goldshow .arcade__status {
+          background: $flynns-goldshow-bg;
+          &::after {
+            border-color: transparent darken($flynns-goldshow-bg, 15%) transparent transparent;
+          }
+        }
+
+        &.partychat .arcade__status {
+          background: $flynns-partychat-bg;
+
+          &::after {
+            border-color: transparent darken($flynns-partychat-bg, 15%) transparent transparent;
+          }
+        }
+
+        &.online .arcade__status {
+          background: $flynns-online-bg;
+
+          &::after {
+            border-color: transparent darken($flynns-online-bg, 15%) transparent transparent;
+          }
+        }
+
+        &.offline .arcade__status {
+          background: $flynns-offline-bg;
+
+          &::after {
+            border-color: transparent darken($flynns-offline-bg, 15%) transparent transparent;
+          }
+        }
+
         .arcade__details {
           display: none;
         }
+      }
+
+      &--gamma {
+        color: #999999;
+        max-height: 24px;
       }
 
       &--delta {

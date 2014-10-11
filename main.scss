@@ -7,7 +7,7 @@ html {
 }
 
 $body-bg: white;
-$page-gradient: false;
+$include-page-gradient: false;
 
 .container {
   padding: 0;
@@ -47,7 +47,7 @@ $flynns-grid-spacing: small;
 
 body {
   background: $body-bg;
-  @if $page-gradient {
+  @if $include-page-gradient {
     @include linear-gradient(top, rgba(254,255,255,1) 0%, rgba(221,241,249,1) 35%, rgba(160,216,239,1) 100%);
   }
 }

@@ -83,13 +83,15 @@
     }
 
     &__status {
-      padding-top: .5em;
+      position: absolute;
+      top: 100%;
+      left: -10px;
+      margin-top: 10px;
+      line-height: 1.6;
 
       .text {
-        padding: .25em 1em;
-        font-weight: 500;
-        text-shadow: $text-shadow;
         color: white;
+        text-shadow: $text-shadow;
       }
     }
 
@@ -135,26 +137,19 @@
           color: #999;
         }
 
-        .arcade__status {
-          position: absolute;
-          top: 100%;
-          left: -1em;
-          padding-top: .5;
-        }
-
-        &.goldshow .arcade__status .text {
+        &.goldshow .arcade__status {
           background: $flynns-goldshow-bg;
         }
 
-        &.partychat .arcade__status .text {
+        &.partychat .arcade__status {
           background: $flynns-partychat-bg;
         }
 
-        &.online .arcade__status .text {
+        &.online .arcade__status {
           background: $flynns-online-bg;
         }
 
-        &.offline .arcade__status .text {
+        &.offline .arcade__status {
           background: $flynns-offline-bg;
         }
 
