@@ -13,7 +13,21 @@ angular.module 'flynns', []
   kimono.getData().success (data) ->
     $scope.programs = data.results.collection1
 
-  $scope.option = $('.grid--admin').css('content').replace(/\"/g,'')
+  $scope.base = +$('.grid--admin').css('z-index');
+
+
+  $scope.option = (index) ->
+    $num = Math.ceil (index + 1) / $scope.base
+    $type = switch $num
+      when 1 then 'asteroids'
+      when 2 then 'battlezone'
+      when 3 then 'centipede'
+      when 4 then 'defender'
+      when 5 then 'excitebike'
+      when 6 then 'frogger'
+
+    "arcade--#{$type}"
+  # $scope.option = $('.grid--admin').css('content').replace(/\"/g,'')
 
   $scope.status = (text) ->
     # 'goldshow'

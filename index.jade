@@ -6,13 +6,9 @@ section.flynns(ng-controller="the-grid")
 
     //- A generic arcade.  Just add style.
     li.arcade(
-      ng-repeat="program in programs track by $index"
-      ng-controller="eachThumb"
-      ng-class="{ \
-        'arcade--open': isopen, \
-        'is--special': $index === 1 \
-      }"
-      class="arcade--{{option}} {{status(program.status.text)}}"
+      ng-repeat="program in programs track by $index" ng-controller="eachThumb"
+      ng-class="{'arcade--open': isopen, 'is--special': $index === 1}"
+      class="{{option($index)}} {{status(program.status.text)}}"
     )
 
       include _arcade_cabinet
