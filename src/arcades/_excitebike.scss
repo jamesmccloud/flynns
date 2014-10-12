@@ -9,6 +9,7 @@
   $spacing: 4px;
   $padding: 10px;
   $radius: 10px;
+  $line-height: 20px;
 
   .arcade {
 
@@ -32,9 +33,9 @@
     }
 
     &__status {
-      float: left;
-      margin-left: -($padding + 1px + 10px);
+      left: -($padding + 1px + 10px);
       line-height: 16px;
+      margin-bottom: $spacing;
 
       .text {
         color: white;
@@ -85,14 +86,15 @@
     }
 
     &__rating {
-      display: inline-block;
-      padding-right: $padding;
-      font-size: 10px;
+      @include flex(none);
+      line-height: $line-height;
+      margin-right: $spacing;
     }
 
     &__favorite {
-      display: inline-block;
-      padding-right: $padding;
+      @include flex(none);
+      line-height: $line-height;
+      margin-right: $spacing;
     }
 
     &__info {
@@ -117,9 +119,11 @@
       &--beta {
         position: absolute;
         bottom: 100%;
-        padding-bottom: $padding;
         width: 100%;
-        text-align: right;
+        @include display(flex);
+        @include flex-direction(row);
+        @include align-items(stretch);
+        @include justify-content(flex-end);
 
         &.goldshow .arcade__status {
           background: $flynns-goldshow-bg;
