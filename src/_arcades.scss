@@ -74,7 +74,7 @@
   // way. Fix after bug is fixed.
   // https://github.com/sass/libsass/issues/146
   &__static, &__screen,
-  &__marquee, &__game-over,
+  &__marquee, &__out-of-order,
   &__spacer {
     position: absolute;
     width: 100%;
@@ -134,6 +134,47 @@
   &__out-of-order {
     z-index: 40;
     display: none;
+    background: rgba(#000, 0.75);
+    @include display(flex);
+    @include align-items(center);
+    @include justify-content(center);
+    text-align: center;
+    color: white;
+
+    @media (max-width: $screen-md-max) {
+      font-size: 80%;
+    }
+
+    .box {
+      padding: 1em;
+    }
+
+    .headline {
+      margin-top: 0;
+    }
+
+    .list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      margin-bottom: 1em;
+
+      & > li {
+        display: inline-block;
+
+        & + li {
+          margin-left: 1em;
+        }
+      }
+    }
+
+    .icon--mail {
+      color: $flynns-link-color;
+    }
+
+    .icon--favorite {
+      color: red;
+    }
   }
 
   &__player {
@@ -371,27 +412,6 @@
     }
   }
 }
-
-// Only include the arcade that they're using.
-// @if $flynns-arcade == asteroids {
-//   @import "arcades/asteroids";
-
-// } @else if $flynns-arcade == battlezone {
-//   @import "arcades/battlezone";
-
-// } @else if $flynns-arcade == centipede {
-//   @import "arcades/centipede";
-
-// } @else if $flynns-arcade == defender {
-//   @import "arcades/defender";
-
-// } @else if $flynns-arcade == excitebike {
-//   @import "arcades/excitebike";
-
-// } @else if $flynns-arcade == frogger {
-//   @import "arcades/frogger";
-
-// }
 
 @import "arcades/asteroids";
 @import "arcades/battlezone";

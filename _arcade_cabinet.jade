@@ -58,9 +58,17 @@
 
         include _arcade_line_shared
 
-
       .arcade__special(ng-if="$index == 1"): .text Special Show
+
     //- This arcade is out of order.  Maybe you can fix it.
     .arcade__out-of-order
+      .box
+        h4.headline I'm Taking a Break Right now
+        h5.headline Be Right Back
 
-      //- JasonB's ticket.
+        ul.list
+          li: i.fa.fa-envelope.fa-2x.icon--mail
+          li: i.fa.fa-heart-o.fa-2x.icon--favorite
+
+        //- Refresh button
+        button.btn.btn-primary Refresh Search Results
