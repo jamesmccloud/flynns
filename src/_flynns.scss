@@ -53,11 +53,11 @@ $include-page-gradient: true !default;
 +--------------------------------------------------------------------------*/
 
 // Gutter Options: none, small, medium, large
-$flynns-gutter-size: medium !default;
+$flynns-gutter-size: small !default;
 
 // Fine tuning the values.
-$flynns-gutter-small: 2.5% !default;
-$flynns-gutter-medium: 5% !default;
+$flynns-gutter-small: 5% !default;
+$flynns-gutter-medium: 7.5% !default;
 $flynns-gutter-large: 10% !default;
 
 // Option for choosing the thumbnail display.
@@ -222,23 +222,73 @@ $flynns-gutter-value: 0;
 .flynns {
   position: relative;
 
-  @media (min-width: $screen-md) {
+  @media (min-width: $screen-sm) {
     padding: 0 ($flynns-gutter-value / 2);
   }
 
   @media (min-width: $screen-lg) {
     padding: 0 $flynns-gutter-value;
   }
+
+  // Title banner across the top of the grid.
+  &__banner {
+    @include display(flex);
+    @include justify-content(space-between);
+    @include align-items(flex-end);
+    padding: 0 .5em;
+
+    @media (min-width: $screen-sm) {
+      padding: 0;
+    }
+  }
+
+  &__title {
+    @include flex(auto);
+    @include ellipsis;
+
+    @media (min-width: $screen-lg) {
+      display: none;
+    }
+  }
+
+  &__active {
+    @include flex(none);
+    text-align: right;
+
+    @media (min-width: $screen-lg) {
+      text-align: left;
+    }
+  }
+
+  &__options {
+    @include flex(none);
+    font-size: 12px;
+    text-align: right;
+
+    @media (max-width: $screen-md-max) {
+      display: none;
+    }
+
+    label {
+      text-transform: uppercase;
+    }
+
+    .form-group + .form-group {
+      margin-left: .5em;
+    }
+
+    .form-control-static {
+      text-transform: uppercase;
+      padding-bottom: 5px;
+    }
+  }
 }
 
-// The z-index here is set so that javascript can ask for the number of
-// results per row, with out having to count, or have the breakpoints
-// hard-coded somewhere else.
+//
+// Do not use the "position" property on me.
+// See .flynns
+//
 .the-grid {
-  //
-  // Do not use the "position" property on me.
-  // See .flynns
-  //
 
   $size: $flynns-thumbnail-size;
 
