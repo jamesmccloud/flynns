@@ -143,7 +143,6 @@
 
     .arcade--open & {
       height: 567px;
-      margin-top: 1em;
     }
   }
 
@@ -380,3 +379,4 @@
 @import "arcades/generic";
 
 @import "out-of-order";
+@import "player";

@@ -1,0 +1,21 @@
+.inlineplayer {
+  @include transition(height .5s);
+}
+
+.inlineplayer__container {
+  position: absolute;
+  left: $flynns-gutter-value;
+  right: $flynns-gutter-value;
+  overflow: hidden;
+
+  &.player--fullscreen {
+    left: 0;
+    right: 0;
+  }
+
+}
+
+.inlineplayer__iframe {
+  border: 0;
+  width: 100% !important;
+}
