@@ -156,10 +156,11 @@
   }
 
   &.arcade--open {
-    & .arcade__marquee::before {
+
+    .arcade__marquee::before {
       @include flynns_arrow(82px, 21px, rgba(0, 0, 0, 0.75));
     }
-    & .arcade__marquee::after {
+    .arcade__marquee::after {
       @include flynns_arrow(80px, 20px, $flynns-link-color);
     }
   }

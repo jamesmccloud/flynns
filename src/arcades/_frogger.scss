@@ -178,7 +178,6 @@
 
   &.arcade--open {
     .arcade__cabinet {
-      margin-bottom: 22px;
 
       &::before {
         @include flynns_arrow(84px, 22px, rgba(0, 0, 0, 0.75));

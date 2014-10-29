@@ -171,4 +171,17 @@
       }
     }
   }
+
+  &.arcade--open {
+    .arcade__cabinet {
+
+      &::before {
+        @include flynns_arrow(84px, 22px, rgba(0, 0, 0, 0.75));
+      }
+
+      &::after {
+        @include flynns_arrow(80px, 20px, white);
+      }
+    }
+  }
 }

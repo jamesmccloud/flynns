@@ -178,11 +178,6 @@
   }
 
   &.arcade--open {
-
-    .arcade__cabinet {
-      margin-bottom: 22px;
-    }
-
     .arcade__marquee::before {
       $size: 21px;
       top: auto !important;
