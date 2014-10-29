@@ -4,9 +4,9 @@
   $flag-spacing: 10px;
 
 
-  $top: 132% !important;
+  $bottom: -52px;
   @if $flynns-hide-headline {
-    $top: 113% !important;
+    $bottom: -20px;
   }
 
   .arcade {
@@ -178,13 +178,24 @@
   }
 
   &.arcade--open {
-    & .arcade__marquee::before {
-      top: $top;
-      @include flynns_arrow(82px, 21px, rgba(0, 0, 0, 0.75));
+
+    .arcade__cabinet {
+      margin-bottom: 22px;
     }
-    & .arcade__marquee::after {
-      top: $top;
-      @include flynns_arrow(80px, 20px, $flynns-link-color);
+
+    .arcade__marquee::before {
+      $size: 21px;
+      top: auto !important;
+      bottom: $bottom - $size;
+      @include flynns_arrow(82px, $size, rgba(0, 0, 0, 0.75));
+
+    }
+
+    .arcade__marquee::after {
+      $size: 20px;
+      top: auto !important;
+      bottom: $bottom - $size;
+      @include flynns_arrow(80px, $size, $flynns-link-color);
     }
   }
 
