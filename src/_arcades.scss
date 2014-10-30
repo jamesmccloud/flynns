@@ -103,9 +103,11 @@
         @include transition-duration(.15s);
         @include transform(translateZ(0));
 
-        // All the images scale 1.5% on hover.
+        // All the images scale 110% on hover.
         .arcade__display:hover & {
-          @include transform(translateZ(0) scale(1.1));
+          @media (min-width: $screen-md) {
+            @include transform(translateZ(0) scale(1.1));
+          }
         }
       }
     }
@@ -376,6 +378,24 @@
   &.arcade--open {
     .arcade__cabinet {
       margin-bottom: 30px;
+    }
+  }
+
+  &.arcade--disabled {
+    .arcade__static {
+      background: black;
+
+      img {
+        opacity: 0.4;
+      }
+    }
+
+    .arcade__info {
+      opacity: 0.3;
+    }
+
+    .arcade__line--delta {
+      opacity: 0.3;
     }
   }
 }

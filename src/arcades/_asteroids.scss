@@ -170,21 +170,24 @@
   .arcade__marquee:hover {
     $hover-lh: 20px;
 
-    // Status Hover Effect
-    .arcade__line {
+    @media (min-width: $screen-md) {
 
-      &--gamma {
-        height: (12 * 2) + $spacing / 2;
-        padding-bottom: $spacing / 2;
-      }
+      // Status Hover Effect
+      .arcade__line {
 
-      &--delta {
-        .arcade__status {
-          line-height: $hover-lh;
+        &--gamma {
+          height: (12 * 2) + $spacing / 2;
+          padding-bottom: $spacing / 2;
         }
 
-        .arcade__details li {
-          line-height: $hover-lh;
+        &--delta {
+          .arcade__status {
+            line-height: $hover-lh;
+          }
+
+          .arcade__details li {
+            line-height: $hover-lh;
+          }
         }
       }
     }
