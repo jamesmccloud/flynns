@@ -20,6 +20,10 @@
     }
   }
 
+  .arcade__out-of-order {
+    display: none;
+  }
+
   .arcade__line {
     &--alpha {
       position: absolute;

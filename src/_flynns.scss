@@ -150,7 +150,9 @@ $flynns-grid-spacing: small !default;
   // http://neat.bourbon.io/examples/
   & > .arcade {
     @include span-columns(($total / $columns) of $total);
-    @include omega(#{$columns}n);
+    &:nth-of-type(#{$columns}n) {
+      margin-right: 0;
+    }
 
     // Flex gutter is a neat mixin that calculates the golden-ratio
     // 'per column' for the total number of columns.
@@ -160,7 +162,7 @@ $flynns-grid-spacing: small !default;
       margin-bottom: flex-gutter($total);
     }
 
-    &:nth-child(#{$columns}n + 1) {
+    &:nth-of-type(#{$columns}n + 1) {
       clear: both;
     }
   }
