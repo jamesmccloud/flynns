@@ -1,0 +1,66 @@
+// $flynns-arcade: defender;
+// $flynns-gutter-size: medium;
+// $flynns-thumbnail-size: large;
+// $flynns-image-hover: true;
+// $flynns-hide-headline: false;
+// $flynns-show-dropshadow: true;
+// $flynns-grid-spacing: small;
+
+
+.grid-redux {
+
+  $x: 4; // # of thumbnails
+  $y: 240px; // small thumbnails
+  $z: 261px; // catbus width
+  $a: 1.2; // gutter spacing
+
+  // $four: (($x * $y) * $a) + $z;
+  // $five: ((5  * $y) * $a) + $z;
+  // $six:  ((6  * $y) * $a) + $z;
+
+  // $flynns-gutter-size: medium;
+  // $flynns-thumbnail-size: large;
+
+
+  @include outer-container;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+
+  + .grid--admin {
+    position: absolute;
+    display: none;
+    content: "#{$flynns-arcade}";
+  }
+
+  @for $i from 2 through 10 {
+    $min: (($i * $y) * $a) + $z;
+    $max: (((($i + 1) * $y) * $a) + $z) - 1;
+
+    @media (min-width: 992px) {
+      @media (min-width: $min) {
+        @if $i < 10 {
+          @media (max-width: $max) {
+
+            @include flynns_pixel($i);
+
+          }
+        } @else {
+          @include flynns_pixel($i);
+        }
+      }
+    }
+
+    @media (max-width: 991px) {
+      @include flynns_pixel(4);
+    }
+  }
+}
+
+@if $DEBUG {
+  .container {
+    @media (min-width: 992px) {
+      padding-left: 261px;
+    }
+  }
+}

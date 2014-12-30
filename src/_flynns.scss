@@ -144,7 +144,7 @@ $flynns-grid-spacing: small !default;
   $total: $columns * $grid-value;
 
   // Set the max-width for the whole container to 320*$cols just in case.
-  max-width: 320px * $columns;
+  // max-width: 320px * $columns;
 
   // Automatic Rows
   // http://neat.bourbon.io/examples/
@@ -387,5 +387,9 @@ $flynns-gutter-value: 0;
     }
   }
 }
+
+
+// 2.0 Grid
+@import "the-grid";
 
 @import "arcades";
