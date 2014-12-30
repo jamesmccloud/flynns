@@ -9,6 +9,19 @@
 
 .grid-redux {
 
+  // Base styles for the grid
+  @include outer-container;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+
+  + .grid--admin {
+    position: absolute;
+    display: none;
+    content: "#{$flynns-arcade}";
+  }
+
+  // Math for calculating the min width
   $x: 4; // # of thumbnails
   $y: 240px; // small thumbnails
   $z: 261px; // catbus width
@@ -21,38 +34,39 @@
   // $flynns-gutter-size: medium;
   // $flynns-thumbnail-size: large;
 
-
-  @include outer-container;
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-
-  + .grid--admin {
-    position: absolute;
-    display: none;
-    content: "#{$flynns-arcade}";
+  @media (max-width: $screen-sm - 1) {
+    @include flynns_pixel(2, small);
   }
 
-  @for $i from 2 through 10 {
+  // iPhone landscape -> iPad Portrait
+  @media (min-width: $screen-sm) and (max-width: $screen-md - 1) {
+    @include flynns_pixel(3, small);
+  }
+
+  // iPad landscape -> Small desktop
+  @media (min-width: $screen-md) and (max-width: $screen-lg - 1 ) {
+    @include flynns_pixel(4, small);
+  }
+
+  // if smaller than $screen-lg use that, or something
+
+  $size: $flynns-thumbnail-size;
+
+  @for $i from 5 through 10 {
     $min: (($i * $y) * $a) + $z;
     $max: (((($i + 1) * $y) * $a) + $z) - 1;
 
-    @media (min-width: 992px) {
-      @media (min-width: $min) {
-        @if $i < 10 {
-          @media (max-width: $max) {
+    @if $min > $screen-lg
+    @media (min-width: $min) {
+      @if $i < 10 {
+        @media (max-width: $max) {
 
-            @include flynns_pixel($i);
-
-          }
-        } @else {
           @include flynns_pixel($i);
-        }
-      }
-    }
 
-    @media (max-width: 991px) {
-      @include flynns_pixel(4);
+        }
+      } @else {
+        @include flynns_pixel($i);
+      }
     }
   }
 }

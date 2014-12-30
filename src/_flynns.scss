@@ -111,8 +111,9 @@ $flynns-arcade-dropshadow: 0 1px 1px rgba(0, 0, 0, 0.75) !default;
 $flynns-grid-spacing: small !default;
 
 // This takes in the number of total columns you want in per row.
-@mixin flynns_pixel($columns) {
+@mixin flynns_pixel($columns, $spacing: false) {
   // Fine tuning the values.
+  //
   // These values are used to create the total number of columns for the
   // block grids to span.  Too keep the gutters consistent as the page gets
   // smaller, I'm also multiplying this number by the number of columns.
@@ -131,12 +132,17 @@ $flynns-grid-spacing: small !default;
   // Default to no gutter, upgrade if necessary.
   $grid-value: $flynns-grid-none;
 
+  // Defaults to false to use the value from the config.
+  @if $spacing == false {
+    $spacing: $flynns-grid-spacing;
+  }
+
   // Again with the needing a switch statement.
-  @if $flynns-grid-spacing == small {
+  @if $spacing == small {
     $grid-value: $flynns-grid-small;
-  } @else if $flynns-grid-spacing == medium {
+  } @else if $spacing == medium {
     $grid-value: $flynns-grid-medium;
-  } @else if $flynns-grid-spacing == large {
+  } @else if $spacing == large {
     $grid-value: $flynns-grid-large;
   }
 
