@@ -298,54 +298,68 @@ $flynns-gutter-value: 0;
 //
 .the-grid {
 
-  $size: $flynns-thumbnail-size;
-
   @include outer-container;
   max-width: 100%;
   margin: 0 auto;
   padding: 0;
 
-  // iPhone portrait
-  @media (max-width: $screen-xs - 1) {
-    @include flynns_pixel(2);
-  }
-
-  // iPhone landscape -> iPad Portrait
-  @media (min-width: $screen-xs) and (max-width: $screen-md - 1) {
-    @if $size == large  { @include flynns_pixel(2); }
-    @else { @include flynns_pixel(3); }
-  }
-
-  // iPad landscape -> Small desktop
-  @media (min-width: $screen-md) and (max-width: $screen-lg - 1 ) {
-    @if $size == large  { @include flynns_pixel(3); }
-    @if $size == medium { @include flynns_pixel(4); }
-    // @if $size == small  { @include flynns_pixel(5); }
-  }
-
-  // Small desktops
-  @media (min-width: $screen-lg) and (max-width: $screen-xl - 1) {
-    @if $size == large  { @include flynns_pixel(4); }
-    @if $size == medium { @include flynns_pixel(5); }
-    // @if $size == small  { @include flynns_pixel(6); }
-  }
-
-  @media (min-width: $screen-xl) and (max-width: $screen-2x - 1) {
-    @if $size == large  { @include flynns_pixel(5); }
-    @if $size == medium { @include flynns_pixel(6); }
-    // @if $size == small  { @include flynns_pixel(7); }
-  }
-
-  @media (min-width: $screen-2x) {
-    @if $size == large  { @include flynns_pixel(6); }
-    @if $size == medium { @include flynns_pixel(7); }
-    // @if $size == small  { @include flynns_pixel(8); }
-  }
-
   + .grid--admin {
     position: absolute;
     display: none;
     content: "#{$flynns-arcade}";
+  }
+
+
+  // Math for calculating the min width
+  $y: 160px; // small thumbnails
+  $z: 261px; // catbus width
+  $a: 1.4; // gutter spacing
+
+  // $four: (($x * $y) * $a) + $z;
+  // $five: ((5  * $y) * $a) + $z;
+  // $six:  ((6  * $y) * $a) + $z;
+
+  // $flynns-gutter-size: medium;
+  // $flynns-thumbnail-size: large;
+
+  @media (max-width: $screen-xs - 1) {
+    @include flynns_pixel(2, small);
+  }
+
+  // iPhone landscape -> iPad Portrait
+  @media (min-width: $screen-xs) and (max-width: $screen-md - 1) {
+    @include flynns_pixel(3, small);
+  }
+
+  // iPad landscape -> Small desktop
+  @media (min-width: $screen-md) and (max-width: $screen-lg - 1 ) {
+    @include flynns_pixel(4, medium);
+  }
+
+  // if smaller than $screen-lg use that, or something
+
+  $start: $screen-lg;
+
+  @for $i from 3 through 10 {
+    $min: (($i * $y) * $a) + $z;
+    $max: (((($i + 1) * $y) * $a) + $z) - 1;
+
+
+    @if $i == 3 {
+      $start: $screen-md
+    } @else if $min >= $screen-md {
+      $start: $min;
+    }
+
+    @media (min-width: $start) {
+      @if $i < 10 {
+        @media  (max-width: $max) {
+          @include flynns_pixel($i);
+        }
+      } @else {
+        @include flynns_pixel($i);
+      }
+    }
   }
 }
 
@@ -393,9 +407,5 @@ $flynns-gutter-value: 0;
     }
   }
 }
-
-
-// 2.0 Grid
-@import "the-grid";
 
 @import "arcades";
