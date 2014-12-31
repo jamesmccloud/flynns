@@ -96,6 +96,10 @@ $flynns-special-spacing: 3px;
 // Options: medium, large
 $flynns-thumbnail-size: medium !default;
 
+$flynns-thumbnail-small: 160px;
+$flynns-thumbnail-medium: 240px;
+$flynns-thumbnail-large: 320px;
+
 // Should the images hover?
 $flynns-image-hover: true !default;
 
@@ -310,10 +314,6 @@ $flynns-gutter-value: 0;
   }
 
 
-  // Math for calculating the min width
-  $y: 160px; // small thumbnails
-  $z: 261px; // catbus width
-  $a: 1.4; // gutter spacing
 
   @media (max-width: $screen-xs - 1) {
     @include flynns_pixel(2, small);
@@ -326,16 +326,19 @@ $flynns-gutter-value: 0;
 
   // iPad landscape -> Small desktop
   @media (min-width: $screen-md) and (max-width: $screen-lg - 1 ) {
-    @include flynns_pixel(4, medium);
+    @include flynns_pixel(4, small);
   }
+
+  // Math for calculating the min width
+  $y: $flynns-thumbnail-small; // small thumbnails
+  $z: 261px; // catbus width
+  $a: 1.4; // gutter spacing
 
   @if $flynns-thumbnail-size == medium {
-    $y: 240px;
+    $y: $flynns-thumbnail-medium;
   } @else if $flynns-thumbnail-size == large {
-    $y: 320px;
+    $y: $flynns-thumbnail-large;
   }
-
-  // if smaller than $screen-lg use that, or something
 
   $start: $screen-lg;
 
