@@ -315,13 +315,6 @@ $flynns-gutter-value: 0;
   $z: 261px; // catbus width
   $a: 1.4; // gutter spacing
 
-  // $four: (($x * $y) * $a) + $z;
-  // $five: ((5  * $y) * $a) + $z;
-  // $six:  ((6  * $y) * $a) + $z;
-
-  // $flynns-gutter-size: medium;
-  // $flynns-thumbnail-size: large;
-
   @media (max-width: $screen-xs - 1) {
     @include flynns_pixel(2, small);
   }
@@ -336,18 +329,24 @@ $flynns-gutter-value: 0;
     @include flynns_pixel(4, medium);
   }
 
+  @if $flynns-thumbnail-size == medium {
+    $y: 240px;
+  } @else if $flynns-thumbnail-size == large {
+    $y: 320px;
+  }
+
   // if smaller than $screen-lg use that, or something
 
   $start: $screen-lg;
 
-  @for $i from 3 through 10 {
+  @for $i from 4 through 10 {
     $min: (($i * $y) * $a) + $z;
     $max: (((($i + 1) * $y) * $a) + $z) - 1;
 
 
-    @if $i == 3 {
-      $start: $screen-md
-    } @else if $min >= $screen-md {
+    @if $i == 4 {
+      $start: $screen-lg
+    } @else if $min >= $screen-lg {
       $start: $min;
     }
 
