@@ -22,6 +22,7 @@ $fa-font-path: "bower_components/font-awesome/fonts/";
 // Debug on?
 $DEBUG: true;
 $GOLD: #f5cb07;
+$primary-color: #3399cc;
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Raleway";
@@ -32,13 +33,18 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-$flynns-arcade: defender;
-$flynns-gutter-size: medium;
+@mixin button-base($display, $style) {
+
+}
+
+
+$flynns-arcade: excitebike;
+$flynns-gutter-size: large;
 $flynns-thumbnail-size: large;
 $flynns-image-hover: true;
 $flynns-hide-headline: false;
 $flynns-show-dropshadow: true;
-$flynns-grid-spacing: small;
+$flynns-grid-spacing: large;
 
 // Flynns base
 @import "src/build";
@@ -52,3 +58,6 @@ body {
   }
 }
 
+.arcade__out-of-order {
+  display: none;
+}

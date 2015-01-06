@@ -22,8 +22,8 @@
       position: relative;
       border: 1px solid #aaa;
       border-radius: 10px;
-      padding-left: ($spacing * 4);
-      padding-right: ($spacing * 4);
+      padding-left: ($spacing * 2);
+      padding-right: ($spacing * 2);
       padding-top: $spacing + $delta-total;
       padding-bottom: ($spacing * 2) + $bottom-total;
       background: white;
@@ -31,6 +31,11 @@
       @if $flynns-show-dropshadow {
         box-shadow: $flynns-arcade-dropshadow;
       }
+
+      // @media (min-width: $screen-lg) {
+      //   padding-left: ($spacing * 4);
+      //   padding-right: ($spacing * 4);
+      // }
     }
 
     &__info {
@@ -85,9 +90,13 @@
     &__status {
       position: absolute;
       top: 100%;
-      left: -10px;
+      left: -5px;
       margin-top: 10px;
       line-height: 1.6;
+
+      // @media (min-width: $screen-lg) {
+      //   left: -10px;
+      // }
 
       .text {
         color: white;

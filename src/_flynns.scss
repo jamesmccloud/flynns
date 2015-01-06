@@ -96,6 +96,10 @@ $flynns-special-spacing: 3px;
 // Options: medium, large
 $flynns-thumbnail-size: medium !default;
 
+$flynns-thumbnail-small: 160px;
+$flynns-thumbnail-medium: 240px;
+$flynns-thumbnail-large: 320px;
+
 // Should the images hover?
 $flynns-image-hover: true !default;
 
@@ -111,8 +115,9 @@ $flynns-arcade-dropshadow: 0 1px 1px rgba(0, 0, 0, 0.75) !default;
 $flynns-grid-spacing: small !default;
 
 // This takes in the number of total columns you want in per row.
-@mixin flynns_pixel($columns) {
+@mixin flynns_pixel($columns, $spacing: false) {
   // Fine tuning the values.
+  //
   // These values are used to create the total number of columns for the
   // block grids to span.  Too keep the gutters consistent as the page gets
   // smaller, I'm also multiplying this number by the number of columns.
@@ -131,12 +136,17 @@ $flynns-grid-spacing: small !default;
   // Default to no gutter, upgrade if necessary.
   $grid-value: $flynns-grid-none;
 
+  // Defaults to false to use the value from the config.
+  @if $spacing == false {
+    $spacing: $flynns-grid-spacing;
+  }
+
   // Again with the needing a switch statement.
-  @if $flynns-grid-spacing == small {
+  @if $spacing == small {
     $grid-value: $flynns-grid-small;
-  } @else if $flynns-grid-spacing == medium {
+  } @else if $spacing == medium {
     $grid-value: $flynns-grid-medium;
-  } @else if $flynns-grid-spacing == large {
+  } @else if $spacing == large {
     $grid-value: $flynns-grid-large;
   }
 
@@ -144,7 +154,7 @@ $flynns-grid-spacing: small !default;
   $total: $columns * $grid-value;
 
   // Set the max-width for the whole container to 320*$cols just in case.
-  max-width: 320px * $columns;
+  // max-width: 320px * $columns;
 
   // Automatic Rows
   // http://neat.bourbon.io/examples/
@@ -292,54 +302,66 @@ $flynns-gutter-value: 0;
 //
 .the-grid {
 
-  $size: $flynns-thumbnail-size;
-
   @include outer-container;
   max-width: 100%;
   margin: 0 auto;
   padding: 0;
 
-  // iPhone portrait
-  @media (max-width: $screen-xs - 1) {
-    @include flynns_pixel(2);
-  }
-
-  // iPhone landscape -> iPad Portrait
-  @media (min-width: $screen-xs) and (max-width: $screen-md - 1) {
-    @if $size == large  { @include flynns_pixel(2); }
-    @else { @include flynns_pixel(3); }
-  }
-
-  // iPad landscape -> Small desktop
-  @media (min-width: $screen-md) and (max-width: $screen-lg - 1 ) {
-    @if $size == large  { @include flynns_pixel(3); }
-    @if $size == medium { @include flynns_pixel(4); }
-    // @if $size == small  { @include flynns_pixel(5); }
-  }
-
-  // Small desktops
-  @media (min-width: $screen-lg) and (max-width: $screen-xl - 1) {
-    @if $size == large  { @include flynns_pixel(4); }
-    @if $size == medium { @include flynns_pixel(5); }
-    // @if $size == small  { @include flynns_pixel(6); }
-  }
-
-  @media (min-width: $screen-xl) and (max-width: $screen-2x - 1) {
-    @if $size == large  { @include flynns_pixel(5); }
-    @if $size == medium { @include flynns_pixel(6); }
-    // @if $size == small  { @include flynns_pixel(7); }
-  }
-
-  @media (min-width: $screen-2x) {
-    @if $size == large  { @include flynns_pixel(6); }
-    @if $size == medium { @include flynns_pixel(7); }
-    // @if $size == small  { @include flynns_pixel(8); }
-  }
-
   + .grid--admin {
     position: absolute;
     display: none;
     content: "#{$flynns-arcade}";
+  }
+
+
+
+  @media (max-width: $screen-xs - 1) {
+    @include flynns_pixel(2, small);
+  }
+
+  // iPhone landscape -> iPad Portrait
+  @media (min-width: $screen-xs) and (max-width: $screen-md - 1) {
+    @include flynns_pixel(3, small);
+  }
+
+  // iPad landscape -> Small desktop
+  @media (min-width: $screen-md) and (max-width: $screen-lg - 1 ) {
+    @include flynns_pixel(4, small);
+  }
+
+  // Math for calculating the min width
+  $y: $flynns-thumbnail-small; // small thumbnails
+  $z: 261px; // catbus width
+  $a: 1.4; // gutter spacing
+
+  @if $flynns-thumbnail-size == medium {
+    $y: $flynns-thumbnail-medium;
+  } @else if $flynns-thumbnail-size == large {
+    $y: $flynns-thumbnail-large;
+  }
+
+  $start: $screen-lg;
+
+  @for $i from 4 through 10 {
+    $min: (($i * $y) * $a) + $z;
+    $max: (((($i + 1) * $y) * $a) + $z) - 1;
+
+
+    @if $i == 4 {
+      $start: $screen-lg
+    } @else if $min >= $screen-lg {
+      $start: $min;
+    }
+
+    @media (min-width: $start) {
+      @if $i < 10 {
+        @media  (max-width: $max) {
+          @include flynns_pixel($i);
+        }
+      } @else {
+        @include flynns_pixel($i);
+      }
+    }
   }
 }
 
