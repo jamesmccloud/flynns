@@ -353,12 +353,13 @@ $flynns-gutter-value: 0;
       $start: $min;
     }
 
-    @media (min-width: $start) {
-      @if $i < 10 {
-        @media  (max-width: $max) {
-          @include flynns_pixel($i);
-        }
-      } @else {
+
+    @if $i < 10 {
+      @media (min-width: $start) and (max-width: $max) {
+        @include flynns_pixel($i);
+      }
+    } @else {
+      @media (min-width: $start) {
         @include flynns_pixel($i);
       }
     }
