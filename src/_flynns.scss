@@ -336,9 +336,17 @@ $flynns-gutter-value: 0;
 
   @if $flynns-thumbnail-size == medium {
     $y: $flynns-thumbnail-medium;
+    $a: 1.2;
+
   } @else if $flynns-thumbnail-size == large {
     $y: $flynns-thumbnail-large;
+    $a: 1.1;
+
   }
+
+  // 5 - Medium
+  // $min: ((5 * 240) * 1.2) + 261 = 1701
+  // $max: ((6 * 240) * 1.2) + 261 - 1 = 1988
 
   $start: $screen-lg;
 
@@ -348,7 +356,7 @@ $flynns-gutter-value: 0;
 
 
     @if $i == 4 {
-      $start: $screen-lg
+      $start: $screen-lg;
     } @else if $min >= $screen-lg {
       $start: $min;
     }
