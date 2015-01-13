@@ -96,9 +96,9 @@ $flynns-special-spacing: 3px;
 // Options: medium, large
 $flynns-thumbnail-size: medium !default;
 
-$flynns-thumbnail-small: 160px;
-$flynns-thumbnail-medium: 240px;
-$flynns-thumbnail-large: 320px;
+$flynns-thumbnail-small: 160px !default;
+$flynns-thumbnail-medium: 200px !default;
+$flynns-thumbnail-large: 240px !default;
 
 // Should the images hover?
 $flynns-image-hover: true !default;
