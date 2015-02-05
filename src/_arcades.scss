@@ -285,6 +285,7 @@
         @include flex(auto);
         line-height: 20px;
         height: 20px;
+        overflow: hidden;
 
         // @TODO Remove after Foundation is gone.
         .text {
