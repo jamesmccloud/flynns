@@ -1,21 +1,22 @@
 // Ratings.
 $ranks-color: gold !default;
+$font-awesome-content: true !default;
 
-// This mixin outpus the content based on the current rating and point number.
+// This mixin outputs the content based on the current rating and point number.
 // Takes an optional boolean for including half stars.
-@mixin get_content($p, $r, $half: false) {
-  $next: $r + 1;
-  @if ($p > $next) {
-    content: $fa-var-star-o;
-  } @else if $p == $next {
-    @if $half {
-      content: $fa-var-star-half-o;
-    } @else {
-      content: $fa-var-star-o;
-    }
-  } @else if $p < $next {
-    content: $fa-var-star;
+@mixin star_picker($point, $rank, $half: false) {
+  $next: $rank + 1;
+
+  // Default to empty star
+  $star: "\f006"; // $fa-var-star-o
+
+  @if ($point == $next and $half) {
+    $star: "\f123"; // $fa-var-star-half-o
+  } @else if ($point < $next) {
+    $star: "\f005"; // $fa-var-star
   }
+
+  content: $star;
 }
 
 // The basic structure for the ranks class is a simple `ul > li(x5) > i`,
@@ -34,65 +35,70 @@ $ranks-color: gold !default;
 // </div>
 // ```
 
-// Class base
-.ranks {
+// Container
+.ranks__box {
+  margin: 0;
+  padding: 0;
+}
 
-  // Container
-  &__box {
-    margin: 0;
-    padding: 0;
+// List
+.ranks__list {
+  @include clearfix;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// List Item
+.ranks__item {
+  display: block;
+  float: left;
+
+  & + & {
+    margin-left: 2px;
   }
+}
 
-  // List
-  &__list {
-    @include clearfix;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
+// Icon
+.ranks__point {
+  color: $ranks-color;
+  text-shadow: 0 0 2px darken($ranks-color, 15%);
+  font-size: 10px;
+}
 
-  // List Item
-  &__item {
-    display: block;
-    float: left;
+// Loop through all the ratings
+@each $rank in 5, 4, 3, 2, 1, 0 {
 
-    & + & {
-      margin-left: 2px;
-    }
-  }
+  // We don't need to include the half-rating for 5, so lave it out.
+  @if $rank < 5 {
 
-  // Icon
-  &__point {
-    color: $ranks-color;
-    text-shadow: 0 0 2px darken($ranks-color, 15%);
-    font-size: 10px;
-  }
+    // The second selector is to support the existing codebase.
+    .ranks__#{$rank}--half, .rating#{$rank}_half {
 
-  // Loop through all the ratings
-  @each $r in 5, 4, 3, 2, 1, 0 {
-
-    // We don't need to include the half-rating for 5, so lave it out.
-    @if $r < 5 {
-
-      // The second selector is to support the existing codebase.
-      &__#{$r}--half, .rating#{$r}_half {
-
-        // Loop through the each of the point markers, and include the content.
-        @each $p in 1, 2, 3, 4, 5 {
-          .point--#{$p}::before {
-            @include get_content($p, $r, true)
-          }
-        }
-      }
-    }
-
-    // Same as above, but with out the half.
-    &__#{$r}, .rating#{$r} {
-      @each $p in 1, 2, 3, 4, 5 {
-        .point--#{$p}::before{
-          @include get_content($p, $r)
+      // Loop through the each of the point markers, and include the content.
+      @each $point in 1, 2, 3, 4, 5 {
+        .point--#{$point}::before {
+          @include star_picker($point, $rank, true)
         }
       }
     }
   }
+
+  // Same as above, but with out the half.
+  .ranks__#{$rank}, .rating#{$rank} {
+    @each $point in 1, 2, 3, 4, 5 {
+      .point--#{$point}::before{
+        @include star_picker($point, $rank)
+      }
+    }
+  }
+
+  // Trying to search for generated class names sucks.
+
+  // .ranks__5, .rating5
+  // .ranks__4, .rating4, .ranks__4--half, .rating4_half
+  // .ranks__3, .rating3, .ranks__3--half, .rating3_half
+  // .ranks__3, .rating3, .ranks__3--half, .rating3_half
+  // .ranks__1, .rating1, .ranks__1--half, .rating1_half
+  // .ranks__0, .rating0, .ranks__0--half, .rating0_half
 }
