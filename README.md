@@ -1,13 +1,17 @@
-flynns
-======
+# Flynns
 
+Flyns is a thumbnail grid manager.  So named after [Kevin Flynn](http://disney.wikia.com/wiki/Kevin_Flynn) who created [The Grid](http://disney.wikia.com/wiki/The_Grid) in Tron.
 
-`npm install -g harp`
+---
 
-`git clone https://github.com/drbrts/flynns`
+### Installation
 
-`cd flynns`
+Prerequisites: [Harpjs](http://harpjs.com/)
 
-`bower install`
+#### Steps
 
-`harp server`
+* `git clone https://github.com/accretive/flynns`
+* `cd flynns`
+* `bower install`
+* `harp server`
+* open [localhost](http://localhost:9000/) in your browser of choice.
