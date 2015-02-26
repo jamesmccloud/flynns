@@ -6,7 +6,13 @@ Flyns is a thumbnail grid manager.  So named after [Kevin Flynn](http://disney.w
 
 ### Installation
 
-Prerequisites: [Harpjs](http://harpjs.com/)
+Prerequisites:
+* [HarpJS](http://harpjs.com/)
+* [Bourbon](http://bourbon.io)
+* [Neat](http://neat.bourbon.io)
+
+You only need Harp if you are going to run flynns locally.
+Bourbon and Neat will install with bower for this project, but if using in your own project, you need to make sure they're there first.
 
 #### Steps
 
