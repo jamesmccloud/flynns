@@ -1,0 +1,61 @@
+//
+// This is basically the same as the bootstrap make-grid mixin, but it takes
+// $columns as an input, instead of relying on pre-set variables.
+//
+// bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins/grid-framework
+//
+@mixin make-custom-grid($class, $columns, $full: false) {
+
+  $grid-columns: $columns;
+
+  // Loop through the bootstrap grid options
+  @include float-grid-columns($class);
+  @include loop-grid-columns($columns, $class, width);
+
+  // If we're want to build a fully featured grid for these coulmns,
+  @if $full {
+    @include loop-grid-columns($columns, $class, pull);
+    @include loop-grid-columns($columns, $class, push);
+    @include loop-grid-columns($columns, $class, offset);
+  }
+}
+
+//
+// This is just a wrapper that will build a full responsive grid of whatever
+// number of columns you give it.
+//
+// bower_components/bootstrap-sass/assets/stylesheets/bootstrap/grid
+//
+@mixin make-responsive-custom-grid($columns) {
+  @include make-custom-grid(xs#{$columns}, $columns);
+
+
+  // Small grid
+  //
+  // Columns, offsets, pushes, and pulls for the small device range, from phones
+  // to tablets.
+
+  @media (min-width: $screen-sm-min) {
+    @include make-custom-grid(sm#{$columns}, $columns);
+  }
+
+
+  // Medium grid
+  //
+  // Columns, offsets, pushes, and pulls for the desktop device range.
+
+  @media (min-width: $screen-md-min) {
+    @include make-custom-grid(md#{$columns}, $columns);
+  }
+
+
+  // Large grid
+  //
+  // Columns, offsets, pushes, and pulls for the large desktop device range.
+
+  @media (min-width: $screen-lg-min) {
+    @include make-custom-grid(lg#{$columns}, $columns);
+  }
+
+}
+
