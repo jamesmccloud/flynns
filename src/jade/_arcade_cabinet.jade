@@ -1,5 +1,5 @@
 //- The outer shell of the arcade, wrapping everything up into a nice box.
-.arcade__cabinet
+.arcade__cabinet.arcade--asteroids
 
   //- Another div, inside the cabinet.  This one is locked to specific
   //- aspect ratio.  The 4 divs inside this one, take up the same space, and
@@ -33,18 +33,12 @@
           include _arcade_details
 
         //- The second grouped info line.  Status modifiers.
-        //- .arcade__line--beta(ng-class="{ \
-          'goldshow': program.status.text == 'Gold Show', \
-          'partychat': program.status.text == 'Party Chat', \
-          'online': program.status.text == 'Live Now', \
-          'offline': program.status.text == 'Offline', \
-          'specialshow': $index === 1 }")
-
+        .arcade__line--beta
           include _arcade_line_shared
 
         //- Just the headline.
-        //- .arcade__line--gamma
-          .arcade__headline: p {{program.headline}}
+        .arcade__line--gamma
+          p.arcade__headline #{program.Headline}
 
       //- Another row of hearts, stars, horseshoes, clovers, and balloons...
       //- This row is outside the .info block, so it can go anywhere it
@@ -53,7 +47,7 @@
         include _arcade_line_shared
 
       if program.SpecialShow
-        .arcade__special: .text Special Show
+        .arcade__special Special Show
 
     //- This arcade is out of order.  Maybe you can fix it.
     //- .arcade__out-of-order

@@ -1,10 +1,10 @@
 .arcade__details
   ul
     if program.HD
-      li.high-def: span.small.text HD
+      li.high-def HD
 
     if program.Phone
-      li.phone(ng-if="program.phone"): i.fa.fa-phone.small.icon
+      li.phone: i.fa.fa-phone
 
     li.country #{program.Country}
     li.spacer: i.fa.fa-ellipsis-v.icon

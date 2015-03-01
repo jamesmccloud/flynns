@@ -6,10 +6,8 @@
   $delta-line-height: 10px;
   $delta-line-height-hover: ($delta-line-height * 2);
 
-
-
-
-  .arcade__cabinet {
+  // the descriptor is on the cabinet class
+  &.arcade__cabinet {
     padding-bottom: $delta-line-height-hover;
   }
 
@@ -47,9 +45,13 @@
   }
 
   .arcade__favorite {
-    font-size: 1.4em;
+    font-size: 20px;
     line-height: 1;
     padding-left: $spacing;
+
+    .grid--small & {
+      font-size: 18px;
+    }
   }
 
   .arcade__details {
@@ -60,10 +62,6 @@
 
     .spacer {
       color: #999999;
-    }
-
-    .grid--small & {
-      font-size: 12px;
     }
   }
 
@@ -77,6 +75,11 @@
     font-size: 8px;
   }
 
+  .arcade__headline {
+    .grid--small & {
+      font-size: 9px;
+    }
+  }
 
   .arcade__line--alpha {
     background: rgba(#000000, 0.5);
@@ -84,6 +87,12 @@
 
     .high-def, .phone {
       display: none;
+    }
+
+    .arcade__details {
+      .grid--small & {
+        font-size: 12px;
+      }
     }
   }
 
@@ -97,6 +106,15 @@
     }
   }
 
+  .arcade__line--gamma {
+    background: rgba(#000000, 0.5);
+    height: 0;
+    padding: 0 $spacing;
+    will-change: padding, height;
+    @include transition(padding .1s, height .1s);
+    color: #ffffff;
+    overflow: hidden;
+  }
 
   .arcade__line--delta {
     @include clearfix;
@@ -109,109 +127,45 @@
     @if $flynns-show-dropshadow {
       box-shadow: $flynns-arcade-dropshadow;
     }
-  }
 
-  &.goldshow {
-    .arcade__line--delta {
+    .goldshow & {
       background: $flynns-goldshow-bg;
       color: $flynns-goldshow-color;
     }
-  }
 
-
-  &.partychat {
-    .arcade__line--delta {
+    .partychat & {
       background: $flynns-partychat-bg;
       color: $flynns-partychat-color;
     }
-  }
 
-  &.online {
-    .arcade__line--delta {
+    .online & {
       background: $flynns-online-bg;
       color: $flynns-online-color;
     }
-  }
 
-  &.offline {
-    .arcade__line--delta {
+    .offline & {
       background: $flynns-offline-bg;
       color: $flynns-offline-color;
     }
-  }
 
-  .arcade {
+    .high-def {
+      font-weight: 600;
+    }
 
-    &__line {
+    .arcade__details {
+      float: right;
 
-      &--gamma {
-        background: rgba(#000000, 0.5);
-        height: 0;
-        padding: 0 $spacing;
-        will-change: padding, height;
-        @include transition(padding .1s, height .1s);
-        color: #ffffff;
-        overflow: hidden;
+      li {
+        @include transition(line-height .1s);
+        font-size: 8px;
+        line-height: $delta-line-height;
       }
+    }
 
-      // .arcade__line--delta
-      &--delta {
-        color: #000000;
-
-
-        &.goldshow {
-          background: $flynns-goldshow-bg;
-          color: $flynns-goldshow-color;
-        }
-
-        &.partychat {
-          background: $flynns-partychat-bg;
-          color: $flynns-partychat-color;
-        }
-
-        &.online {
-          background: $flynns-online-bg;
-          color: $flynns-online-color;
-        }
-
-        &.offline {
-          background: $flynns-offline-bg;
-          color: $flynns-offline-color;
-        }
-
-        &.specialshow {
-        }
-
-        .high-def {
-          font-weight: 600;
-        }
-
-        .arcade__status {
-          @include transition(line-height .1s);
-          line-height: $delta-line-height;
-
-          .text {
-            font-size: 8px;
-            line-height: inherit;
-          }
-        }
-
-        .arcade__details {
-          float: right;
-
-          li {
-            @include transition(line-height .1s);
-            font-size: 8px;
-            line-height: $delta-line-height;
-          }
-        }
-
-        .arcade__favorite,
-        .arcade__rating,
-        .country, .age, .spacer {
-          display: none;
-        }
-      }
+    .arcade__favorite,
+    .arcade__rating,
+    .country, .age, .spacer {
+      display: none;
     }
   }
 
@@ -221,27 +175,24 @@
     @media (min-width: $screen-md) {
 
       // Status Hover Effect
-      .arcade__line {
+      .arcade__line--gamma {
+        height: (12 * 2) + $spacing / 2;
+        padding-bottom: $spacing / 2;
+      }
 
-        &--gamma {
-          height: (12 * 2) + $spacing / 2;
-          padding-bottom: $spacing / 2;
+      .arcade__line--delta {
+        .arcade__status {
+          line-height: $hover-lh;
         }
 
-        &--delta {
-          .arcade__status {
-            line-height: $hover-lh;
-          }
-
-          .arcade__details li {
-            line-height: $hover-lh;
-          }
+        .arcade__details li {
+          line-height: $hover-lh;
         }
       }
     }
   }
 
-  &.is--special {
+  .is--special & {
     .arcade__marquee {
       border-bottom-width: 0;
     }
