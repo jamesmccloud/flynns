@@ -1,0 +1,415 @@
+//
+// Copyright (c) 2015 Accretive Technology Group, Inc.
+//
+// @author Daryl Roberts
+//
+
+@import "arcades/unreal";
+
+//
+// Do not use the "position" property on me.
+// - See _flynns
+//
+.arcade {
+
+}
+
+.arcade__cabinet {
+  position: relative;
+
+  @if $flynns-show-dropshadow {
+    box-shadow: $flynns-arcade-dropshadow;
+  }
+}
+
+// Aspect ratio locked.
+.arcade__display {
+  position: relative;
+
+  &::before {
+    content: '';
+    display: block;
+    padding-top: 100% / (4 / 3);
+    width: 100%;
+  }
+}
+
+// I'm on the bottom.  z-index: 10.
+.arcade__poster {
+  @extend %arcade-stretch;
+  z-index: 10;
+  overflow: hidden;
+
+  &::after {
+    @extend %arcade-stretch;
+    content: '';
+
+    @include linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.70) 0,
+      rgba(0, 0, 0, 0.50) 24px,
+      rgba(0, 0, 0, 0.25) 25%,
+      rgba(0, 0, 0, 0.00) 100%
+    );
+
+    background-color: transparent;
+  }
+
+  img {
+    @extend %arcade-stretch;
+    max-width: none;
+
+    // We can use a config vlaue tot turn off the hover effects
+    @if $flynns-image-hover {
+
+      // We're not using transform because it does some weird flickering
+      // stuff on hover
+      @include transition-property(width, height, top, left);
+      @include transition-duration(.15s);
+
+      // All the images scale 110% on hover.
+      .arcade:hover & {
+
+        @media (min-width: $screen-md) {
+          top: -5%;
+          left: -5%;
+          width: 110%;
+          height: 110%;
+        }
+      }
+    }
+    // @if $flynns-image-hover
+
+  }
+}
+
+// Next up is the screen, previews go here.
+.arcade__screen {
+  @extend %arcade-stretch;
+  z-index: 20;
+}
+
+.arcade__marquee {
+  @extend %arcade-stretch;
+  display: block;
+  z-index: 30;
+
+  &, &:hover, &:visited, &:active {
+    color: currentColor;
+    text-decoration: none;
+  }
+
+  .specialshow & {
+    border-color: $flynns-special-color;
+    border-width: $flynns-special-spacing;
+    border-style: solid;
+  }
+}
+
+// On top of the screen are the decals.
+.arcade__decals {
+  width: 100%;
+  height: 100%;
+  @include display(flex);
+  @include flex-direction(column-reverse);
+
+  &:hover {
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+.arcade__name {
+  @include ellipsis;
+  display: block;
+  margin: 0;
+  font-family: $flynns-font-family;
+  font-weight: 500;
+  letter-spacing: (25em / 1000);
+  padding-right: $flynns-basic-spacing;
+  color: $flynns-link-color;
+
+  height: $flynns-alpha-height;
+  line-height: $flynns-alpha-height;
+  font-size: $flynns-alpha-font-size;
+
+  @include larger-grids {
+    height: $flynns-alpha-height-larger;
+    line-height: $flynns-alpha-height-larger;
+    font-size: $flynns-alpha-font-size-larger;
+  }
+}
+
+.arcade__details {
+  @include display(flex);
+  @include align-items(flex-end);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  height: $flynns-alpha-height;
+  line-height: $flynns-alpha-height;
+  font-size: $flynns-alpha-font-size;
+
+  @include larger-grids {
+    height: $flynns-alpha-height-larger;
+    line-height: $flynns-alpha-height-larger;
+    font-size: $flynns-alpha-font-size-larger;
+  }
+
+  li {
+    @include flex(none);
+
+    & + li {
+      margin-left: $flynns-basic-spacing;
+    }
+  }
+
+  .high-def, .country, .year {
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: (25em / 1000);
+  }
+
+  .country,
+  .year {
+    color: $flynns-link-color;
+  }
+
+  .phone,
+  .spacer,
+  .high-def {
+    color: $flynns-medium-gray;
+  }
+
+  .phone {
+    display: none;
+
+    .has-phone & {
+      display: block;
+    }
+  }
+
+  .high-def {
+    display: none;
+
+    .is-hd & {
+      display: block;
+    }
+  }
+}
+
+.arcade__favorite {
+  display: none;
+  line-height: 1;
+  color: red;
+  text-shadow: 0.5px 0.5px 1px black;
+
+  .is-favorite & {
+    display: block;
+  }
+}
+
+.arcade__status {
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: (25em / 1000);
+  font-weight: 500;
+  font-size: 10px;
+  min-width: 80px;
+  text-align: center;
+
+  height: $flynns-beta-height;
+  padding: 0 $flynns-basic-spacing * 2;
+  font-size: 8px;
+  line-height: $flynns-beta-height;
+
+  @include larger-grids {
+    height: $flynns-beta-height-larger;
+    padding: 0 $flynns-basic-spacing * 4;
+    font-size: 10px;
+    line-height: $flynns-beta-height-larger;
+  }
+}
+
+.arcade__rating {
+  line-height: 1;
+
+  .#{$flynns-icon-class} {
+    vertical-align: middle;
+  }
+}
+
+.arcade__headline {
+  @include word-wrap;
+  margin: 0;
+  max-height: 24px;
+  font-size: 9px;
+  line-height: 12px;
+  overflow: hidden;
+  color: $flynns-medium-gray;
+}
+
+.arcade__special {
+  display: none;
+
+  position: absolute;
+  right: 0;
+  top: -1px; // let it overlap just a little
+
+  // Fake the padding being thicker so it looks like the div is
+  // part of the border.  We're not overlapping the border because
+  // the shadow projects on top of it.
+  padding-left: $flynns-special-spacing * 3;
+  padding-right: $flynns-special-spacing * 2;
+  padding-bottom: 2px;
+
+  background: $flynns-special-color;
+  color: $flynns-special-text-color;
+  box-shadow: -2px 2px 3px 0 rgba(0,0,0,0.43);
+  font-size: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: (25em / 1000);
+  line-height: 10px;
+
+  .specialshow & {
+    display: block;
+  }
+}
+
+.arcade__line--alpha {
+  @include display(flex);
+  position: relative;
+  width: 100%;
+
+  // 4 out of the 6 need this, so it's a default.
+  padding-left: $flynns-basic-spacing;
+  padding-right: $flynns-basic-spacing;
+
+  // This doesn't need to be down here, but its easier to see what the
+  // flex is doing if they're together.
+  .arcade__name {
+    @include flex(auto);
+  }
+
+  .arcade__details {
+    @include flex(none);
+  }
+
+  .phone, .high-def, .spacer {
+    font-size: $flynns-alpha-font-size - 2;
+
+    @include larger-grids {
+      font-size: $flynns-alpha-font-size-larger - 2;
+    }
+  }
+
+  .phone, .high-def {
+    display: none;
+  }
+
+  @include larger-grids {
+    .has-phone .phone {
+      display: block;
+    }
+
+    .is-hd .high-def {
+      display: block;
+    }
+  }
+
+
+  .#{$flynns-icon-class} {
+    vertical-align: baseline;
+
+    @include larger-grids {
+      vertical-align: middle;
+    }
+  }
+}
+
+.arcade__line--beta {
+  @include display(flex);
+  position: relative;
+  width: 100%;
+
+  padding-left: $flynns-basic-spacing;
+  padding-right: $flynns-basic-spacing;
+
+  min-height: $flynns-beta-height;
+
+  @include larger-grids {
+    min-height: $flynns-beta-height-larger;
+  }
+}
+
+.arcade__line--gamma {
+  position: relative;
+  width: 100%;
+
+  padding-left: $flynns-basic-spacing;
+  padding-right: $flynns-basic-spacing;
+
+  @if $flynns-hide-headline {
+    display: none;
+  }
+}
+
+// .arcade__controls {
+//   position: relative;
+//   z-index: 20;
+//   width: 2.5rem;
+//   padding-top: 10px;
+//   background: #dedede;
+// }
+
+// .arcade__button {
+//   display: block;
+//   width: 100%;
+//   text-align: center;
+//   line-height: 2em;
+
+//   .fa {
+//     color: #b6b6b6;
+//   }
+
+//   &:hover .fa {
+//     font-size: 1.5em;
+//     color: #676767;
+//   }
+
+//   &.button--favorite {
+//     .fa-heart {
+//       font-size: 1.5em;
+//       color: red;
+//     }
+
+//     .fa-minus {
+//       color: #dedede;
+//     }
+
+//     &:hover {
+//       .fa-minus {
+//         font-size: 1em;
+//         color: #dedede;
+//       }
+
+//       .fa-heart {
+//         font-size: 2em;
+//       }
+//     }
+//   }
+// }
+
+@import "arcades/asteroids";
+@import "arcades/battlezone";
+@import "arcades/centipede";
+@import "arcades/defender";
+@import "arcades/excitebike";
+@import "arcades/frogger";
+@import "arcades/generic";
+
+@import "out-of-order";
+
+// @import "player";

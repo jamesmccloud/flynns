@@ -1,0 +1,13 @@
+//
+// Copyright (c) 2015 Accretive Technology Group, Inc.
+//
+// @author Daryl Roberts
+//
+
+@function auto-adjust($color, $factor) {
+  @if lightness($color) > 70% {
+    @return darken($color, $factor);
+  } @else {
+    @return lighten($color, $factor);
+  }
+}

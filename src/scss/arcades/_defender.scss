@@ -1,0 +1,105 @@
+//
+// Copyright (c) 2015 Accretive Technology Group, Inc.
+//
+// @author Daryl Roberts
+//
+
+.arcade--defender {
+
+  &.arcade__cabinet {
+    margin-left: $flynns-flag-spacing;
+    padding-bottom: $flynns-alpha-height;
+
+    @include larger-grids {
+      padding-bottom: $flynns-alpha-height-larger;
+    }
+  }
+
+  .arcade__status {
+    width: auto;
+    margin-top: $flynns-flag-spacing;
+    margin-left: -$flynns-flag-spacing;
+
+    .specialshow & {
+      margin-top: ($flynns-flag-spacing - $flynns-special-spacing);
+      margin-left: -($flynns-flag-spacing + $flynns-special-spacing);
+    }
+
+    // See _arcades.scss
+    @extend %arcade-flag;
+  }
+
+  .arcade__special {
+    display: none;
+  }
+
+  .arcade__favorite {
+    width: 26px;
+    height: 26px;
+    font-size: 1.1em;
+
+    // Not 26. The vertical spacing is off a little.
+    line-height: 24px;
+
+    padding: 0;
+    margin-top: $flynns-flag-spacing;
+    margin-left: -$flynns-flag-spacing;
+    background: black;
+    text-align: center;
+    text-align: center;
+    border-radius: 50%;
+
+    .#{$flynns-icon-class} {
+      vertical-align: middle;
+    }
+
+    @include larger-grids {
+      width: 30px;
+      height: 30px;
+      line-height: 30px;
+      font-size: 1.2em;
+    }
+  }
+
+  .arcade__rating {
+    position: absolute;
+    bottom: $flynns-basic-spacing;
+    left: $flynns-basic-spacing;
+  }
+
+  .arcade__line--alpha {
+    position: absolute;
+    top: 100%;
+    background: white;
+
+    @if $flynns-show-dropshadow {
+      box-shadow: $flynns-arcade-dropshadow;
+    }
+
+    .specialshow & {
+      width: auto;
+      left: -$flynns-special-spacing;
+      right: -$flynns-special-spacing;
+      margin-top: $flynns-special-spacing;
+    }
+  }
+
+  .arcade__line--beta {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    @include flex-direction(column);
+    @include justify-content(flex-start);
+    @include align-items(flex-start);
+
+
+    .arcade__details {
+      display: none;
+    }
+  }
+
+  .arcade__line--gamma,
+  .arcade__line--delta {
+    display: none;
+  }
+}

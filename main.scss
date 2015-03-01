@@ -1,63 +1,16 @@
 // Bootstrap
-$icon-font-path: "bower_components/bootstrap/dist/fonts/";
-@import "bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap";
+$icon-font-path: "bower_components/bootstrap-sass/fonts/bootstrap/";
+@import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
 
-html {
-  font-size: 14px;
-}
-
-$body-bg: white;
-$include-page-gradient: false;
-
-.container {
-  padding: 0;
-  margin: 0;
-  width: 100%;
-}
-
-// Font-awesome
-$fa-font-path: "bower_components/font-awesome/fonts/";
-@import "bower_components/font-awesome/scss/font-awesome";
-
-// Debug on?
-$DEBUG: true;
-$GOLD: #f5cb07;
-$primary-color: #3399cc;
-
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Raleway";
-  font-weight: 300;
-
-  &.thin {
-    font-weight: 200;
-  }
-}
-
-@mixin button-base($display, $style) {
-
-}
-
-
-$flynns-arcade: excitebike;
-$flynns-gutter-size: large;
-$flynns-thumbnail-size: large;
-$flynns-image-hover: true;
-$flynns-hide-headline: false;
-$flynns-show-dropshadow: true;
-$flynns-grid-spacing: large;
+$flynns-import-bootstrap: false;
+$flynns-use-gutters: false;
 
 // Flynns base
-@import "src/build";
-@import "src/ranks";
-@import "src/junk";
+@import "src/scss/build";
 
-body {
-  background: $body-bg;
-  @if $include-page-gradient {
-    @include linear-gradient(top, rgba(254,255,255,1) 0%, rgba(221,241,249,1) 35%, rgba(160,216,239,1) 100%);
-  }
-}
+// Catbus
+@import "bower_components/catbus/public/css/mixins";
+@import "bower_components/catbus/public/css/catbus";
 
-.arcade__out-of-order {
-  display: none;
-}
+// Demo!
+@import "src/demo";

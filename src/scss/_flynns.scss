@@ -1,0 +1,181 @@
+//
+// Copyright (c) 2015 Accretive Technology Group, Inc.
+//
+// @author Daryl Roberts
+//
+
+.flynns {
+  position: relative;
+
+  @if $flynns-use-gutters {
+    @media (min-width: $screen-sm) {
+      padding: 0 ($flynns-gutter-value / 2);
+    }
+
+    @media (min-width: $screen-lg) {
+      padding: 0 $flynns-gutter-value;
+    }
+  }
+}
+
+.flynns__banner {
+  @include display(flex);
+  @include justify-content(flex-end);
+  @include align-items(flex-end);
+  padding: 0 .5em;
+
+  @media (min-width: $screen-sm) {
+    padding: 0;
+  }
+}
+
+.flynns__spacer {
+  @include flex(auto);
+
+}
+
+.flynns__title {
+  @include flex(auto);
+  @include ellipsis;
+}
+
+.flynns__active {
+  @include flex(none);
+  text-align: right;
+
+  @media (min-width: $screen-lg) {
+    text-align: left;
+  }
+}
+
+.flynns__options {
+  @include flex(none);
+  font-size: 12px;
+  text-align: right;
+
+  @media (max-width: $screen-md-max) {
+    display: none;
+  }
+
+  label {
+    text-transform: uppercase;
+  }
+
+  .form-group + .form-group {
+    margin-left: .5em;
+  }
+
+  .form-control-static {
+    text-transform: uppercase;
+    padding-bottom: 5px;
+  }
+}
+
+@import "the-grid";
+@import "arcades";
+
+// Must be AFTER 'the-grid' to use the variables declared there.
+.flynns__controls {
+  margin: 0;
+  padding: 0;
+  padding-bottom: 2px;
+  margin-left: 1em;
+
+  @include user-select(none);
+
+  @media (max-width: $flynns-small-grid-start - 1) {
+    display: none;
+  }
+
+  li {
+    display: inline-block;
+  }
+
+  .form-control-static {
+    margin: 0;
+    line-height: 1;
+    text-transform: uppercase;
+    font-size: 12px;
+    padding: 0;
+    padding-right: .5em;
+    font-weight: normal;
+  }
+}
+
+.flynns__control {
+  $width: 26px;
+  $height: 20px;
+
+  display: block;
+  position: relative;
+  background: #999999;
+  color: $flynns-link-text-color;
+  width: $width;
+  height: $height;
+  content: '';
+  cursor: pointer;
+  margin: 0;
+
+  &::after {
+    position: absolute;
+    border: 2px solid currentColor;
+    content: '';
+    box-shadow: 0.5px 0.5px 1px black;
+    @include box-sizing(border-box);
+  }
+
+  input {
+    display: none;
+  }
+
+  &.control--small {
+
+    .grid--small & {
+      background: $flynns-link-color;
+    }
+
+    &::after {
+      $size: 6px;
+      top: $size;
+      left: $size + 2;
+      width: $width - ($size * 2) - 3;
+      height: $height - ($size * 2);
+    }
+  }
+
+  &.control--medium {
+
+    .grid--medium & {
+      background: $flynns-link-color;
+    }
+
+    &::after {
+      $size: 4px;
+      top: $size;
+      left: $size + 2;
+      width: $width - ($size * 2) - 3;
+      height: $height - ($size * 2);
+    }
+  }
+
+  &.control--large {
+
+    .grid--large & {
+      background: $flynns-link-color;
+    }
+
+    &::after {
+      $size: 3px;
+      top: $size;
+      left: $size + 2;
+      width: $width - ($size * 2) - 3;
+      height: $height - ($size * 2);
+    }
+
+    @media (max-width: $flynns-medium-grid-start - 1) {
+      display: none;
+    }
+  }
+}
+
+

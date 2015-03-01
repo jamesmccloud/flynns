@@ -1,0 +1,45 @@
+//- The outer shell of the arcade, wrapping everything up into a nice box.
+
+
+figure.arcade(class="#{arcade.StatusKey} #{arcade.FavoriteClass} \
+  #{arcade.HDClass} #{arcade.PhoneClass}")
+
+  //- The cabinet
+  .arcade__cabinet.arcade--frogger(js-arcade-cabinets)
+
+    //- Another div, inside the cabinet.  This one is locked to specific
+    //- aspect ratio. The divs inside this one, take up the same space, and
+    //- are stacked on top of one another to create the layering effect.
+    .arcade__display
+
+      //- Static picture of the arcade.
+      .arcade__poster: img(src="#{earthporn[arcade.index].images.src}")
+
+      //- This is where a video preview will go.
+      //- Above the poster, but behind the decals.
+      .arcade__screen
+
+      a.arcade__marquee(href="#")
+
+        //- These are all the decals that show up on top of the screen
+        .arcade__decals
+
+          //- The primary info line, it's got the name, and details.
+          .arcade__line--alpha
+
+            h3.arcade__name #{arcade.Nickname}
+
+            include _arcade_details
+
+          //- The second grouped info line.  Status modifiers. Same as
+          //- delta.
+          .arcade__line--beta: include _arcade_line_shared
+
+          //- Just the headline.
+          .arcade__line--gamma
+
+            figcaption.arcade__headline #{arcade.Headline}
+
+          .arcade__line--delta: include _arcade_line_shared
+
+        .arcade__special Special Show

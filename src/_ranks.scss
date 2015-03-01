@@ -34,64 +34,69 @@ $ranks-color: gold !default;
 // </div>
 // ```
 
-// Class base
+
 .ranks {
+  
+}
 
-  // Container
-  &__box {
-    margin: 0;
-    padding: 0;
+// Container
+.ranks__box {
+  margin: 0;
+  padding: 0;
+}
+
+// List
+.ranks__list {
+  @include clearfix;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// List Item
+.ranks__item {
+  display: block;
+  float: left;
+
+  & + & {
+    margin-left: 2px;
   }
+}
 
-  // List
-  &__list {
-    @include clearfix;
-    margin: 0;
-    padding: 0;
-    list-style: none;
+// Icon
+.ranks__point {
+  color: $ranks-color;
+  text-shadow: 0 0 2px darken($ranks-color, 15%);
+  font-size: 10px;
+
+  @include larger-grids {
+    font-size: 12px;
   }
+}
 
-  // List Item
-  &__item {
-    display: block;
-    float: left;
+// Loop through all the ratings
+@each $r in 5, 4, 3, 2, 1, 0 {
 
-    & + & {
-      margin-left: 2px;
-    }
-  }
+  // We don't need to include the half-rating for 5, so lave it out.
+  @if $r < 5 {
 
-  // Icon
-  &__point {
-    color: $ranks-color;
-    text-shadow: 0 0 2px darken($ranks-color, 15%);
-    font-size: 10px;
-  }
+    // The second selector is to support the existing codebase.
+    .ranks__#{$r}--half, .rating#{$r}_half {
 
-  // Loop through all the ratings
-  @each $r in 5, 4, 3, 2, 1, 0 {
-
-    // We don't need to include the half-rating for 5, so lave it out.
-    @if $r < 5 {
-
-      // The second selector is to support the existing codebase.
-      &__#{$r}--half, .rating#{$r}_half {
-
-        // Loop through the each of the point markers, and include the content.
-        @each $p in 1, 2, 3, 4, 5 {
-          .point--#{$p}::before {
-            @include get_content($p, $r, true)
-          }
+      // Loop through the each of the point markers, and include the content.
+      @each $p in 1, 2, 3, 4, 5 {
+        .point--#{$p}::before {
+          @include get_content($p, $r, true)
         }
       }
     }
+  }
 
-    // Same as above, but with out the half.
-    &__#{$r}, .rating#{$r} {
-      @each $p in 1, 2, 3, 4, 5 {
-        .point--#{$p}::before{
-          @include get_content($p, $r)
-        }
+  // Same as above, but with out the half.
+  .ranks__#{$r}, .rating#{$r} {
+    @each $p in 1, 2, 3, 4, 5 {
+      .point--#{$p}::before{
+        @include get_content($p, $r)
       }
     }
   }

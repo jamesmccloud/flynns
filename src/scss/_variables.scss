@@ -1,0 +1,103 @@
+//
+// Copyright (c) 2015 Accretive Technology Group, Inc.
+//
+// @author Daryl Roberts
+//
+
+// Bootstrap Grid Sizes
+$screen-sm-min: 768px !default;
+$screen-md-min: 992px !default;
+$screen-lg-min: 1200px !default;
+
+$screen-xs-max: ($screen-sm-min - 1) !default;
+$screen-sm-max: ($screen-md-min - 1) !default;
+$screen-md-max: ($screen-lg-min - 1) !default;
+
+// And my own, as usual...
+$screen-xs-min: 480px !default;
+
+// Flynns Globals
+$flynns-gutter-value: 4% !default;
+$flynns-cell-padding: 2px !default;
+$flynns-external-nav-offset: 264px !default;
+$flynns-icon-class: "fa" !default;
+$flynns-use-gutters: true !default;
+$flynns-use-ranks: true !default;
+$flynns-external-offset: true !default;
+
+$flynns-small-grid-start: $screen-md-min;
+$flynns-medium-grid-start: $screen-lg-min;
+
+// Arcade Variables
+$flynns-alpha-height: 16px;
+$flynns-alpha-font-size: 12px;
+
+$flynns-alpha-height-larger: 20px;
+$flynns-alpha-font-size-larger: 14px;
+
+$flynns-beta-height: 14px;
+$flynns-beta-height-larger: 18px;
+
+$flynns-gamma-height: 24px;
+
+$flynns-flag-spacing: 10px;
+$flynns-basic-spacing: 4px;
+$flynns-special-spacing: 3px;
+
+// Option for choosing the thumbnail display.
+// * asteroids
+// * battlezone
+// * centipede
+// * defender
+// * excitebike
+// * frogger
+$flynns-arcade: asteroids !default;
+
+// What font for the names
+$flynns-font-family: $helvetica !default;
+
+// What color are the links (if other than white)?
+$flynns-link-color: #0099FF !default;
+$flynns-link-text-color: white !default;
+
+// Status colors
+$flynns-offline-color: #222222 !default;
+$flynns-offline-text-color: white !default;
+
+$flynns-online-color: #33CC00 !default;
+$flynns-online-text-color: black !default;
+
+$flynns-partychat-color: #33CC00 !default;
+$flynns-partychat-text-color: black !default;
+
+$flynns-goldshow-color: gold !default;
+$flynns-goldshow-text-color: black !default;
+
+$flynns-special-color: #0099FF !default;
+$flynns-special-text-color: white !default;
+
+$flynns-dark-gray: #333333 !default;
+$flynns-medium-gray: #999999 !default;
+$flynns-light-gray: #CCCCCC !default;
+
+// Thumbnail size.
+// Options: medium, large
+$flynns-thumbnail-size: medium !default;
+
+$flynns-thumbnail-small: 160px !default;
+$flynns-thumbnail-medium: 200px !default;
+$flynns-thumbnail-large: 240px !default;
+
+// Should the images hover?
+$flynns-image-hover: true !default;
+
+// Show the headlines?
+$flynns-hide-headline: false !default;
+
+// Show the drop shadow?
+$flynns-show-dropshadow: true !default;
+$flynns-arcade-dropshadow: 0 1px 1px rgba(0, 0, 0, 0.75) !default;
+
+// Grid Gutter size.
+// Options: small, medium, large, none (anything else)
+$flynns-grid-spacing: small !default;

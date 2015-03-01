@@ -1,0 +1,152 @@
+.arcade--generic {
+  @include arcade-generic;
+
+  .arcade__line--alpha {
+    .arcade__details {
+      display: none;
+    }
+  }
+
+  .arcade__line--beta,
+  .arcade__line--gamma {
+    display: none;
+  }
+
+
+  // $spacing: 4px;
+
+  // .arcade__display:hover .arcade__static img {
+  //   @include transform(scale(1.1));
+  // }
+
+
+  // .arcade__cabinet {
+  //   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.75);
+  // }
+
+  // .arcade__name h3 {
+  //   color: white;
+  // }
+
+  // .arcade__status {
+  //   .text {
+  //     line-height: 100%;
+  //   }
+  // }
+
+  // .arcade__out-of-order {
+  //   display: none;
+  // }
+
+  // .arcade__line {
+  //   &--alpha {
+  //     position: absolute;
+  //     bottom: 0;
+  //     width: 100%;
+  //     background: rgba(black, 0.5);
+  //     padding: 0 $spacing;
+
+  //     .arcade__details {
+  //       display: none;
+  //     }
+  //   }
+
+  //   &--delta {
+  //     display: none;
+  //     position: absolute;
+  //     top: 100%;
+  //     width: 100%;
+  //     font-size: 8px;
+  //     color: black;
+  //     padding: 0 $spacing;
+  //     text-transform: uppercase;
+  //     vertical-align: middle;
+  //     height: 12px;
+  //     overflow: hidden;
+
+  //     .arcade__details, .arcade__rating {
+  //       display: none;
+  //     }
+
+  //     &.goldshow {
+  //       background: $flynns-goldshow-color;
+  //       color: $flynns-goldshow-text-color;
+  //     }
+
+  //     &.partychat {
+  //       background: $flynns-partychat-color;
+  //       color: $flynns-partychat-text-color;
+  //     }
+
+  //     &.online {
+  //       background: $flynns-online-color;
+  //       color: $flynns-online-text-color;
+  //     }
+
+  //     &.offline {
+  //       background: $flynns-offline-color;
+  //       color: $flynns-offline-text-color;
+  //     }
+
+  //     &.specialshow {
+  //       background: $flynns-special-color;
+  //       color: $flynns-special-text-color;
+  //     }
+  //   }
+
+  //   &--beta, &--gamma, &--delta {
+  //     display: none;
+  //   }
+  // }
+
+  // &.has--status {
+  //   .arcade__cabinet {
+  //     padding-bottom: 12px;
+  //   }
+
+  //   .arcade__line {
+  //     &--delta {
+  //       display: block;
+  //     }
+  //   }
+  // }
+
+  // &.is--static {
+  //   // Not clickable, no transform.
+  //   .arcade__display {
+  //     &, &:hover {
+  //       .arcade__static img {
+  //         @include transform(none);
+  //       }
+  //     }
+  //   }
+  // }
+
+  // &.hide--marquee {
+  //   .arcade__marquee {
+  //     display: none;
+  //   }
+  // }
+
+  // &.has--controls {
+  //   .arcade__cabinet {
+  //     @include display(flex);
+  //     @include flex-direction(row);
+  //     @include align-items(stretch);
+  //   }
+
+  //   .arcade__display {
+  //     @include flex(auto);
+  //   }
+
+  //   .arcade__controls {
+  //     @include flex(none);
+  //   }
+
+  //   .arcade__line--delta {
+  //     width: auto;
+  //     left: 0;
+  //     right: -2.5rem;
+  //   }
+  // }
+}

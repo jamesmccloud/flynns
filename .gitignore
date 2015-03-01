@@ -1,3 +1,6 @@
-components
-www
+components/
+www/
 bower_components/
+node_modules/
+.sublime-workspace
+npm-debug.log

@@ -1,0 +1,131 @@
+//
+// Copyright (c) 2015 Accretive Technology Group, Inc.
+//
+// @author Daryl Roberts
+//
+
+.arcade--excitebike {
+
+  $spacing-bottom: $flynns-alpha-height + $flynns-gamma-height;
+  $spacing-bottom-larger: $flynns-alpha-height-larger + $flynns-gamma-height;
+
+  &.arcade__cabinet {
+    border-radius: ($flynns-flag-spacing / 2);
+    margin-left: $flynns-flag-spacing;
+    padding: $flynns-basic-spacing;
+    background-color: white;
+    border: 1px solid #a8a8a8;
+    padding-bottom: $spacing-bottom + $flynns-basic-spacing;
+
+    @include larger-grids {
+      border-radius: $flynns-flag-spacing;
+      padding: $flynns-basic-spacing * 2;
+      padding-bottom: $spacing-bottom-larger + $flynns-basic-spacing;
+    }
+  }
+
+  .arcade__marquee {
+    margin-bottom: -$spacing-bottom;
+
+    @include larger-grids {
+      margin-bottom: -$spacing-bottom-larger;
+    }
+  }
+
+  .arcade__decals {
+    position: absolute;
+    left: 0;
+    bottom: -$spacing-bottom;
+    height: auto;
+
+    @include larger-grids {
+      bottom: -$spacing-bottom-larger;
+    }
+
+    .specialshow & {
+      margin-bottom: -$flynns-special-spacing;
+    }
+  }
+
+  .arcade__favorite {
+    @include order(1);
+    padding-left: $flynns-basic-spacing;
+  }
+
+  .arcade__status {
+    position: relative;
+    left: -($flynns-basic-spacing + $flynns-flag-spacing);
+
+    @include larger-grids {
+      position: absolute;
+      bottom: 0;
+      left: -(($flynns-basic-spacing * 2) + $flynns-flag-spacing);
+    }
+
+    .specialshow & {
+      margin-left: -$flynns-special-spacing;
+    }
+
+    // See _arcades.scss
+    @extend %arcade-flag;
+  }
+
+  .arcade__rating {
+    padding-left: $flynns-basic-spacing;
+    padding-bottom: ($flynns-basic-spacing / 2);
+
+    @include larger-grids {
+      padding-bottom: 0;
+    }
+  }
+
+  .arcade__headline {
+    color: $flynns-medium-gray;
+  }
+
+  .arcade__special {
+    display: none;
+  }
+
+  .arcade__line--alpha,
+  .arcade__line--gamma {
+    padding-left: 0;
+    padding-right: 0;
+
+    .specialshow & {
+      width: auto;
+      left: -$flynns-special-spacing;
+      right: -$flynns-special-spacing;
+      position: relative;
+    }
+  }
+
+  .arcade__line--beta {
+    @include flex-direction(column-reverse);
+    @include justify-content(flex-end);
+    @include align-items(flex-start);
+    margin-bottom: $flynns-basic-spacing;
+    padding-left: 0;
+
+    @include larger-grids {
+      @include align-items(flex-end);
+      @include justify-content(flex-start);
+    }
+
+    .specialshow & {
+      margin-bottom: $flynns-basic-spacing + $flynns-special-spacing;
+    }
+
+    .arcade__details {
+      display: none;
+    }
+  }
+
+  .arcade__line--gamma {
+    @include order(-1);
+  }
+
+  .arcade__line--delta {
+    display: none;
+  }
+}

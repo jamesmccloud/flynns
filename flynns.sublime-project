@@ -1,0 +1,17 @@
+{
+  "folders":
+  [
+    {
+      "folder_exclude_patterns": [
+        ".git",
+        "bower_components",
+        "node_modules"
+      ],
+      "follow_symlinks": true,
+      "path": "."
+    },
+    {
+      "path": "bower_components"
+    }
+  ]
+}

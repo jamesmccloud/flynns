@@ -1,0 +1,138 @@
+//
+// Copyright (c) 2015 Accretive Technology Group, Inc.
+//
+// @author Daryl Roberts
+//
+
+//
+// Do not use the "position" property on me.
+// See .flynns
+//
+
+@mixin basic-grid {
+  @include clearfix;
+  margin: 0 (-$flynns-cell-padding);
+  padding: 0;
+  list-style: none;
+
+  & > li {
+    float: left;
+    padding-left: $flynns-cell-padding;
+    padding-right: $flynns-cell-padding;
+    margin-bottom: ($flynns-cell-padding * 4);
+    width: percentage((1 / 2));
+  }
+}
+
+.the-grid {
+  @include basic-grid;
+
+  & > li {
+
+    @media (min-width: $screen-xs-min) {
+      width: percentage((1 / 3));
+    }
+
+    @media (min-width: $screen-md-min) {
+      width: percentage((1 / 4));
+    }
+
+    // Calculate the multiplier for the space used up by the gutters.
+    $multiplier: 100% / (100 - ($flynns-gutter-value * 2));
+
+    $offset: 0;
+
+    @if $flynns-external-offset {
+
+      // Shrink everything a bit more if we're using the catbus too.
+      $offset: $flynns-external-nav-offset;
+    }
+
+    // Loop through the sizes.
+    @each $size in
+      $flynns-thumbnail-small,
+      $flynns-thumbnail-medium,
+      $flynns-thumbnail-large {
+
+      $size_name: small;
+
+      @if $size == $flynns-thumbnail-medium {
+        $size_name: medium;
+      } @else if $size == $flynns-thumbnail-large {
+        $size_name: large;
+      }
+
+      .grid--#{$size_name} & {
+
+        // Start with 5 columns, and go up from there.
+        $cols: 5;
+        @while $cols < 15 {
+
+          $width: floor((($size * $cols) + $offset) * $multiplier);
+
+          // We need to store the "start" of the grid change for the other sizes.
+          @if $size <= $screen-md-min {
+            $screen-md-min: $width;
+          }
+
+          // We have some variables that we need for the `larger-grids`
+          // mixin.
+
+          @if $cols == 5 {
+            @if $size_name == small {
+              $flynns-small-grid-start: $width;
+            } @else if $size_name == medium {
+              $flynns-medium-grid-start: $width;
+            }
+          }
+
+
+
+          // It's not going to "waste" CSS, but I don't think we need
+          // much after the width of the apple 27" monitors.
+          @if $width < 2560 {
+
+            @media (min-width: $width) {
+              width: percentage((1 / $cols));
+            }
+          }
+
+          $cols: $cols + 1;
+        } // @while
+
+      }
+    } // @each
+
+  }
+} // .the-grid
+
+.mini-grid {
+  @include basic-grid;
+}
+
+
+// In the mobile first world, I want a few things to apply to
+// mobile / small grids first, then only apply to the larger grid
+// sizes when appropriate
+//
+// Defaults to both "larger" (than small) grids, but you can
+// exclude if you need to.
+@mixin larger-grids($medium: true, $large: true) {
+
+  @if $medium {
+    .grid--medium &,
+    .grid--large & {
+      @media (min-width: $flynns-small-grid-start) {
+        @content;
+      }
+    }
+  }
+
+  @if $large {
+     .grid--large & {
+      @media (min-width: $flynns-medium-grid-start) {
+        @content;
+      }
+    }
+  }
+}

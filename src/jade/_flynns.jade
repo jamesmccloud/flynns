@@ -1,0 +1,40 @@
+//- The parent container / controller of the grid.
+section.flynns.grid--small(js-flynns)
+
+  .flynns__banner
+    .first &nbsp;
+
+    .flynns__controls(js-flynns-grid-control)
+      li: h4 thumbnail size
+      li: label.flynns__control.control--small
+        input(type="radio" value="small" name="flynns-control")
+      li: label.flynns__control.control--medium
+        input(type="radio" value="medium" name="flynns-control")
+      li: label.flynns__control.control--large
+        input(type="radio" value="large" name="flynns-control")
+
+
+        //- label.btn.btn-default(for="small")
+        //-   input(type="radio" value="small")
+        //-   | Small
+        //- label.btn.btn-default(for="medium")
+        //-   input(type="radio" value="medium")
+        //-   | Medium
+        //- label.btn.btn-default(for="large")
+        //-   input(type="radio" value="large")
+        //-   | Large
+
+
+
+  //- The Grid.
+  ul.the-grid
+
+    each arcade, i in realfakedata
+
+      - arcade.StatusKey = i === 0 ? 'specialshow' : arcade.StatusKey
+      - arcade.FavoriteClass = arcade.Favorite ? 'favorite' : ''
+      - arcade.HDClass = arcade.HD ? 'is-hd' : ''
+      - arcade.PhoneClass = arcade.Phone ? 'has-phone' : ''
+
+      //- A generic arcade.  Just add style.
+      li: include _arcade

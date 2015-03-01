@@ -1,0 +1,215 @@
+//
+// Copyright (c) 2015 Accretive Technology Group, Inc.
+//
+// @author Daryl Roberts
+//
+
+// @extends are still messed up for advanced usage so here we go.
+@mixin arcade-generic {
+  $delta-height: 12px;
+
+  // the descriptor is on the cabinet class
+  &.arcade__cabinet {
+    margin-bottom: $delta-height;
+  }
+
+  .arcade__poster {
+
+    &::after {
+      background: none;
+    }
+  }
+
+  .arcade__decals {
+    border-bottom: 0;
+  }
+
+  .arcade__name {
+    text-shadow: 0.5px 0.5px 1px black;
+    color: white;
+  }
+
+  .arcade__details {
+    .country, .year {
+      color: white;
+    }
+  }
+
+  .arcade__status {
+    @include flex(none);
+    height: auto;
+    padding-left: $flynns-basic-spacing;
+    padding-right: $flynns-basic-spacing;
+    font-size: 8px;
+    text-align: left;
+
+    .specialshow & {
+      padding-left: $flynns-basic-spacing + $flynns-special-spacing;
+    }
+  }
+
+  .arcade__favorite {
+    font-size: 16px;
+
+    @include larger-grids {
+      font-size: 18px;
+    }
+  }
+
+  .arcade__headline {
+    // @include transform(translateZ(0));
+    @include transition(height .15s);
+    will-change: height;
+    height: 0;
+    color: white;
+
+    .arcade:hover & {
+      height: $flynns-gamma-height;
+    }
+
+  }
+
+  .arcade__line--alpha {
+    background: rgba(black, 0.5);
+
+    .high-def, .phone {
+      display: none;
+    }
+
+    .spacer {
+      color: $flynns-medium-gray;
+    }
+
+    .arcade__details {
+      color: white;
+    }
+  }
+
+  .arcade__line--delta {
+    @include display(flex);
+    @include align-items(flex-end);
+    @include justify-content(space-between);
+    position: absolute;
+    top: 100%;
+    width: 100%;
+
+    &, .arcade__status, .arcade__details {
+      height: $delta-height;
+      line-height: $delta-height;
+    }
+
+    @if $flynns-show-dropshadow {
+      box-shadow: $flynns-arcade-dropshadow;
+    }
+
+    .goldshow & {
+      background: $flynns-goldshow-color;
+
+      &, .high-def, .phone {
+        color: $flynns-goldshow-text-color;
+      }
+    }
+
+    .partychat & {
+      background: $flynns-partychat-color;
+
+      &, .high-def, .phone {
+        color: $flynns-partychat-text-color;
+      }
+    }
+
+    .online & {
+      background: $flynns-online-color;
+
+      &, .high-def, .phone {
+        color: $flynns-online-text-color;
+      }
+    }
+
+    .offline & {
+      background: $flynns-offline-color;
+
+      &, .high-def, .phone {
+        color: $flynns-offline-text-color;
+      }
+    }
+
+    .specialshow & {
+      width: auto;
+      left: -$flynns-special-spacing;
+      right: -$flynns-special-spacing;
+      margin-top: $flynns-special-spacing;
+
+      background: $flynns-special-color;
+
+      &, .high-def, .phone {
+        color: $flynns-special-text-color;
+      }
+    }
+
+    .arcade__favorite,
+    .arcade__rating,
+    .country, .spacer, .year {
+      display: none;
+    }
+
+    .arcade__details {
+      font-size: 8px;
+      padding: 0 $flynns-basic-spacing;
+
+      .specialshow & {
+        padding-right: $flynns-basic-spacing + $flynns-special-spacing;
+      }
+    }
+  }
+}
+
+.arcade--asteroids {
+
+  @include arcade-generic;
+
+  $delta-height: 12px;
+  $delta-height-hover: 20px;
+
+  &.arcade__cabinet {
+    margin-bottom: $delta-height-hover;
+  }
+
+  .arcade__line--beta {
+    @include flex-direction(column);
+    @include align-items(flex-start);
+
+    .arcade__details,
+    .arcade__status {
+      display: none;
+    }
+  }
+
+  .arcade__line--gamma {
+    @include order(-1);
+    background: rgba(black, 0.5);
+  }
+
+  .arcade__line--delta {
+    &, .arcade__status, .arcade__details {
+      @include transition-property(height, line-height);
+      @include transition-duration(.15s);
+      height: $delta-height;
+      line-height: $delta-height;
+
+      .arcade:hover & {
+        height: $delta-height-hover;
+        line-height: $delta-height-hover;
+      }
+    }
+  }
+
+  .disconnected & {
+    .arcade__line--alpha,
+    .arcade__line--beta,
+    .arcade__line--gamma {
+      display: none;
+    }
+  }
+
+}

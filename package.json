@@ -1,0 +1,22 @@
+{
+  "name": "flynns",
+  "version": "2.0.0",
+  "description": "flynns",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./watch.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/accretive/flynns.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/accretive/flynns/issues"
+  },
+  "homepage": "https://github.com/accretive/flynns"
+}

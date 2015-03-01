@@ -1,0 +1,45 @@
+//
+// Copyright (c) 2015 Accretive Technology Group, Inc.
+//
+// @author Daryl Roberts
+//
+
+$flynns-import-bower: true !default;
+$flynns-import-bootstrap: true !default;
+$flynns-use-ranks: true !default;
+
+// Bourbon & Neat
+@if $flynns-import-bower {
+  @import "bower_components/bourbon/dist/bourbon";
+}
+
+// Necessary Bootstrpa Variables
+@if $flynns-import-bootstrap {
+  $grid-columns: 12 !default;
+  $grid-gutter-width: 30px !default;
+
+  $screen-sm-min: 768px !default;
+  $screen-md-min: 992px !default;
+  $screen-lg-min: 1200px !default;
+
+  $screen-xs-max: ($screen-sm-min - 1) !default;
+  $screen-sm-max: ($screen-md-min - 1) !default;
+  $screen-md-max: ($screen-lg-min - 1) !default;
+
+  @import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins/grid-framework";
+  @import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins/grid";
+}
+
+// Flynns
+@import "mixins";
+@import "variables";
+@import "flynns";
+
+// The Ranks system is kind of separate, so you can choose not to use it.
+@if $flynns-use-ranks {
+  $fa-var-star: "\f005";
+  $fa-var-star-o: "\f006";
+  $fa-var-star-half-o: "\f123";
+
+  @import "../ranks";
+}

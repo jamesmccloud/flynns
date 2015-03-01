@@ -1,113 +1,85 @@
-angular.module 'flynns', []
+requirejs.config
+  shim:
+    'bootstrap': {'deps': ['jquery']}
+    'jquery.cookie': {'deps': ['jquery'], 'exports': 'jQuery.cookie'}
 
-.factory 'kimono', ($http) ->
-  apikey = 'apikey=3c4b8cd526ff926daf398b6213a1a256'
-  url = 'https://www.kimonolabs.com/api/266j8z8q'
-  callback = 'callback=JSON_CALLBACK'
-  return {
-    getData: ->
-      $http.jsonp "#{url}?#{apikey}&#{callback}"
-  }
+  paths:
+    'flynns'        : 'src/coffee/flynns'
+    'catbus'        : 'bower_components/catbus/public/javascript/catbus'
+    'jquery'        : 'bower_components/jquery/dist/jquery'
+    'jquery.cookie' : 'bower_components/jquery.cookie/src/jquery.cookie',
+    'bootstrap'     : 'bower_components/bootstrap-sass/assets/javascripts/bootstrap'
 
-.controller 'the-grid', (kimono, $scope) ->
-  kimono.getData().success (data) ->
-    $scope.programs = data.results.collection1
+requirejs [
+  'jquery',
+  'bootstrap',
+  'catbus',
+  'flynns'
+], ($, bootstrap, catbus, flynns) ->
 
-  $scope.base = +$('.grid--admin').css('z-index');
+  $(document).ready ->
 
+    $flynns = $('[js-flynns]')
+    $cabinets = $flynns.find('[js-arcade-cabinets]')
+    $programControls = $('[js-program-controls]')
 
-  $scope.option = (idx) ->
-    num = Math.ceil (idx + 1) / $scope.base
-    num -= 6 while num > 6
-
-    type = switch num
-      when 1 then 'asteroids'
-      when 2 then 'battlezone'
-      when 3 then 'centipede'
-      when 4 then 'defender'
-      when 5 then 'excitebike'
-      when 6 then 'frogger'
-
-    "arcade--#{type}"
-  # $scope.option = $('.grid--admin').css('content').replace(/\"/g,'')
-
-  $scope.status = (text) ->
-    # 'goldshow'
-
-    switch text
-      when 'Gold Show' then 'goldshow'
-      when 'Party Chat' then 'partychat'
-      when 'Live Now' then 'online'
-      when 'Offline' then 'offline'
-
-    # { \
-    #         'goldshow': program.status.text == 'Gold Show', \
-    #         'partychat': program.status.text == 'Party Chat', \
-    #         'online': program.status.text == 'Live Now', \
-    #         'offline': program.status.text == 'Offline', \
-    #         'specialshow': $index === 1 \
-    #       }
-
-.controller 'eachThumb', ($scope, $rootScope, $timeout) ->
-  $scope.isopen = false
-
-  $rootScope.$on 'toggle', (evt, idx, rowCompare) ->
-    if idx is $scope.$index
-      $scope.isopen = !$scope.isopen
-    else
-      if rowCompare isnt 0
-        $scope.isopen = false
-      else
-        $timeout ()->
-          $scope.isopen = false
-          return
-        , 500
+    program = 'asteroids'
+    programSearch = 'arcade--'
+    programInitalized = false
 
 
-.controller 'inlineClicker', ($scope, inlineService) ->
-  $scope.fire = (idx) ->
-    console.log 'fire'
-    inlineService.toggle(idx)
-    return
-  return
+    findInClass = (classList, search) ->
+      out = ''
 
-.factory 'inlineService', ($rootScope) ->
+      for c in classList
+        if -1 isnt c.indexOf programSearch
+          out = c.replace programSearch, ''
+          break
 
-  rowOld = null
-  rowNew = null
+      return out
 
-  index = null
-  gridAdmin = null
 
-  self =
-    toggle: (idx)->
-      perRow = gridAdmin.css('z-index')
+    getProgram = ->
+      newProgram = findInClass $cabinets.get(0).classList, programSearch
+      console.log "Current program: #{newProgram}"
 
-      if index is idx
-        index = null
-      else
-        index = idx
-        rowNew = Math.floor(idx / perRow)
+      return newProgram
 
-      rowCompare = 0
-      if rowOld isnt null and rowNew isnt null
-        if rowOld < rowNew
-          rowCompare = 1
-        if rowOld > rowNew
-          rowCompare = -1
+    activateProgram = (e) ->
+      newProgram = e.target.value
+      console.log "Activating new program: #{newProgram}"
 
-      rowOld = rowNew
+      if newProgram isnt program
+        $cabinets.removeClass "#{programSearch}#{program}"
+        $cabinets.addClass "#{programSearch}#{newProgram}"
+        program = newProgram
 
-      $rootScope.$emit 'toggle', idx, rowCompare
+      unless programInitalized
+        programInitalized = true
+        $('#' + newProgram).click()
 
-    getIndex: ()->
-      return index
 
-    setGridAdmin: (elem)->
-      gridAdmin = elem
+    toggleTheThing = (newThing, oldThing, prefix, $target) ->
 
-  return self
+      stripped = prefix.replace '--', ''
+      console.log "toggling new #{stripped}: #{newThing}"
 
-.directive 'gridAdmin', (inlineService) ->
-  link: (scope, elem) ->
-    inlineService.setGridAdmin elem
+      if newThing isnt oldThing
+        $target.removeClass "#{prefix}#{oldThing}"
+        $target.addClass "#{prefix}#{newThing}"
+
+      return newThing
+
+    init = ->
+      console.log "Flynns online"
+
+      program = getProgram()
+
+      activateProgram {target: value: program}
+      # activateGrid {target: value: grid}
+
+      $programControls.on 'change', (e) ->
+        newValue = e.target.value
+        program = toggleTheThing(newValue, program, programSearch, $cabinets)
+
+    init()

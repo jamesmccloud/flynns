@@ -1,5 +1,5 @@
 //- The outer shell of the arcade, wrapping everything up into a nice box.
-.arcade__cabinet
+.arcade__cabinet.arcade--frogger(js-cabinets)
 
   //- Another div, inside the cabinet.  This one is locked to specific
   //- aspect ratio.  The 4 divs inside this one, take up the same space, and
@@ -8,15 +8,16 @@
 
     //- Static picture of the arcade.
     .arcade__static
-      img(ng-src="{{program.image.src}}")
+      - var src = earthporn[program.index].images.src;
+      img(src="#{src}")
 
-    //- The container that will hold the rollover previews.
+    //- The container that will hold the video previews.
     .arcade__screen
 
     //- The marquee is the primary container holding all the information
     //- about the arcade.  This is also the link to the next page, or the
     //- angular click handler.
-    a.arcade__marquee(ng-controller="inlineClicker" ng-click="fire($index)")
+    a.arcade__marquee
 
       //- Another div, just for funsies, Good for allowing a group of content
       //- To move together.
@@ -26,42 +27,30 @@
         .arcade__line--alpha
 
           //- Name
-          .arcade__name
-            h3.text {{program.image.alt}}
+          h3.arcade__name #{program.Nickname}
 
           //- HD, Phone, Country, Age
           include _arcade_details
 
         //- The second grouped info line.  Status modifiers.
-        .arcade__line--beta(ng-class="{ \
-          'goldshow': program.status.text == 'Gold Show', \
-          'partychat': program.status.text == 'Party Chat', \
-          'online': program.status.text == 'Live Now', \
-          'offline': program.status.text == 'Offline', \
-          'specialshow': $index === 1 }")
-
+        .arcade__line--beta
           include _arcade_line_shared
 
         //- Just the headline.
         .arcade__line--gamma
-          .arcade__headline: p {{program.headline}}
+          p.arcade__headline #{program.Headline}
 
       //- Another row of hearts, stars, horseshoes, clovers, and balloons...
       //- This row is outside the .info block, so it can go anywhere it
       //- needs to.
-      .arcade__line--delta(ng-class="{ \
-        'goldshow': program.status.text == 'Gold Show', \
-        'partychat': program.status.text == 'Party Chat', \
-        'online': program.status.text == 'Live Now', \
-        'offline': program.status.text == 'Offline', \
-        'specialshow': $index == 1 }")
-
+      .arcade__line--delta
         include _arcade_line_shared
 
-      .arcade__special(ng-if="$index == 1"): .text Special Show
+      if program.SpecialShow
+        .arcade__special Special Show
 
     //- This arcade is out of order.  Maybe you can fix it.
-    .arcade__out-of-order
+    //- .arcade__out-of-order
       .box
         h4.headline I'm Taking a Break Right now
         h5.headline Be Right Back

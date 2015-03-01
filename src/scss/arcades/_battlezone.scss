@@ -1,0 +1,59 @@
+//
+// Copyright (c) 2015 Accretive Technology Group, Inc.
+//
+// @author Daryl Roberts
+//
+
+.arcade--battlezone {
+
+  &.arcade__cabinet {
+    @if $flynns-show-dropshadow {
+      box-shadow: $flynns-arcade-dropshadow;
+    }
+  }
+
+  .arcade__decals {
+    @include linear-gradient(
+      to top,
+      rgba(0, 0, 0, 1.00) 0%,
+      rgba(0, 0, 0, 0.87) 5%,
+      rgba(0, 0, 0, 0.25) 25%,
+      rgba(0, 0, 0, 0.00) 100%
+    );
+    background-color: transparent;
+  }
+
+
+  .arcade__details {
+    .spacer {
+      color: #666666;
+    }
+  }
+
+  .arcade__rating {
+    display: none;
+  }
+
+  .arcade__status {
+    @extend %arcade-status;
+
+    .specialshow & {
+      display: none;
+    }
+  }
+
+  .arcade__line--beta {
+    line-height: 16px;
+    @include justify-content(space-between);
+    @include align-items(flex-end);
+
+    .arcade__details {
+      display: none;
+    }
+  }
+
+  .arcade__line--gamma,
+  .arcade__line--delta {
+    display: none;
+  }
+}

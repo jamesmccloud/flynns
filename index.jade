@@ -1,18 +1,31 @@
-//- The parent container / controller of the grid.
-section.flynns(ng-controller="the-grid")
+.navbar.navbar-inverse.navbar-static-top(js-navbar-standard)
+  .container-fluid
+    .pull-left
+      a.btn.navbar-btn.btn-default.catbus__button(js-catbus-button)
+        | Options
 
-  //- The Grid.
-  ul.the-grid
 
-    //- A generic arcade.  Just add style.
-    li.arcade(
-      ng-repeat="program in programs track by $index" ng-controller="eachThumb"
-      ng-class="{'arcade--open': isopen, 'is--special': $index === 1}"
-      class="{{option($index)}} {{status(program.status.text)}}"
-    )
+//- catbus
+.catbus(js-catbus).disable-anim
 
-      include _arcade_cabinet
+  //- content container.  this is what moves around to slide the categories
+  //- on and off the page.
+  .catbus__container
 
-      include _arcade_player
+    //- this is the off canvas menu
+    nav.catbus__nav(js-catbus-nav)
 
-  .grid--admin(grid-admin)
+      //- The button on the side of the cats.
+      button.catbus__button.btn.btn-default(js-catbus-button) Options
+
+      //- Catbus demo content
+      //- include bower_components/catbus/src/jade/_cats
+      include src/jade/_controls
+
+    //- the main content of the page.
+    section.catbus__section
+      include src/jade/_flynns
+
+    //- the catbus tail shows up as an overlay for smaller devices when the
+    //- catbus menu is visible. pulling the tail makes the cat run away.
+    img.catbus__tail(js-catbus-tail src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7")
