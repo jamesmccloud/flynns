@@ -1,18 +1,1 @@
-//- The parent container / controller of the grid.
-section.flynns(ng-controller="the-grid")
-
-  //- The Grid.
-  ul.the-grid
-
-    //- A generic arcade.  Just add style.
-    li.arcade(
-      ng-repeat="program in programs track by $index" ng-controller="eachThumb"
-      ng-class="{'arcade--open': isopen, 'is--special': $index === 1}"
-      class="{{option($index)}} {{status(program.status.text)}}"
-    )
-
-      include _arcade_cabinet
-
-      include _arcade_player
-
-  .grid--admin(grid-admin)
+include src/jade/_flynns

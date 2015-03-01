@@ -1,10 +1,10 @@
 //- Status
-.arcade__status: span.text {{program.status.text}}
+.arcade__status #{program.StatusKey}
 
 //- Favorite
 //- This ng-if is just to show scattered favorite icons across the
 //- preview.
-.arcade__favorite(ng-if="program.hd && program.country == 'US'")
+.arcade__favorite
   i.fa.fa-heart
 
 //- Stars

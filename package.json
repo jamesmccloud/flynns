@@ -1,0 +1,25 @@
+{
+  "name": "flynns",
+  "version": "1.0.0",
+  "description": "flynns",
+  "main": "index.js",
+  "dependencies": {
+    "harp": "^0.15.2",
+    "terraform": "git://github.com/sorahn/terraform#source-maps"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/.bin/harp server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sorahn/flynns.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sorahn/flynns/issues"
+  },
+  "homepage": "https://github.com/sorahn/flynns"
+}

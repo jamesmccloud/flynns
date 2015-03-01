@@ -1,88 +1,148 @@
 .arcade--asteroids {
   $spacing: 4px;
 
+
+  $delta-font-size: 8px;
+  $delta-line-height: 10px;
+  $delta-line-height-hover: ($delta-line-height * 2);
+
+
+
+
+  .arcade__cabinet {
+    padding-bottom: $delta-line-height-hover;
+  }
+
+  .arcade__display {
+    // Nothing here
+  }
+
+  .arcade__marquee {
+    background-image: none;
+
+    @if $flynns-show-dropshadow {
+      box-shadow: $flynns-arcade-dropshadow;
+    }
+  }
+
+  .arcade__info {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+  }
+
+  .arcade__name {
+    text-shadow: 0.5px 0.5px 1px #000000;
+    color: #ffffff;
+
+    .grid--small & {
+      font-size: 12px;
+    }
+  }
+
+  .arcade__rating {
+    font-size: 12px;
+    padding: 0 $spacing ($spacing / 2);
+    line-height: 1;
+  }
+
+  .arcade__favorite {
+    font-size: 1.4em;
+    line-height: 1;
+    padding-left: $spacing;
+  }
+
+  .arcade__details {
+
+    .country, .age {
+      color: #ffffff;
+    }
+
+    .spacer {
+      color: #999999;
+    }
+
+    .grid--small & {
+      font-size: 12px;
+    }
+  }
+
+
+  .arcade__status {
+    @include transition(line-height .1s);
+    display: block;
+    float: left;
+    padding: 0;
+    line-height: $delta-line-height;
+    font-size: 8px;
+  }
+
+
+  .arcade__line--alpha {
+    background: rgba(#000000, 0.5);
+    padding: 0 $spacing;
+
+    .high-def, .phone {
+      display: none;
+    }
+  }
+
+  .arcade__line--beta {
+    position: absolute;
+    bottom: 100%;
+
+    .arcade__details,
+    .arcade__status {
+      display: none;
+    }
+  }
+
+
+  .arcade__line--delta {
+    @include clearfix;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    padding: 0 $spacing;
+    vertical-align: middle;
+
+    @if $flynns-show-dropshadow {
+      box-shadow: $flynns-arcade-dropshadow;
+    }
+  }
+
+  &.goldshow {
+    .arcade__line--delta {
+      background: $flynns-goldshow-bg;
+      color: $flynns-goldshow-color;
+    }
+  }
+
+
+  &.partychat {
+    .arcade__line--delta {
+      background: $flynns-partychat-bg;
+      color: $flynns-partychat-color;
+    }
+  }
+
+  &.online {
+    .arcade__line--delta {
+      background: $flynns-online-bg;
+      color: $flynns-online-color;
+    }
+  }
+
+  &.offline {
+    .arcade__line--delta {
+      background: $flynns-offline-bg;
+      color: $flynns-offline-color;
+    }
+  }
+
   .arcade {
 
-    &__cabinet {
-      margin-bottom: 20px;
-
-      @if $flynns-show-dropshadow {
-        box-shadow: $flynns-arcade-dropshadow;
-      }
-    }
-
-    &__display {
-      @include transition(margin .5s);
-      will-change: margin;
-    }
-
-    &__marquee {
-      background-image: none;
-    }
-
-    &__info {
-      width: 100%;
-      position: absolute;
-      bottom: 0;
-    }
-
-    &__name {
-      text-shadow: 0.5px 0.5px 1px #000000;
-      color: white;
-    }
-
-    &__rating {
-      font-size: 12px;
-      padding: 0 $spacing ($spacing / 2);
-      line-height: 1;
-    }
-
-    &__favorite {
-      font-size: 1.4em;
-      line-height: 1;
-      padding-left: $spacing;
-    }
-
-    &__details {
-
-      .country, .age {
-        color: #ffffff;
-      }
-
-      .spacer {
-        color: #999999;
-      }
-    }
-
-    &__status {
-      display: block;
-      float: left;
-      padding: 0;
-    }
-
     &__line {
-      &--alpha {
-        background: rgba(#000000, 0.5);
-        padding: 0 $spacing;
-
-        .high-def, .phone {
-          display: none;
-        }
-      }
-
-      &--beta {
-        @include clearfix;
-        will-change: bottom;
-        @include transform(translateZ(0));
-        position: absolute;
-        bottom: 100%;
-
-
-        .arcade__details,
-        .arcade__status {
-          display: none;
-        }
-      }
 
       &--gamma {
         background: rgba(#000000, 0.5);
@@ -96,18 +156,8 @@
 
       // .arcade__line--delta
       &--delta {
-        $delta-lh: 10px;
-        @include clearfix;
-        position: absolute;
-        top: 100%;
-        width: 100%;
-        padding: 0 $spacing;
         color: #000000;
-        vertical-align: middle;
 
-        @if $flynns-show-dropshadow {
-          box-shadow: $flynns-arcade-dropshadow;
-        }
 
         &.goldshow {
           background: $flynns-goldshow-bg;
@@ -130,8 +180,6 @@
         }
 
         &.specialshow {
-          background: $flynns-special-bg;
-          color: $flynns-special-color;
         }
 
         .high-def {
@@ -140,7 +188,7 @@
 
         .arcade__status {
           @include transition(line-height .1s);
-          line-height: $delta-lh;
+          line-height: $delta-line-height;
 
           .text {
             font-size: 8px;
@@ -154,7 +202,7 @@
           li {
             @include transition(line-height .1s);
             font-size: 8px;
-            line-height: $delta-lh;
+            line-height: $delta-line-height;
           }
         }
 
@@ -193,42 +241,6 @@
     }
   }
 
-  &.arcade--open {
-    .arcade__display {
-      margin-bottom: 40px;
-    }
-
-    .arcade__line--delta {
-      &::before {
-        @include flynns_arrow(84px, 21px, rgba(0, 0, 0, 0.75));
-      }
-
-      &::after {
-        @include flynns_arrow(80px, 20px, $flynns-link-color);
-      }
-
-      &.goldshow::after {
-        border-top-color: $flynns-goldshow-bg;
-      }
-
-      &.partychat::after {
-        border-top-color: $flynns-partychat-bg;
-      }
-
-      &.online::after {
-        border-top-color: $flynns-online-bg;
-      }
-
-      &.offline::after {
-        border-top-color: $flynns-offline-bg;
-      }
-
-      &.specialshow::after {
-        border-top-color: $flynns-special-bg;
-      }
-    }
-  }
-
   &.is--special {
     .arcade__marquee {
       border-bottom-width: 0;
@@ -238,6 +250,8 @@
       width: auto;
       left: -$flynns-special-spacing;
       right: -$flynns-special-spacing;
+      background: $flynns-special-bg;
+      color: $flynns-special-color;
     }
   }
 }

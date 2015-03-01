@@ -1,6 +1,6 @@
 // Bootstrap
-$icon-font-path: "bower_components/bootstrap/dist/fonts/";
-@import "bower_components/bootstrap-sass-official/assets/stylesheets/bootstrap";
+$icon-font-path: "bower_components/bootstrap-sass/fonts/bootstrap/";
+@import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
 
 html {
   font-size: 14px;
@@ -15,9 +15,9 @@ $include-page-gradient: false;
   width: 100%;
 }
 
-// Font-awesome
-$fa-font-path: "bower_components/font-awesome/fonts/";
-@import "bower_components/font-awesome/scss/font-awesome";
+// // Font-awesome
+// $fa-font-path: "bower_components/font-awesome/fonts/";
+// @import "bower_components/font-awesome/scss/font-awesome";
 
 // Debug on?
 $DEBUG: true;
@@ -46,9 +46,13 @@ $flynns-hide-headline: false;
 $flynns-show-dropshadow: true;
 $flynns-grid-spacing: large;
 
+$flynns-import-bootstrap: false;
+
 // Flynns base
 @import "src/build";
-@import "src/ranks";
+
+
+// @import "src/ranks";
 @import "src/junk";
 
 body {

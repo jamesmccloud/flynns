@@ -1,54 +1,16 @@
-// This is the basic structure of the arcade.
-/*--------------------------------------------------------------------------+
-|                                                                           |
-|   li.arcade                                                               |
-|                                                                           |
-| +-----------------------------------------------------------------------+ |
-| |                                                                       | |
-| |   .arcade__cabinet                                                    | |
-| |                                                                       | |
-| | +-----------------------------------------------------------+ +-----+ | |
-| | |                                                           | |     | | |
-| | |   .arcade__display                                        | |  .  | | |
-| | |                                                           | |  a  | | |
-| | | +-------------------------------------------------+       | |  r  | | |
-| | | |                                                 |       | |  c  | | |
-| | | |   .arcade__static                               |       | |  a  | | |
-| | | |                                                 |       | |  d  | | |
-| | | | +-----------------------------------------------+-+     | |  e  | | |
-| | | | |                                                 |     | |  _  | | |
-| | | +-+   .aracde__screen                               |     | |  _  | | |
-| | |   |                                                 |     | |  c  | | |
-| | |   | +-----------------------------------------------+-+   | |  o  | | |
-| | |   | |                                                 |   | |  n  | | |
-| | |   +-+   .arcade__marquee                              |   | |  t  | | |
-| | |     |                                                 |   | |  r  | | |
-| | |     | +-----------------------------------------------+-+ | |  o  | | |
-| | |     | |                                                 | | |  l  | | |
-| | |     +-+   .arcade__game-over                            | | |  s  | | |
-| | |       |                                                 | | |     | | |
-| | |       |                                                 | | |     | | |
-| | |       |                                                 | | |     | | |
-| | |       +-------------------------------------------------+ | |     | | |
-| | |                                                           | |     | | |
-| | +-----------------------------------------------------------+ +-----+ | |
-| |                                                                       | |
-| +-----------------------------------------------------------------------+ |
-|                                                                           |
-| +-----------------------------------------------------------------------+ |
-| |                                                                       | |
-| |  .arcade__player                                                      | |
-| |                                                                       | |
-| +-----------------------------------------------------------------------+ |
-|                                                                           |
-+--------------------------------------------------------------------------*/
+//
+// Do not use the "position" property on me.
+// - See _flynns
+//
+.arcade {
 
+}
+
+.arcade__cabinet {
+  position: relative;
+}
 
 .arcade {
-  //
-  // Do not use the "position" property on me.
-  // - See .flynns
-  //
 
   // Locked to a 4x3 ratio.
   &__display {
@@ -66,10 +28,6 @@
     &.display--wide::after {
       padding-top: 100% / (16 / 9);
     }
-  }
-
-  &__cabinet {
-    position: relative;
   }
 
   // @TODO
@@ -153,19 +111,14 @@
 
   // .arcade__name
   &__name {
-    .text {
-      @include ellipsis;
-
-      // Foundation panels mess with the headers in them, so we need this :(
-      margin: 0 !important;
-
-      color: inherit;
-      line-height: inherit;
-      font-size: inherit;
-      font-family: $flynns-font-family;
-      font-weight: 500;
-      letter-spacing: (25em / 1000);
-    }
+    @include ellipsis;
+    display: block;
+    margin: 0;
+    font-family: $flynns-font-family;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: (25em / 1000);
+    line-height: 20px;
   }
 
   // .arcade__details
@@ -221,15 +174,10 @@
     position: relative;
     padding: 0 1.5em;
     line-height: 1.4;
-
-    .text {
-      display: block;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: (25em / 1000);
-      font-weight: 500;
-      vertical-align: middle;
-    }
+    text-transform: uppercase;
+    letter-spacing: (25em / 1000);
+    font-weight: 500;
+    font-size: 10px;
   }
 
   // .arcade__special
@@ -401,12 +349,12 @@
 }
 
 @import "arcades/asteroids";
-@import "arcades/battlezone";
-@import "arcades/centipede";
-@import "arcades/defender";
-@import "arcades/excitebike";
-@import "arcades/frogger";
-@import "arcades/generic";
+// @import "arcades/battlezone";
+// @import "arcades/centipede";
+// @import "arcades/defender";
+// @import "arcades/excitebike";
+// @import "arcades/frogger";
+// @import "arcades/generic";
 
-@import "out-of-order";
-@import "player";
+// @import "out-of-order";
+// @import "player";

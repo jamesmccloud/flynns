@@ -1,8 +1,28 @@
-// Bourbon & Neat
-@import "bower_components/bourbon/dist/bourbon";
-@import "bower_components/neat/app/assets/stylesheets/neat";
+$flynns-import-bower: true !default;
+$flynns-import-bootstrap: true !default;
 
-@import "mixins";
+@if $flynns-import-bower {
+  // Bourbon & Neat
+  @import "bower_components/bourbon/dist/bourbon";
+}
+
+@if $flynns-import-bootstrap {
+  // Necessary Bootstrpa Variables
+  $grid-columns: 12 !default;
+  $grid-gutter-width: 30px !default;
+
+  $screen-sm-min: 768px !default;
+  $screen-md-min: 992px !default;
+  $screen-lg-min: 1200px !default;
+
+  $screen-xs-max: ($screen-sm-min - 1) !default;
+  $screen-sm-max: ($screen-md-min - 1) !default;
+  $screen-md-max: ($screen-lg-min - 1) !default;
+
+  @import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins/grid-framework";
+  @import "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins/grid";
+}
 
 // Flynns
+@import "mixins";
 @import "flynns";

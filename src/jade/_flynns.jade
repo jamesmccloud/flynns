@@ -1,0 +1,16 @@
+//- The parent container / controller of the grid.
+section.flynns.grid--small
+
+  //- The Grid.
+  ul.the-grid
+
+    each program, i in realfakedata
+      //- A generic arcade.  Just add style.
+      - var special = i === 0 ? "is--special" : "" ;
+
+      li: .arcade(class="#{special} #{program.StatusKey}").arcade--asteroids
+        include _arcade_cabinet
+
+
+
+  .grid--admin(grid-admin)
