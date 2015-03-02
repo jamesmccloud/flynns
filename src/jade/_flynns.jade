@@ -5,8 +5,9 @@ section.flynns.grid--small
   ul.the-grid
 
     each program, i in realfakedata
-      //- A generic arcade.  Just add style.
-      - var special = i === 0 ? "is--special" : "" ;
 
-      li: .arcade(class="#{special} #{program.StatusKey}")
+      - program.StatusKey = i === 0 ? 'specialshow' : program.StatusKey
+
+      //- A generic arcade.  Just add style.
+      li: .arcade(class="#{program.StatusKey}")
         include _arcade_cabinet

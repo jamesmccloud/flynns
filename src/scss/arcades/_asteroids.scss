@@ -20,6 +20,10 @@
     @if $flynns-show-dropshadow {
       box-shadow: $flynns-arcade-dropshadow;
     }
+
+    .specialshow & {
+      border-bottom-width: 0;
+    }
   }
 
   .arcade__info {
@@ -134,6 +138,16 @@
       color: $flynns-offline-color;
     }
 
+    .specialshow & {
+      // Compensate for the 3px border.
+      width: auto;
+      left: -$flynns-special-spacing;
+      right: -$flynns-special-spacing;
+
+      background: $flynns-special-bg;
+      color: $flynns-special-color;
+    }
+
     .arcade__details {
       float: right;
 
@@ -171,20 +185,6 @@
           line-height: $hover-lh;
         }
       }
-    }
-  }
-
-  .is--special & {
-    .arcade__marquee {
-      border-bottom-width: 0;
-    }
-
-    .arcade__line--delta {
-      width: auto;
-      left: -$flynns-special-spacing;
-      right: -$flynns-special-spacing;
-      background: $flynns-special-bg;
-      color: $flynns-special-color;
     }
   }
 }

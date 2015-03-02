@@ -93,7 +93,7 @@
     color: inherit;
   }
 
-  .is--special & {
+  .specialshow & {
     border-color: $flynns-special-bg;
     border-width: $flynns-special-spacing;
     border-style: solid;
@@ -148,6 +148,7 @@
   li {
     float: left;
     display: block;
+    vertical-align: middle;
 
     & + li {
       margin-left: 4px;
@@ -164,10 +165,15 @@
     display: inline-block;
     font-weight: 500;
     letter-spacing: (25em / 1000);
+    vertical-align: middle;
   }
 
   .phone {
     color: inherit;
+
+    .#{$flynns-icon-class} {
+      vertical-align: middle;
+    }
   }
 
   .country, .age {
@@ -177,6 +183,10 @@
 
   .spacer {
     font-size: .8em;
+
+    .#{$flynns-icon-class} {
+      vertical-align: middle;
+    }
   }
 }
 
@@ -276,7 +286,7 @@
 }
 
 @import "arcades/asteroids";
-// @import "arcades/battlezone";
+@import "arcades/battlezone";
 // @import "arcades/centipede";
 // @import "arcades/defender";
 // @import "arcades/excitebike";
