@@ -1,0 +1,73 @@
+// Borrowed from Compass
+$contrasted-dark-default: black;
+$contrasted-light-default: white;
+
+@function brightness($color) {
+  @if type-of($color) == color {
+    @return (red($color) * 0.299 + green($color) * 0.587 + blue($color) * 0.114) / 255 * 100%
+  } @else {
+    @return unquote("brightness(#{$color})")
+  }
+}
+
+
+@function contrast-color($color, $dark: $contrasted-dark-default, $light: $contrasted-light-default) {
+  @if $color == null {
+    @return null
+  } @else {
+    $color-brightness: brightness($color);
+    $dark-text-brightness: brightness($dark);
+    $light-text-brightness: brightness($light);
+
+    @return if(abs($color-brightness - $light-text-brightness) >
+      abs($color-brightness - $dark-text-brightness), $light, $dark);
+  }
+}
+
+@mixin flynns_arrow($width, $height, $color) {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  @include triangle($width $height, $color, down);
+  margin-left: -($width / 2);
+}
+
+// There are always exceptions to the rules. For some of the designs we have
+// content in a white box. This mixin checks the background;
+// If:
+//    A: the background is white.
+//    B: there is no gradient.
+//    C: the grid spacing is not "none"
+// Then:
+//    No padding.
+//
+@mixin flynns_background_check() {
+  @if rgba($body-bg, 1) == rgba(white, 1) {
+    @if $include-page-gradient == false {
+      @if $flynns-grid-spacing != none {
+        @content;
+      }
+    }
+  }
+}
+
+
+@mixin grids($medium: true, $large: true) {
+
+  @if $medium {
+    .grid--medium & {
+      @media (min-width: $flynns-medium-grid-start) {
+        @content;
+      }
+    }
+  }
+
+  @if $large {
+    .grid--large & {
+      @media (min-width: $flynns-large-grid-start) {
+        @content;
+      }
+    }
+  }
+}

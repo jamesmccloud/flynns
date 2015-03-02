@@ -1,0 +1,91 @@
+
+
+
+$flynns-gutter-value: 4% !default;
+$flynns-cell-padding: .2rem !default;
+$flynns-external-nav-offset: 264px !default;
+
+$flynns-medium-grid-start: $screen-md-min;
+$flynns-large-grid-start: $screen-lg-min;
+
+
+// Old?
+// @TODO CHANGES
+// D: align spacers
+// D: move special show to flag
+// F: copy gradient from C
+// All: shrink status flags over picture (line height 1)
+
+// Screen Sizes
+// These were stolen from bootstrap.
+// Redefined here so they can be overridden as necessary.
+// Added XL and 2X.
+$screen-xs: 480px !default;
+$screen-sm: 768px !default;
+$screen-md: 992px !default;
+$screen-lg: 1200px !default;
+$screen-xl: 1550px !default;
+$screen-2x: 1900px !default;
+
+
+// Some of the arcades will check for a variable called $page-gradient.
+// The default here is to make sure that `@if` doesn't fail for a variable
+// not existing.
+$include-page-gradient: true !default;
+
+// Gutter Options: none, small, medium, large
+
+
+// Option for choosing the thumbnail display.
+// * asteroids
+// * battlezone
+// * centipede
+// * defender
+// * excitebike
+// * frogger
+$flynns-arcade: asteroids !default;
+
+// What font for the names
+$flynns-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+
+// What color are the links (if other than white)?
+$flynns-link-color: #09f !default;
+
+// Status colors
+$flynns-offline-bg: #222 !default;
+$flynns-offline-color: white !default;
+
+$flynns-online-bg: #3C0 !default;
+$flynns-online-color: black !default;
+
+$flynns-partychat-bg: #3C0 !default;
+$flynns-partychat-color: black !default;
+
+$flynns-goldshow-bg: gold !default;
+$flynns-goldshow-color: black !default;
+
+$flynns-special-bg: #09F !default;
+$flynns-special-color: contrast-color($flynns-special-bg) !default;
+$flynns-special-spacing: 3px;
+
+// Thumbnail size.
+// Options: medium, large
+$flynns-thumbnail-size: medium !default;
+
+$flynns-thumbnail-small: 160px !default;
+$flynns-thumbnail-medium: 200px !default;
+$flynns-thumbnail-large: 240px !default;
+
+// Should the images hover?
+$flynns-image-hover: true !default;
+
+// Show the headlines?
+$flynns-hide-headline: false !default;
+
+// Show the drop shadow?
+$flynns-show-dropshadow: true !default;
+$flynns-arcade-dropshadow: 0 1px 1px rgba(0, 0, 0, 0.75) !default;
+
+// Grid Gutter size.
+// Options: small, medium, large, none (anything else)
+$flynns-grid-spacing: small !default;

@@ -1,7 +1,6 @@
 .arcade--asteroids {
   $spacing: 4px;
 
-
   $delta-font-size: 8px;
   $delta-line-height: 10px;
   $delta-line-height-hover: ($delta-line-height * 2);
@@ -32,10 +31,6 @@
   .arcade__name {
     text-shadow: 0.5px 0.5px 1px #000000;
     color: #ffffff;
-
-    .grid--small & {
-      font-size: 12px;
-    }
   }
 
   .arcade__rating {
@@ -45,12 +40,12 @@
   }
 
   .arcade__favorite {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 1;
     padding-left: $spacing;
 
-    .grid--small & {
-      font-size: 18px;
+    @include grids {
+      font-size: 20px;
     }
   }
 
@@ -65,7 +60,6 @@
     }
   }
 
-
   .arcade__status {
     @include transition(line-height .1s);
     display: block;
@@ -73,10 +67,8 @@
     padding: 0;
     line-height: $delta-line-height;
     font-size: 8px;
-  }
 
-  .arcade__headline {
-    .grid--small & {
+    @include grids {
       font-size: 9px;
     }
   }
@@ -87,12 +79,6 @@
 
     .high-def, .phone {
       display: none;
-    }
-
-    .arcade__details {
-      .grid--small & {
-        font-size: 12px;
-      }
     }
   }
 
@@ -146,10 +132,6 @@
     .offline & {
       background: $flynns-offline-bg;
       color: $flynns-offline-color;
-    }
-
-    .high-def {
-      font-weight: 600;
     }
 
     .arcade__details {
