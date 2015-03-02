@@ -98,6 +98,10 @@
     border-width: $flynns-special-spacing;
     border-style: solid;
   }
+
+  .text, .icon {
+    vertical-align: text-bottom;
+  }
 }
 
 .arcade__line--alpha {
@@ -125,7 +129,6 @@
 }
 
 .arcade__name {
-  @include ellipsis;
   display: block;
   margin: 0;
   font-family: $flynns-font-family;
@@ -142,6 +145,11 @@
     line-height: $flynns-alpha-height-normal;
     font-size: $flynns-alpha-font-size-normal;
   }
+
+  .text {
+    @include ellipsis;
+  }
+
 }
 
 .arcade__details {
@@ -176,10 +184,6 @@
 
   .phone {
     color: inherit;
-
-    .#{$flynns-icon-class} {
-      vertical-align: middle;
-    }
   }
 
   .country, .age {
@@ -189,10 +193,6 @@
 
   .spacer {
     font-size: .8em;
-
-    .#{$flynns-icon-class} {
-      vertical-align: middle;
-    }
   }
 }
 

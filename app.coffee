@@ -13,15 +13,47 @@ requirejs ['jquery', 'bootstrap', 'catbus'], ($) ->
   $(document).ready ->
 
     $flynns = $('[js-flynns]')
-    $cabinets = $flynns.find '[js-cabinets]'
+    $controls = $('[js-controls]')
+    $cabinets = $flynns.find('[js-cabinets]')
+
+    config = 'asteroids'
     searchString = 'arcade--'
+    initalized = false
 
-    first = $cabinets.get 0
-    classList = first.classList
+    getConfig = ->
+      first = $cabinets.get 0
+      classList = first.classList
 
-    for c in classList
-      if -1 isnt c.indexOf searchString
-        config = c.replace searchString, ''
-        break
+      for c in classList
+        if -1 isnt c.indexOf searchString
+          newConfig = c.replace searchString, ''
+          break
 
-    # debugger
+      console.log "Current program: #{newConfig}"
+
+      return newConfig
+
+    activateProgram = (e) ->
+      newProgram = e.target.value
+      console.log "Activating new program: #{newProgram}"
+
+      if newProgram isnt config
+        $cabinets.removeClass "#{searchString}#{config}"
+        $cabinets.addClass "#{searchString}#{newProgram}"
+        config = newProgram
+
+      unless initalized
+        initalized = true
+        $('#' + newProgram).click()
+
+
+    init = ->
+      console.log "Flynns online"
+
+      config = getConfig()
+
+      activateProgram {target: value: config}
+
+      $controls.on 'change', activateProgram
+
+    init()
