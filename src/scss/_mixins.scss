@@ -53,7 +53,7 @@ $contrasted-light-default: white;
 }
 
 
-@mixin grids($medium: true, $large: true) {
+@mixin larger-grids($medium: true, $large: true) {
 
   @if $medium {
     .grid--medium & {

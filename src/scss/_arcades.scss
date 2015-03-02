@@ -111,8 +111,15 @@
     @include flex(none);
 
     li {
-      line-height: 20px;
-      height: 20px;
+      height: $flynns-alpha-height-small;
+      line-height: $flynns-alpha-height-small;
+      font-size: $flynns-alpha-font-size-small;
+
+      @include larger-grids {
+        height: $flynns-alpha-height-normal;
+        line-height: $flynns-alpha-height-normal;
+        font-size: $flynns-alpha-font-size-normal;
+      }
     }
   }
 }
@@ -123,13 +130,17 @@
   margin: 0;
   font-family: $flynns-font-family;
   font-weight: 500;
-  font-size: 12px;
   letter-spacing: (25em / 1000);
-  line-height: 20px;
-  height: 20px;
 
-  @include grids {
-    font-size: 14px;
+  height: $flynns-alpha-height-small;
+  line-height: $flynns-alpha-height-small;
+  font-size: $flynns-alpha-font-size-small;
+
+
+  @include larger-grids {
+    height: $flynns-alpha-height-normal;
+    line-height: $flynns-alpha-height-normal;
+    font-size: $flynns-alpha-font-size-normal;
   }
 }
 
@@ -139,11 +150,6 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  font-size: 12px;
-
-  @include grids {
-    font-size: 14px;
-  }
 
   li {
     float: left;
@@ -204,7 +210,7 @@
   line-height: 12px;
   overflow: hidden;
 
-  @include grids {
+  @include larger-grids {
     font-size: 10px;
   }
 }
@@ -287,7 +293,7 @@
 
 @import "arcades/asteroids";
 @import "arcades/battlezone";
-// @import "arcades/centipede";
+@import "arcades/centipede";
 // @import "arcades/defender";
 // @import "arcades/excitebike";
 // @import "arcades/frogger";
