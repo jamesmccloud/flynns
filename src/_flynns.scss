@@ -81,78 +81,6 @@ $flynns-arcade-dropshadow: 0 1px 1px rgba(0, 0, 0, 0.75) !default;
 // Options: small, medium, large, none (anything else)
 $flynns-grid-spacing: small !default;
 
-// This takes in the number of total columns you want in per row.
-@mixin flynns_pixel($columns, $spacing: false) {
-  // Fine tuning the values.
-  //
-  // These values are used to create the total number of columns for the
-  // block grids to span.  Too keep the gutters consistent as the page gets
-  // smaller, I'm also multiplying this number by the number of columns.
-  //
-  // Small takes 5 columns, and multiplies it by 12 totaling 60. The gutters
-  // are calculated in the neat framework using a golden ratio calculator.
-  //
-  // So the gap for "small" would assume that there are 60 total columns on
-  // the page, but each block is as wide as 12 blocks, so there are still
-  // only 5 columns.
-  $flynns-grid-none: 1000;
-  $flynns-grid-small: 12 !default;
-  $flynns-grid-medium: 4 !default;
-  $flynns-grid-large: 2 !default;
-
-  // Default to no gutter, upgrade if necessary.
-  $grid-value: $flynns-grid-none;
-
-  // Defaults to false to use the value from the config.
-  @if $spacing == false {
-    $spacing: $flynns-grid-spacing;
-  }
-
-  // Again with the needing a switch statement.
-  @if $spacing == small {
-    $grid-value: $flynns-grid-small;
-  } @else if $spacing == medium {
-    $grid-value: $flynns-grid-medium;
-  } @else if $spacing == large {
-    $grid-value: $flynns-grid-large;
-  }
-
-  // See above for why $total.
-  $total: $columns * $grid-value;
-
-  // Set the max-width for the whole container to 320*$cols just in case.
-  // max-width: 320px * $columns;
-
-  // Automatic Rows
-  // http://neat.bourbon.io/examples/
-  & > .arcade {
-    @include span-columns(($total / $columns) of $total);
-    &:nth-of-type(#{$columns}n) {
-      margin-right: 0;
-    }
-
-    // Flex gutter is a neat mixin that calculates the golden-ratio
-    // 'per column' for the total number of columns.
-    @if $flynns-grid-spacing == none {
-      margin-bottom: flex-gutter($flynns-grid-small * $columns);
-    } @else {
-      margin-bottom: flex-gutter($total);
-    }
-
-    &:nth-of-type(#{$columns}n + 1) {
-      clear: both;
-    }
-  }
-
-  // This div is used by javascript to tell it the total number of columns
-  // on the page at any given time.  This way we don't have to do any silly
-  // calculating, or have our CSS breakpoints hard-coded into the javascript
-  // somewhere else.
-  & + .grid--admin {
-    z-index: $columns;
-  }
-}
-
 @mixin flynns_arrow($width, $height, $color) {
   content: '';
   position: absolute;
@@ -198,58 +126,6 @@ $flynns-grid-spacing: small !default;
     padding: 0 $flynns-gutter-value;
   }
 
-  // Title banner across the top of the grid.
-  &__banner {
-    @include display(flex);
-    @include justify-content(space-between);
-    @include align-items(flex-end);
-    padding: 0 .5em;
-
-    @media (min-width: $screen-sm) {
-      padding: 0;
-    }
-  }
-
-  &__title {
-    @include flex(auto);
-    @include ellipsis;
-
-    @media (min-width: $screen-lg) {
-      display: none;
-    }
-  }
-
-  &__active {
-    @include flex(none);
-    text-align: right;
-
-    @media (min-width: $screen-lg) {
-      text-align: left;
-    }
-  }
-
-  &__options {
-    @include flex(none);
-    font-size: 12px;
-    text-align: right;
-
-    @media (max-width: $screen-md-max) {
-      display: none;
-    }
-
-    label {
-      text-transform: uppercase;
-    }
-
-    .form-group + .form-group {
-      margin-left: .5em;
-    }
-
-    .form-control-static {
-      text-transform: uppercase;
-      padding-bottom: 5px;
-    }
-  }
 }
 
 //
@@ -307,63 +183,72 @@ $flynns-grid-spacing: small !default;
               width: percentage((1 / $cols));
             }
           }
+
           $cols: $cols + 1;
-        }
+        } // @while
+
       }
-    }
+    } // @each
 
   }
-
-  + .grid--admin {
-    position: absolute;
-    display: none;
-    content: "#{$flynns-arcade}";
-  }
-}
-
-// .mini-grid {
-//   @include outer-container;
-//   max-width: 100%;
-//   margin: 0 auto;
-//   padding: 0;
-
-//   // 2x - Always
-//   &.two {
-//     @include flynns_pixel(2);
-//   }
-
-//   // 3x -> 2x
-//   &.three {
-
-//     // iPhone portrait
-//     @media (max-width: $screen-xs - 1) {
-//       @include flynns_pixel(2);
-//     }
-
-//     // iPhone landscape
-//     @media (min-width: $screen-xs) {
-//       @include flynns_pixel(3);
-//     }
-//   }
-
-//   // 4x -> 3x -> 2x
-//   &.four {
-
-//     // iPhone portrait
-//     @media (max-width: $screen-xs - 1) {
-//       @include flynns_pixel(2);
-//     }
-
-//     // iPhone landscape
-//     @media (min-width: $screen-xs) and (max-width: $screen-md - 1) {
-//       @include flynns_pixel(3);
-//     }
-
-//     // iPad Portrait
-//     @media (min-width: $screen-md) {
-//       @include flynns_pixel(4);
-//     }
-//   }
-// }
+} // .the-grid
 
 @import "arcades";
+
+// @todo move somewhere else.
+.flynns {
+
+  // Title banner across the top of the grid.
+  &__banner {
+    @include display(flex);
+    @include justify-content(space-between);
+    @include align-items(flex-end);
+    padding: 0 .5em;
+
+    @media (min-width: $screen-sm) {
+      padding: 0;
+    }
+  }
+
+  &__title {
+    @include flex(auto);
+    @include ellipsis;
+
+    @media (min-width: $screen-lg) {
+      display: none;
+    }
+  }
+
+  &__active {
+    @include flex(none);
+    text-align: right;
+
+    @media (min-width: $screen-lg) {
+      text-align: left;
+    }
+  }
+
+  &__options {
+    @include flex(none);
+    font-size: 12px;
+    text-align: right;
+
+    @media (max-width: $screen-md-max) {
+      display: none;
+    }
+
+    label {
+      text-transform: uppercase;
+    }
+
+    .form-group + .form-group {
+      margin-left: .5em;
+    }
+
+    .form-control-static {
+      text-transform: uppercase;
+      padding-bottom: 5px;
+    }
+  }
+}
+}
