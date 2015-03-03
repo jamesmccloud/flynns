@@ -8,19 +8,18 @@ requirejs.config
     'jquery': 'bower_components/jquery/dist/jquery'
     'bootstrap': 'bower_components/bootstrap-sass/assets/javascripts/bootstrap'
 
-requirejs ['jquery', 'bootstrap', 'catbus', 'flynns'], ($) ->
+requirejs [
+    'jquery',
+    'bootstrap',
+    'catbus',
+    'src/coffee/flynns'
+], ($) ->
 
   $(document).ready ->
 
     $flynns = $('[js-flynns]')
     $cabinets = $flynns.find('[js-cabinets]')
-
-    $gridControls = $(['js-grid-controls'])
     $programControls = $('[js-program-controls]')
-
-    grid = 'small'
-    gridSearch = 'grid--'
-    gridInitalized = false
 
     program = 'asteroids'
     programSearch = 'arcade--'
@@ -37,12 +36,6 @@ requirejs ['jquery', 'bootstrap', 'catbus', 'flynns'], ($) ->
 
       return out
 
-
-    getGrid = ->
-      newGrid = findInClass $flynns.get(0).classList, gridSearch
-      console.log "Current grid: #{newGrid}"
-
-      return newGrid
 
     getProgram = ->
       newProgram = findInClass $cabinets.get(0).classList, programSearch
@@ -63,14 +56,6 @@ requirejs ['jquery', 'bootstrap', 'catbus', 'flynns'], ($) ->
         programInitalized = true
         $('#' + newProgram).click()
 
-    # activateGrid = (e) ->
-    #   newGrid = e.target.value
-    #   console.log "Activating new grid: #{newGrid}"
-
-    #   if newGrid isnt grid
-    #     $flynns.removeClass "#{gridSearch}#{grid}"
-    #     $flynns.addClass "#{gridSearch}#{newgrid}"
-
 
     toggleTheThing = (newThing, oldThing, prefix, $target) ->
 
@@ -81,19 +66,18 @@ requirejs ['jquery', 'bootstrap', 'catbus', 'flynns'], ($) ->
         $target.removeClass "#{prefix}#{oldThing}"
         $target.addClass "#{prefix}#{newThing}"
 
-
+      return newThing
 
     init = ->
       console.log "Flynns online"
 
       program = getProgram()
-      grid = getGrid()
 
       activateProgram {target: value: program}
       # activateGrid {target: value: grid}
 
       $programControls.on 'change', (e) ->
         newValue = e.target.value
-        toggleTheThing(newValue, program, programSearch, $cabinets)
+        program = toggleTheThing(newValue, program, programSearch, $cabinets)
 
     init()
