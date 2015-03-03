@@ -98,10 +98,6 @@
     border-width: $flynns-special-spacing;
     border-style: solid;
   }
-
-  .text, .icon {
-    vertical-align: text-bottom;
-  }
 }
 
 .arcade__line--alpha {
@@ -129,11 +125,13 @@
 }
 
 .arcade__name {
+  @include ellipsis;
   display: block;
   margin: 0;
   font-family: $flynns-font-family;
   font-weight: 500;
   letter-spacing: (25em / 1000);
+  padding-right: .25em;
 
   height: $flynns-alpha-height-small;
   line-height: $flynns-alpha-height-small;
@@ -145,11 +143,6 @@
     line-height: $flynns-alpha-height-normal;
     font-size: $flynns-alpha-font-size-normal;
   }
-
-  .text {
-    @include ellipsis;
-  }
-
 }
 
 .arcade__details {
@@ -176,7 +169,6 @@
   .high-def {
     color: inherit;
     text-transform: uppercase;
-    display: inline-block;
     font-weight: 500;
     letter-spacing: (25em / 1000);
     vertical-align: middle;
@@ -193,6 +185,10 @@
 
   .spacer {
     font-size: .8em;
+  }
+
+  .icon {
+    vertical-align: middle;
   }
 }
 

@@ -1,10 +1,10 @@
 ul.arcade__details
   if program.HD
-    li.high-def: span.text HD
+    li.high-def: span.icon HD
 
   if program.Phone
     li.phone: i.fa.fa-phone.icon
 
-  li.country: span.text #{program.Country}
+  li.country: span #{program.Country}
   li.spacer: i.fa.fa-ellipsis-v.icon
-  li.age: span.text #{program.Age}
+  li.age: span #{program.Age}

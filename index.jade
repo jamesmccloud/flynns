@@ -1,28 +1,10 @@
 .navbar.navbar-inverse.navbar-static-top(js-navbar-standard)
   .container-fluid
     .pull-left
-      a.btn.navbar-btn.btn-default.catbus__button(js-catbus-button).
-        Catbus Button
+      a.btn.navbar-btn.btn-default.catbus__button(js-catbus-button)
+        | Catbus Button
 
-    .pull-right.btn-group.navbar-btn(data-toggle="buttons" js-controls)
-      label#asteroids.btn.btn-default
-        input(type="radio" name="arcade" value="asteroids")
-        | Asteroids
-      label#battlezone.btn.btn-default
-        input(type="radio" name="arcade" value="battlezone")
-        | Battlezone
-      label#centipede.btn.btn-default
-        input(type="radio" name="arcade" value="centipede")
-        | Centipede
-      label#defender.btn.btn-default
-        input(type="radio" name="arcade" value="defender")
-        | Defender
-      label#excitebike.btn.btn-default
-        input(type="radio" name="arcade" value="excitebike")
-        | Excitebike
-      label#frogger.btn.btn-default
-        input(type="radio" name="arcade" value="frogger")
-        | Frogger
+    include src/jade/_controls
 
 
 //- catbus

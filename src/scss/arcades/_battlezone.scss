@@ -32,11 +32,13 @@
   }
 
   .arcade__details {
-    font-size: .8em;
 
     .high-def, .phone {
       color: #999;
-      font-size: .8em;
+
+      @media (max-width: $screen-md-max) {
+        display: none;
+      }
 
       .text {
         line-height: 1;
@@ -52,7 +54,8 @@
     }
 
     .text, .icon {
-      vertical-align: text-bottom;
+      vertical-align: baseline;
+      font-size: .8em;
     }
   }
 
