@@ -15,11 +15,12 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap-sass-official": "~3.2.0",
-    "bootstrap": "~3.2.0",
-    "neat": "1.5.1",
-    "bourbon": "v3.2.1",
-    "font-awesome": "~4.2.0",
-    "angular": "~1.2.23"
+    "requirejs": "~2.1.16",
+    "bootstrap-sass": "~3.3.3",
+    "catbus": "accretive/catbus#redux",
+    "bourbon": "3.2.1"
+  },
+  "resolutions": {
+    "catbus": "redux"
   }
 }
