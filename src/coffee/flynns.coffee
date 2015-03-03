@@ -20,6 +20,7 @@ define ['jquery'], ($) ->
       size = FLYNNS_MEDIUM if $flynns.hasClass 'grid--medium'
       size = FLYNNS_LARGE if $flynns.hasClass 'grid--large'
 
+      $controls.find("[for=\"#{size}\"]").addClass 'active'
       $controls.on 'change', changeSize
 
     changeSize = (e) ->
@@ -31,9 +32,10 @@ define ['jquery'], ($) ->
       else
         newSize = e.target.value
 
-      $flynns
-        .removeClass "grid--#{oldSize}"
-        .addClass "grid--#{newSize}"
+      if newSize isnt oldSize
+        $flynns
+          .removeClass "grid--#{oldSize}"
+          .addClass "grid--#{newSize}"
 
       size = newSize
 
