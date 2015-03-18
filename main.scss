@@ -9,4 +9,5 @@ $flynns-use-gutters: false;
 @import "src/scss/build";
 
 // Catbus
-@import "bower_components/catbus/src/sass/build";
+@import "bower_components/catbus/public/css/mixins";
+@import "bower_components/catbus/public/css/catbus";

@@ -18,7 +18,8 @@
     "requirejs": "~2.1.16",
     "bootstrap-sass": "~3.3.3",
     "catbus": "accretive/catbus#redux",
-    "bourbon": "3.2.1"
+    "bourbon": "3.2.1",
+    "jquery.cookie": "accretive/jquery-cookie#v1.4.3"
   },
   "resolutions": {
     "catbus": "redux"

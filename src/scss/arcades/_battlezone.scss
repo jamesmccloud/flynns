@@ -36,6 +36,10 @@
     .high-def, .phone {
       color: #999;
 
+      .grid--small & {
+        display: none;
+      }
+
       @media (max-width: $screen-md-max) {
         display: none;
       }

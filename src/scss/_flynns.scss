@@ -46,6 +46,14 @@
     // Calculate the multiplier for the space used up by the gutters.
     $multiplier: 100% / (100 - ($flynns-gutter-value * 2));
 
+    // Shrink everything a bit more if we're using the catbus too.
+    $offset: ($flynns-external-nav-offset / 2);
+
+    $flynns-no-external-offset: true;
+    @if $flynns-no-external-offset {
+      $offset: 0;
+    }
+
     // Loop through the sizes.
     @each $size in $flynns-thumbnail-small, $flynns-thumbnail-medium,
       $flynns-thumbnail-large {
@@ -64,7 +72,7 @@
         $cols: 5;
         @while $cols < 15 {
 
-          $width: floor((($size * $cols) + ($flynns-external-nav-offset / 2)) * $multiplier);
+          $width: floor((($size * $cols) + $offset) * $multiplier);
 
           // We need to store the "start" of the grid change for the other sizes.
           @if $cols == 5 {
