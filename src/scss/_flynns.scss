@@ -1,3 +1,29 @@
+//
+// Copyright (c) 2015 Accretive Technology Group, Inc.  All rights reserved.
+// For use only by Accretive Technology Group, its employees and contractors.
+// DO NOT DISTRIBUTE.
+//
+// @author Daryl Roberts
+//
+
+
+// As far as I can tell you can't do the following in sass
+//   .grid--small &,
+//   @media #{$media-sm-max} {
+//     some content
+//   }
+//
+// So this mixin will spit them both out with out me having to write it twice
+// everywhere
+@mixin flynns-small-sizes {
+  .grid--small & {
+    @content;
+  }
+
+  @media (max-width: #{$screen-sm-max}) {
+    @content;
+  }
+}
 
 // The parent container. No position definitions are allowed between this
 // class, and the player frame so that we can use position: absolute to

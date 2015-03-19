@@ -94,9 +94,10 @@
   }
 
   .specialshow & {
-    border-color: $flynns-special-bg;
-    border-width: $flynns-special-spacing;
-    border-style: solid;
+    outline-color: $flynns-special-bg;
+    outline-width: $flynns-special-spacing;
+    outline-style: solid;
+    outline-offset: -$flynns-special-spacing;
   }
 }
 
@@ -223,7 +224,7 @@
 .arcade__special {
   display: block;
   position: absolute;
-  top: -$flynns-special-spacing;
+  top: 0;
   right: 0;
   padding: 0 1.5em;
   background: $flynns-special-bg;
@@ -290,10 +291,10 @@
 @import "arcades/asteroids";
 @import "arcades/battlezone";
 @import "arcades/centipede";
-// @import "arcades/defender";
-// @import "arcades/excitebike";
-// @import "arcades/frogger";
+@import "arcades/defender";
+@import "arcades/excitebike";
+@import "arcades/frogger";
 // @import "arcades/generic";
-
 // @import "out-of-order";
+
 // @import "player";

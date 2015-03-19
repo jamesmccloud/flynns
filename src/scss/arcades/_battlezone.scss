@@ -36,13 +36,13 @@
     .high-def, .phone {
       color: #999;
 
-      .grid--small & {
-        display: none;
-      }
+      // .grid--small & {
+      //   display: none;
+      // }
 
-      @media (max-width: $screen-md-max) {
-        display: none;
-      }
+      // @media #{$media-sm-max} {
+      //   display: none;
+      // }
 
       .text {
         line-height: 1;
