@@ -17,9 +17,10 @@
   "dependencies": {
     "requirejs": "~2.1.16",
     "bootstrap-sass": "~3.3.3",
-    "catbus": "accretive/catbus#redux",
+    "catbus": "accretive/catbus#gh-pages",
     "bourbon": "3.2.1",
-    "jquery.cookie": "accretive/jquery-cookie#v1.4.3"
+    "jquery.cookie": "accretive/jquery-cookie#v1.4.3",
+    "require-cs": "~0.5.0"
   },
   "resolutions": {
     "catbus": "redux"
