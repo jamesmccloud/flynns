@@ -87,6 +87,11 @@
     display: none;
   }
 
+  // Disable the controls for mobile and tablet.
+  .mobile & {
+    display: none;
+  }
+
   li {
     display: inline-block;
   }

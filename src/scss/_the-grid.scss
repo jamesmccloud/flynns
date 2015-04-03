@@ -24,6 +24,18 @@
   }
 }
 
+// build a media query, and set the width of each thumb.
+@mixin grid-cols($cols, $width: false) {
+  @if $width == false {
+    $width: $cols * $flynns-thumbnail-small;
+  }
+
+  @media (min-width: $width) {
+    width: percentage((1 / $cols));
+  }
+}
+
+
 .the-grid {
   @include basic-grid;
 
@@ -75,28 +87,29 @@
             $size-calc: $flynns-thumbnail-small;
           }
 
+          // Base calculation.  Columns * Thumbnail width.
           $start: $size-calc * $cols;
+
+          // Multiplier for gutters at larger resolutions.
           $multiplier: 100% / (100 - $flynns-gutter-value);
 
           @if $start > $screen-lg-min {
             $multiplier: 100% / (100 - ($flynns-gutter-value * 2));
           }
 
+
+          // Start here for all sizes.  Make it larger if necessary.
           $width: $start;
 
-          // If we didn't even make it small size, don't bother with padding.
+          // Add in the gutter multiplier.
           @if $start > $screen-sm-min {
             $width: floor($start * $multiplier);
           }
 
+          // Add in the offset to support the catbus.
           @if $start > $screen-md-min {
             $width: floor(($start + ($offset / 2)) * $multiplier);
           }
-
-          // // We need to store the "start" of the grid change for the other sizes.
-          // @if $size <= $screen-md-min {
-          //   $screen-md-min: $width;
-          // }
 
           // We have some variables that we need for the `larger-grids`
           // mixin.
@@ -111,23 +124,30 @@
             }
           }
 
-          @media (min-width: $width) {
-            width: percentage((1 / $cols));
-          }
+          @include grid-cols($cols, $width);
 
+          // NEXT!
           $cols: $cols + 1;
-        } // @while
+
+        } // @while $cols
 
       }
-    } // @each
+    } // @each $size
 
   }
 } // .the-grid
 
 .mini-grid {
   @include basic-grid;
-}
 
+  &.three > li {
+    @include grid-cols(3);
+  }
+
+  &.four > li {
+    @include grid-cols(4);
+  }
+}
 
 // In the mobile first world, I want a few things to apply to
 // mobile / small grids first, then only apply to the larger grid
