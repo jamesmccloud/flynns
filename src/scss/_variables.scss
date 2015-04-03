@@ -25,8 +25,10 @@ $flynns-use-gutters: true !default;
 $flynns-use-ranks: true !default;
 $flynns-external-offset: true !default;
 
-$flynns-small-grid-start: $screen-md-min;
-$flynns-medium-grid-start: $screen-lg-min;
+
+$flynns-small-grid-start: $screen-sm-min;
+$flynns-medium-grid-start: $screen-md-min;
+$flynns-large-grid-start: $screen-lg-min;
 
 // Arcade Variables
 $flynns-alpha-height: 16px;
@@ -70,8 +72,8 @@ $flynns-online-text-color: black !default;
 $flynns-partychat-color: #33CC00 !default;
 $flynns-partychat-text-color: black !default;
 
-$flynns-goldshow-color: gold !default;
-$flynns-goldshow-text-color: black !default;
+$flynns-gold-color: gold !default;
+$flynns-gold-text-color: black !default;
 
 $flynns-special-color: #0099FF !default;
 $flynns-special-text-color: white !default;

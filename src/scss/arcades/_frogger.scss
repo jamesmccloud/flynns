@@ -160,4 +160,12 @@
       display: none;
     }
   }
+
+  .disconnected & {
+    .arcade__line--delta {
+      .arcade__status {
+        display: none;
+      }
+    }
+  }
 }

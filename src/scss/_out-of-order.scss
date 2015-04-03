@@ -1,143 +1,94 @@
-// background: rgba(#000, 0.75);
-// @include display(flex);
-// @include align-items(center);
-// @include justify-content(center);
-// text-align: center;
-// color: white;
+//
+// Copyright (c) 2015 Accretive Technology Group, Inc.
+//
+// @author Daryl Roberts
+//
 
-// @media (max-width: $screen-md-max) {
-//   font-size: 80%;
-// }
+// @TODO Consider moving out of flynns.
 
-// .box {
-//   padding: 1em;
-// }
+$flynns-use-ooo-button: true !default;
 
-// .headline {
-//   margin-top: 0;
-// }
+.ooo__container {
+  @include display(flex);
+  @include align-items(center);
+  @include justify-content(center);
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: rgba(#000, 0.8);
 
-// .list {
-//   list-style: none;
-//   margin: 0;
-//   padding: 0;
-//   margin-bottom: 1em;
-
-//   & > li {
-//     display: inline-block;
-
-//     & + li {
-//       margin-left: 1em;
-//     }
-//   }
-// }
-
-// .icon--mail {
-//   color: $flynns-link-color;
-// }
-
-// .icon--favorite {
-//   color: red;
-// }
-
-$ooo-bg: rgba(#000, 0.8);
-$ooo-color: #fff;
-
-$ooo-btn-bg: $primary-color !default;
-$ooo-btn-color: contrast-color($ooo-btn-bg) !default;
-$ooo-btn-border: autoadjust($ooo-btn-bg, 10%) !default;
-
-$ooo-btn-gold-bg: $GOLD !default;
-$ooo-btn-gold-color: black !default;
-$ooo-btn-gold-border: autoadjust($ooo-btn-gold-bg, 10%) !default;
-
-$ooo-btn-refresh-bg: #666 !default;
-$ooo-btn-refresh-color: contrast-color($ooo-btn-refresh-bg) !default;
-$ooo-btn-refresh-border: autoadjust($ooo-btn-refresh-bg, 10%) !default;
-
-.ooo {
-
-  &__container {
-    width: 100%;
-    height: 100%;
-    @include display(flex);
-    @include align-items(center);
-    @include justify-content(center);
-    text-align: center;
-    background: $ooo-bg;
-
-    @media (max-width: $screen-md-max) {
-      font-size: 80%;
-    }
+  .arcade:not(.disconnected) & {
+    display: none;
   }
+}
 
-  &__messages {
-    padding: 1em;
+.ooo__messages {
+  padding: $flynns-basic-spacing;
+
+  @include larger-grids {
+    padding: ($flynns-basic-spacing * 2);
   }
+}
 
-  &__header {
-    color: $ooo-color;
+.ooo__header {
+  color: white;
+  margin: 0 0 5px;
+  font-size: 12px;
+  line-height: 1;
+  text-transform: uppercase;
+
+  @include larger-grids {
     font-size: 14px;
-    line-height: 1;
-    text-transform: uppercase;
-    margin: 0 0 5px;
   }
+}
 
-  &__subheader {
-    color: darken($ooo-color, 10%);
+.ooo__subheader {
+  color: darken(white, 10%);
+  font-size: 10px;
+  line-height: 1;
+  text-transform: uppercase;
+  margin:0 0 5px;
+
+  @include larger-grids {
     font-size: 12px;
+  }
+}
+
+.ooo__options {
+  margin: 0 0 5px;
+  padding: 0;
+  list-style: none;
+
+  & > li {
+    display: inline-block;
+    font-size: 22px;
     line-height: 1;
-    text-transform: uppercase;
-    margin:0 0 5px;
-  }
 
-  &__options {
-    margin: 0 0 5px;
-    padding: 0;
-    list-style: none;
-
-    & > li {
-      display: inline-block;
-      font-size: 22px;
-      line-height: 1;
-
-      & + li {
-        margin-left: .5em;
-      }
-    }
-
-    [class*=fa-heart] {
-      color: red;
+    & + li {
+      margin-left: .5em;
     }
   }
 
-  &__btn {
-    // Foundation buttons.
-    @include button-base($style: false, $display: inline-block);
-    background: $ooo-btn-bg;
-    color: $ooo-btn-color;
-    border-top: 1px solid $ooo-btn-border;
-    padding: .25em .75em .4em;
+  [class*=fa-heart] {
+    color: red;
+  }
+}
+
+
+@if $flynns-use-ooo-button {
+  .ooo__btn {
+    display: inline-block;
+    padding: 0 10px;
     font-size: 10px;
     text-transform: uppercase;
     font-weight: 400;
     letter-spacing: (25em / 1000);
-    line-height: 1.4;
+    line-height: 2;
 
-    &:hover {
-      color: autoadjust($ooo-btn-color, 5%);
+    @include larger-grids {
+      font-size: 12px;
     }
 
-    &.btn--refresh {
-      background: $ooo-btn-refresh-bg;
-      color: $ooo-btn-refresh-color;
-      border-color: $ooo-btn-refresh-border;
-    }
-
-    &.btn--gold {
-      background: $ooo-btn-gold-bg;
-      color: $ooo-btn-gold-color;
-      border-color: $ooo-btn-gold-border;
-    }
+    @extend %arcade-status;
   }
 }

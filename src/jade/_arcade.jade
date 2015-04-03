@@ -5,7 +5,7 @@ figure.arcade(class="#{arcade.StatusKey} #{arcade.FavoriteClass} \
   #{arcade.HDClass} #{arcade.PhoneClass}")
 
   //- The cabinet
-  .arcade__cabinet.arcade--frogger(js-arcade-cabinets)
+  .arcade__cabinet.arcade--asteroids(js-arcade-cabinets)
 
     //- Another div, inside the cabinet.  This one is locked to specific
     //- aspect ratio. The divs inside this one, take up the same space, and
@@ -18,6 +18,11 @@ figure.arcade(class="#{arcade.StatusKey} #{arcade.FavoriteClass} \
       //- This is where a video preview will go.
       //- Above the poster, but behind the decals.
       .arcade__screen
+        .ooo__container
+          .ooo__messages
+            h5.ooo__header GOLD SHOW IN PROGRESS
+
+            a(href="#").ooo__btn Join the show
 
       a.arcade__marquee(href="#")
 

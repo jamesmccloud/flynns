@@ -20,11 +20,11 @@
   }
 
   .goldshow & {
-    background: $flynns-goldshow-color;
-    color: $flynns-goldshow-text-color;
+    background: $flynns-gold-color;
+    color: $flynns-gold-text-color;
 
     &::after {
-      border-right-color: darken($flynns-goldshow-color, 15%);
+      border-right-color: darken($flynns-gold-color, 15%);
     }
   }
 
@@ -67,8 +67,8 @@
 
 %arcade-status {
   .goldshow & {
-    background: $flynns-goldshow-color;
-    color: $flynns-goldshow-text-color;
+    background: $flynns-gold-color;
+    color: $flynns-gold-text-color;
   }
 
   .online & {

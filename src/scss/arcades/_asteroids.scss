@@ -103,10 +103,10 @@
     }
 
     .goldshow & {
-      background: $flynns-goldshow-color;
+      background: $flynns-gold-color;
 
       &, .high-def, .phone {
-        color: $flynns-goldshow-text-color;
+        color: $flynns-gold-text-color;
       }
     }
 
@@ -206,7 +206,6 @@
 
   .disconnected & {
     .arcade__line--alpha,
-    .arcade__line--beta,
     .arcade__line--gamma {
       display: none;
     }

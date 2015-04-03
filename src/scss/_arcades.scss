@@ -104,6 +104,12 @@
     border-width: $flynns-special-spacing;
     border-style: solid;
   }
+
+  // When we're disconnected, drop the order of this div back under
+  // the screen, so we can interact with it. 
+  .disconnected & {
+    z-index: 10;
+  }
 }
 
 // On top of the screen are the decals.
@@ -276,6 +282,10 @@
   .specialshow & {
     display: block;
   }
+
+  .disconnected & {
+    display: none;
+  }
 }
 
 .arcade__line--alpha {
@@ -341,6 +351,10 @@
 
   @include larger-grids {
     min-height: $flynns-beta-height-larger;
+  }
+
+  .disconnected & {
+    display: none;
   }
 }
 
@@ -409,7 +423,6 @@
 @import "arcades/excitebike";
 @import "arcades/frogger";
 @import "arcades/generic";
-
 @import "out-of-order";
 
 // @import "player";

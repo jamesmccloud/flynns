@@ -56,4 +56,10 @@
   .arcade__line--delta {
     display: none;
   }
+
+  .disconnected & {
+    .arcade__line--alpha {
+      display: none;
+    }
+  }
 }

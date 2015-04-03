@@ -82,4 +82,7 @@ requirejs [
         newValue = e.target.value
         program = toggleTheThing(newValue, program, programSearch, $cabinets)
 
+      $('[js-disconnect]').on 'click', ->
+        $cabinets.parent().toggleClass "disconnected"
+
     init()
