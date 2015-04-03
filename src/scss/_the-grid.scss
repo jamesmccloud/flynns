@@ -90,7 +90,7 @@
           }
 
           @if $start > $screen-md-min {
-            $width: floor(($start + $offset) * $multiplier);
+            $width: floor(($start + ($offset / 2)) * $multiplier);
           }
 
           // // We need to store the "start" of the grid change for the other sizes.
