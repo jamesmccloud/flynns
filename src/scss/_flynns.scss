@@ -88,12 +88,14 @@
   }
 
   // Disable the controls for mobile and tablet.
-  .mobile & {
+  .mobile &,
+  .tablet & {
     display: none;
   }
 
   li {
     display: inline-block;
+    vertical-align: text-bottom;
   }
 
   .form-control-static {
@@ -104,6 +106,7 @@
     padding: 0;
     padding-right: .5em;
     font-weight: normal;
+    vertical-align: bottom;
   }
 }
 

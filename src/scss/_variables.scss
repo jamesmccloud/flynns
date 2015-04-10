@@ -103,3 +103,12 @@ $flynns-arcade-dropshadow: 0 1px 1px rgba(0, 0, 0, 0.75) !default;
 // Grid Gutter size.
 // Options: small, medium, large, none (anything else)
 $flynns-grid-spacing: small !default;
+
+
+// Neat.
+// http://keithclark.co.uk/articles/moving-ie-specific-css-into-media-blocks/
+@mixin ie10 {
+  @media screen and (unquote("min-width:0\0")) {
+    @content;
+  }
+}

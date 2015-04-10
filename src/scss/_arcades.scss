@@ -112,6 +112,16 @@
   }
 }
 
+.arcade__spacer {
+  @extend %arcade-stretch;
+  z-index: 50;
+  display: none;
+
+  @include ie10 {
+    display: block;
+  }
+}
+
 // On top of the screen are the decals.
 .arcade__decals {
   width: 100%;
@@ -370,6 +380,8 @@
   }
 }
 
+
+// @TODO Fix when we add flynns to the favorites page.
 // .arcade__controls {
 //   position: relative;
 //   z-index: 20;
