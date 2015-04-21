@@ -89,6 +89,10 @@ $flynns-use-ooo-button: true !default;
       font-size: 12px;
     }
 
-    @extend %arcade-status;
+    .goldshow & {
+      background: $flynns-gold-color;
+      color: $flynns-gold-text-color;
+      border-color: darken($flynns-gold-color, 5);
+    }
   }
 }
