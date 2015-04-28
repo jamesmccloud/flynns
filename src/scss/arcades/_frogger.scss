@@ -75,9 +75,15 @@
     }
   }
 
+  .arade__headline {
+    height: $flynns-gamma-height;
+  }
+
   .arcade__special {
     display: none;
   }
+
+
 
   .arcade__line--alpha,
   .arcade__line--gamma {
