@@ -4,6 +4,7 @@ $icon-font-path: "bower_components/bootstrap-sass/fonts/bootstrap/";
 
 $flynns-import-bootstrap: false;
 $flynns-use-gutters: false;
+$flynns-debug: true;
 
 // Flynns base
 @import "src/scss/build";

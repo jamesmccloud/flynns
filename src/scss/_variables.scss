@@ -17,6 +17,7 @@ $screen-md-max: ($screen-lg-min - 1) !default;
 $screen-xs-min: 480px !default;
 
 // Flynns Globals
+$flynns-debug: false !default;
 $flynns-gutter-value: 4% !default;
 $flynns-cell-padding: 2px !default;
 $flynns-external-nav-offset: 264px !default;

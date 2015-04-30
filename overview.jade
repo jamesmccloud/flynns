@@ -1,0 +1,63 @@
+link(rel="stylesheet" href="overview.css")
+
+.container
+  h1 Size Overview
+  p: big These 3 lines show you what the 3 size of the grid should look like.  The number of visible thumbnails will scale with your browser.
+
+section.size--overview.container-fluid
+
+  //- Loop through each size, and display one line of the grid.
+  each size in ['small', 'medium', 'large']
+
+    section.flynns(class="grid--#{size}")
+      ul.the-grid.grid--overview
+
+        - var i = 0
+        while i < 15
+
+          - var arcade = realfakedata[i];
+          - arcade.StatusKey = i === 0 ? 'specialshow' : arcade.StatusKey
+          - arcade.FavoriteClass = arcade.Favorite ? 'favorite' : ''
+          - arcade.HDClass = arcade.HD ? 'is-hd' : ''
+          - arcade.PhoneClass = arcade.Phone ? 'has-phone' : ''
+          - arcade.ArcadeClass = 'arcade--asteroids'
+
+          li: include src/jade/_arcade
+
+          - i++
+
+.container
+  section.visual--overview
+
+    - var arcade = realfakedata[30];
+    - arcade.FavoriteClass = arcade.Favorite ? 'favorite' : ''
+    - arcade.HDClass = arcade.HD ? 'is-hd' : ''
+    - arcade.PhoneClass = arcade.Phone ? 'has-phone' : ''
+
+    h1 Visual Overview
+    p: big This section gives you a visual overview of what each thumbnail design looks like.
+
+    h3 Asteroids:
+    - arcade.ArcadeClass = 'arcade--asteroids'
+    include overviews/arcade-loop
+
+    h3 Battlezone:
+    - arcade.ArcadeClass = 'arcade--battlezone'
+    include overviews/arcade-loop
+
+    h3 Centipede:
+    - arcade.ArcadeClass = 'arcade--centipede'
+    include overviews/arcade-loop
+
+    h3 Defender:
+    - arcade.ArcadeClass = 'arcade--defender'
+    include overviews/arcade-loop
+
+    h3 Excitebike:
+    - arcade.ArcadeClass = 'arcade--excitebike'
+    include overviews/arcade-loop
+
+    h3 Frogger:
+    - arcade.ArcadeClass = 'arcade--frogger'
+    include overviews/arcade-loop
+

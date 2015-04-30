@@ -68,7 +68,8 @@
       @include transition-duration(.15s);
 
       // All the images scale 110% on hover.
-      .arcade:hover & {
+      .arcade:hover &,
+      .arcade.hover & {
 
         @media (min-width: $screen-md) {
           top: -5%;
@@ -94,7 +95,7 @@
   display: block;
   z-index: 30;
 
-  &, &:hover, &:visited, &:active {
+  &, &:hover, &.hover, &:visited, &:active {
     color: currentColor;
     text-decoration: none;
   }
@@ -129,7 +130,7 @@
   @include display(flex);
   @include flex-direction(column-reverse);
 
-  &:hover {
+  &:hover, &.hover {
     text-decoration: none;
     color: inherit;
   }
@@ -400,7 +401,8 @@
 //     color: #b6b6b6;
 //   }
 
-//   &:hover .fa {
+//   &:hover .fa,
+//   &.hover .fa {
 //     font-size: 1.5em;
 //     color: #676767;
 //   }
@@ -415,7 +417,8 @@
 //       color: #dedede;
 //     }
 
-//     &:hover {
+//     &:hover,
+//     &.hover {
 //       .fa-minus {
 //         font-size: 1em;
 //         color: #dedede;

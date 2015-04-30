@@ -1,11 +1,10 @@
 //- The outer shell of the arcade, wrapping everything up into a nice box.
 
-
 figure.arcade(class="#{arcade.StatusKey} #{arcade.FavoriteClass} \
   #{arcade.HDClass} #{arcade.PhoneClass}")
 
   //- The cabinet
-  .arcade__cabinet.arcade--asteroids(js-arcade-cabinets)
+  .arcade__cabinet(js-arcade-cabinets class="#{arcade.ArcadeClass}")
 
     //- Another div, inside the cabinet.  This one is locked to specific
     //- aspect ratio. The divs inside this one, take up the same space, and

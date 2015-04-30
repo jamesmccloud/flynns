@@ -124,7 +124,24 @@
             }
           }
 
+          // Just a reminder that we are operating on the <li> tag.
           @include grid-cols($cols, $width);
+
+
+          @if $flynns-debug {
+
+            .size--overview & {
+              display: none;
+
+              &:nth-of-type(-n+#{$cols}) {
+                @media (min-width: $width) {
+                  display: block;
+
+                }
+              }
+            }
+          }
+
 
           // NEXT!
           $cols: $cols + 1;

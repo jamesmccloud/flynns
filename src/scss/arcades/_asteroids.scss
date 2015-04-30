@@ -63,7 +63,8 @@
     height: 0;
     color: white;
 
-    .arcade:hover & {
+    .arcade:hover &,
+    .arcade.hover & {
       height: $flynns-gamma-height;
     }
 
@@ -197,7 +198,8 @@
       height: $delta-height;
       line-height: $delta-height;
 
-      .arcade:hover & {
+      .arcade:hover &,
+      .arcade.hover & {
         height: $delta-height-hover;
         line-height: $delta-height-hover;
       }
