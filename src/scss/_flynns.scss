@@ -111,18 +111,23 @@
 }
 
 .flynns__control {
+
   $width: 26px;
   $height: 20px;
 
   display: block;
   position: relative;
-  background: #999999;
+  background: $flynns-medium-gray;
   color: $flynns-link-text-color;
   width: $width;
   height: $height;
   content: '';
   cursor: pointer;
   margin: 0;
+
+  &:hover, &.hover {
+    background: darken($flynns-medium-gray, 10);
+  }
 
   &::after {
     position: absolute;
