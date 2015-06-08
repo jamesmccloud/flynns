@@ -75,6 +75,14 @@
           left: -5%;
           width: 110%;
           height: 110%;
+
+          // For mobile and tablet, do not allow any hover stuff.
+          .mobile &, .tablet & {
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
         }
       }
     }
@@ -257,7 +265,9 @@
 }
 
 .arcade__headline {
-  @include word-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: normal;
   margin: 0;
   max-height: 24px;
   font-size: 9px;

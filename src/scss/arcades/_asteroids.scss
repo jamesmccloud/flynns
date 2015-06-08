@@ -65,8 +65,12 @@
 
     .arcade:hover & {
       height: $flynns-gamma-height;
-    }
 
+      // For mobile and tablet, do not allow any hover stuff.
+      .mobile &, .tablet & {
+        height: 0;
+      }
+    }
   }
 
   .arcade__line--alpha {
@@ -200,6 +204,12 @@
       .arcade:hover & {
         height: $delta-height-hover;
         line-height: $delta-height-hover;
+
+        // No hover state for mobile/tablet
+        .mobile &, .tablet & {
+          height: $delta-height;
+          line-height: $delta-height;
+        }
       }
     }
   }
